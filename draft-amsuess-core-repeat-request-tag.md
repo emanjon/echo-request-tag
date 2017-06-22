@@ -116,9 +116,9 @@ A CoAP server MAY include the Repeat option in a response. The Repeat option MUS
 
 Upon receiving a response with the Repeat option within the EXCHANGE_LIFETIME ({{RFC7252}}) of the original request, the CoAP client SHOULD echo the Repeat option with the same value in a new request to the CoAP server. Upon receiving a 4.03 Forbidden response with the Repeat option in response to a request within the EXCHANGE_LIFETIME of the original request, the CoAP client SHOULD resend the original request. The CoAP client MAY send a different request compared to the original request.
 
-CoAP messages containing the Repeat option MUST be integrity protected, e.g. using DTLS or OSCOAP ({{I-D.ietf-core-object-security}}).
-
 If the server receives a request which has freshness requirements, and the request contains the Repeat option, the CoAP server MUST verify that the option value equals a cached value; otherwise the request is not processed further.  The CoAP server MUST calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time.  The CoAP server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT < T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in {{repeat-figure}}.
+
+When used to serve freshness requirements, CoAP messages containing the Repeat option MUST be integrity protected, e.g. using DTLS or OSCOAP ({{I-D.ietf-core-object-security}}).
 
 If the CoAP server loses time synchronization, e.g. due to reboot, it MUST delete all cached Repeat option values and response transmission times.
 
@@ -158,6 +158,9 @@ Constrained implementations can use the mechanisms outlined in {{repeat-state}} 
 
 3. When a device joins a multicast/broadcast group the device may need to synchronize state with the sender to ensure that the received messages are fresh. For certain broadcast types (e.g. when the inter-message time interval is known to the receiver) the Repeat option may only need to be applied to the first message to ensure freshness.
 
+4. A server that sends large responses to unauthenticated peers and wants to mitigate the amplification attacks described in Section 11.3 of {{RFC7252}} can ask a client to Repeat its request. This needs to be done only once per peer, and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server.
+
+  For this application, the Repeat option is used in messages that are not integrity protected.
 
 
 # The Request-Tag Option # {#request-tag}
