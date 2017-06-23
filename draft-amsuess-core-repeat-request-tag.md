@@ -251,31 +251,24 @@ Servers that store the Repeat challenge per client can be attacked for resource 
 
 # Appendix
 
-## Minimizing the state kept for the Repeat Opption {#repeat-state}
+## Performance Impact When Using the Repeat Option {#repeat-state}
 
-[from Repeat Processing]
+The Repeat option requires the server to keep some state in order to later verify the repeated request.
 
 Instead of caching Repeat option values and response transmission times, the CoAP server MAY use the encryption of the response transmit time t0 as Repeat option value. Such a scheme needs to ensure that the CoAP server can detect a replay of a previous encrypted response transmit time. 
 
 For example, the CoAP server MAY encrypt t0 with AES-CCM-128-64-64 using a (pseudo-)random secret key k generated and cached by the server. A unique IV MUST be used with each encryption, e.g. using a sequence number. If the CoAP server loses time synchronization, e.g. due to reboot, then k MUST be deleted and replaced by a new random secret key. When using encrypted response transmit times, the Repeat processing is modified in the following way: The verification of cached option value in the CoAP server processing is replaced by the verification of the integrity of the encrypted option value using the cached key and IV (e.g. sequence number). 
 
-[from Security Considerations]
+The two methods - (a) the list of cached values, and (b) the encryption of transmit time - have different impact on the implementation:
 
-TBD - for now some unstructured text:
+   * size of cached data (list of cached values vs. key and IV)
 
-The CoAP server may use an encryption algorithm in CTR-mode would from a security point be like sending (value = t0).  ECB-mode or CCM-mode would work, but would expand the value length.  With CCM, the CoAP server might also bind the option value to request (value = AEAD(k, t0, parts of request)). 
-
-* To be secure, parts of request needs to be unique
-
-* Comparing the list of cached values with encryption of transmit time:
-
-   * size of cached data (key vs list)
-
-   * size of message (typically larger with AEAD)
+   * size of message (typically larger with encrypted time)
    
-   * computation (encryption + decryption vs generation new nonce + cache + lookup)
+   * computation (encryption + decryption vs. generation new nonce + cache + lookup)
 
 
-Encryption instead of cache mainly useful if many simultaneous requests such that list becomes long? DoS protection? Hybrid scheme (if Repeat value not in cache, CoAP server tries to verify before failing)?
+In general, the encryption of transmission times is most useful if the number of concurrent requests is high. A hybrid scheme is also possible, where the first Repeat option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the server needs to verify both that the Repeat value is not in the list, and that it does not verify and decrypt to a valid transmission time.
+
 
 --- fluff
