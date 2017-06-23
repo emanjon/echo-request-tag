@@ -147,20 +147,17 @@ If the CoAP server loses time synchronization, e.g. due to reboot, it MUST delet
 ~~~~~~~~~~
 {: #repeat-figure title="Repeat option message flow"}
 
-Constrained implementations can use the mechanisms outlined in {{repeat-state}} to minimize the memory impact of having Repeat options unanswered from many clients.
+Constrained server implementations can use the mechanisms outlined in {{repeat-state}} to minimize the memory impact of having many unanswered Repeat responses.
 
 ## Applications ##
 
-1. Actuation requests often require freshness guarantees to avoid delay attacks. For multiple actuations in rapid sequence between the same client and server it may suffice with repeating the first request.
-
+1. Actuation requests often require freshness guarantees to avoid delay attacks. For multiple actuations in rapid sequence between the same client and server it may suffice with repeating the first request, but the acceptable time interval from t0 (when the response with the Repeat option was made) must be considered since that is the only freshness information available.
 
 2. If a server reboots during operation it may need to synchronize state or time with requesting clients before continuing interaction. For example, with OSCOAP it is possible to reuse a persistently stored security context by synchronizing the Partial IV (sequence number) using the Repeat option.
 
 3. When a device joins a multicast/broadcast group the device may need to synchronize state with the sender to ensure that the received messages are fresh. For certain broadcast types (e.g. when the inter-message time interval is known to the receiver) the Repeat option may only need to be applied to the first message to ensure freshness.
 
-4. A server that sends large responses to unauthenticated peers and wants to mitigate the amplification attacks described in Section 11.3 of {{RFC7252}} can ask a client to Repeat its request. This needs to be done only once per peer, and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server.
-
-  For this application, the Repeat option is used in messages that are not integrity protected.
+4. A server that sends large responses to unauthenticated peers and wants to mitigate the amplification attacks described in Section 11.3 of {{RFC7252}} can ask a client to Repeat its request. This needs to be done only once per peer, and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server.  For this application, the Repeat option is used in messages that are not integrity protected.
 
 
 # The Request-Tag Option # {#request-tag}
