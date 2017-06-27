@@ -198,7 +198,7 @@ The Request-Tag value of an initiated blockwise request operation is chosen by t
 
 ## Request-Tag Processing ##
 
-A CoAP client MAY set the Request-Tag option to allow the CoAP server to differentiate between different representations of the same resource. If the Request-Tag option is set, the CoAP client MAY perform simultaneous operations that utilize Block1 fragmentation from the same endpoint towards the same resource, lifting the limitation of {{RFC7959}} section 2.5. A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and is concurrently starting another blockwise request operations to the same resource, then the CoAP client MUST set the Request-Tag.
+A CoAP client MAY set the Request-Tag option to allow the CoAP server to differentiate between different representations of the same resource. If the Request-Tag option is set, the CoAP client MAY perform simultaneous operations that utilize Block1 fragmentation from the same endpoint towards the same resource, lifting the limitation of {{RFC7959}} section 2.5. A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and wants to concurrently start another blockwise request operations to the same resource without cancelling the first, then the CoAP client MUST set the Request-Tag.
 
 If a CoAP proxy fragments a request with the Object-Security option, using the Block1 option, then the proxy MUST set the Request-Tag option. (TBD: Move previous sentence to OSCOAP?)
 
@@ -228,7 +228,7 @@ Clients can use the Request-Tag option to ensure that a request body is assemble
 
   Note that the server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per {{RFC7252}}, and blocks need to be transferred between the same set of endpoints (TBD does it actually say that anywhere? Didn't find it in 7959).
 
-* The client MUST NOT consider a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism to be considered invalid by the server in a replay.
+* The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism to be considered invalid by the server in a replay.
 
   Typically, this confirmation can result either from reception of an ACK to the message, or because the message's sequence number is old enough to be outside the server's receive window.
 
