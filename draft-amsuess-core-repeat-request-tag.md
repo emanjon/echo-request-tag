@@ -200,8 +200,6 @@ The Request-Tag value of an initiated blockwise request operation is chosen by t
 
 A CoAP client MAY set the Request-Tag option to allow the CoAP server to differentiate between different representations of the same resource. If the Request-Tag option is set, the CoAP client MAY perform simultaneous operations that utilize Block1 fragmentation from the same endpoint towards the same resource, lifting the limitation of {{RFC7959}} section 2.5. A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and wants to concurrently start another blockwise request operations to the same resource without cancelling the first, then the CoAP client MUST set the Request-Tag.
 
-If a CoAP proxy fragments a request with the Object-Security option, using the Block1 option, then the proxy MUST set the Request-Tag option. (TBD: Move previous sentence to OSCOAP?)
-
 If the CoAP server receives a message with a Block1 option and Request-Tag option then server MUST NOT act on any block in the same blockwise operation that has a different Request-Tag set. A server MUST NOT act on blocks with and blocks without Request-Tag option in the same blockwise operation. The CoAP server is still under no obligation to keep state of more than one transaction. When an operation is in progress and a second one cannot be served at the same time, the CoAP server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.  
 
 (TBD If we want the functionality that the client should be able to interupt an operation in progress and perform a different operation, then that should IMHO not be implemented as only sendning the other operation. Instead an "interrupt" message should be sent. RFC7959 2.9.2 mentions that if a different Content-Format is indicated than the server expects from the current state of the resource that can lead to 4.08, should we recommend something like that?)
@@ -216,9 +214,35 @@ dropping the Request-Tag option.
 
 ## Applications {#req-tag-applications}
 
-### Parallel blockwise transfers
+### Parallel blockwise operations
 
-...
+Clients, especially proxies, can be in situations in which they want to initiate a blockwise request operation at a resource where another one is already in progress, which the new request should not cancel.
+The situation in which this is most likely to occur is when a proxy relays OSCOAP messages with outer-blockwise fragmentation, where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is yet another blockwise request operation at the server's `/` path.
+
+For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged.
+
+When a proxy forwards an incoming blockwise request operation, it can do so without a Request-Tag option set.
+
+When another blockwise request operation is requested from it, it can try forward it with a new Request-Tag value.
+This can have two possible outcomes:
+
+* The server responds 4.02 Bad Option.
+
+  This can indicate that the server does not support Request-Tag.
+  The proxy should wait for the first operation to conclude, and then try the same request without a Request-Tag option.
+
+* The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
+
+  This can indicate that the server supports Request-Tag, but still is not prepared to handle simultaneous requests.
+  The proxy should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
+
+* The server responds with a successful code.
+
+  The blockwise operation can continue.
+
+In the waiting cases, the proxy can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself.
+Note that this behavior is no different from what the proxy would need to do were it unaware of the Request-Tag option.
+
 
 ### Body integrity based on Payload integrity
 
