@@ -237,7 +237,10 @@ In the cases where a CoAP proxy receives an error code, it can indicate the anti
 
 ### Body Integrity Based on Payload Integrity
 
-In the case of a CoAP client fragmenting a request body into message payloads using Block1, the CoAP client can mitigate mixing of message payloads from different blockwise request operations by using the Request-Tag option. In order to gain that protection, these rules apply:
+When a CoAP client fragments a request body into integrity protected messages, there is a possibility of attacks where an earlier operation's blocks can alter a later operation's meaning (see Section 3.2 of the earlier version -00 of {{I-D.amsuess-core-request-tag}}; later versions of {{I-D.mattsson-core-coap-actuators}} will take that part up).
+Therefore, the integrity protection of the messages does not extend to the operation's request body.
+
+In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The message payloads MUST be integrity protected end-to-end between CoAP client and server
 
