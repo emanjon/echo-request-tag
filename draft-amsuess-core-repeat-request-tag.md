@@ -286,6 +286,8 @@ and MUST NOT use the same ETag value for different representations of a resource
 
 # IANA Considerations {#iana}
 
+[TBD: Fill out the option templates for Repeat and Request-Tag]
+
 
 # Security Considerations {#sec-cons}
 
