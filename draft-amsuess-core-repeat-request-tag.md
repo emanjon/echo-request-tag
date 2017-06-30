@@ -79,7 +79,7 @@ A straightforward mitigation of mixing up blocks from different messages is to u
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in {{RFC2119}}.
 
-The terms "payload" and "body" of a message are used as in {{RFC7959}}.  The complete interchange of a request and a response body is called a (REST) "operation", while a request and response message (as matched by their tokens) is called an "exchange". An operation fragmented using {{RFC7959}} is called a "blockwise operation". A blockwise operation which is fragmenting the request body is called a "blockwise request operation".
+The terms "payload" and "body" of a message are used as in {{RFC7959}}.  The complete interchange of a request and a response body is called a (REST) "operation", while a request and response message (as matched by their tokens) is called an "exchange". An operation fragmented using {{RFC7959}} is called a "blockwise operation". A blockwise operation which is fragmenting the request body is called a "blockwise request operation".  A blockwise operation which is fragmenting the response body is called a "blockwise response operation".
 
 
 
@@ -164,7 +164,7 @@ Constrained server implementations can use the mechanisms outlined in {{repeat-s
 
 # The Request-Tag Option # {#request-tag}
 
-The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving CoAP server to reliably assemble request payloads (blocks) to their message bodies when the individual payloads are integrity proteted, and it enables the sending CoAP server to process simultaneous operations on a single resource if the server supports it.
+The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving CoAP server to reliably assemble request payloads (blocks) to their message bodies when the individual payloads are integrity protected, and it enables the sending CoAP server to process simultaneous operations on a single resource if the server supports it.
 
 
 ## Option Format ## {#req-tag-format}
@@ -198,70 +198,68 @@ The Request-Tag value of an initiated blockwise request operation is chosen by t
 
 ## Request-Tag Processing ##
 
-A CoAP client MAY set the Request-Tag option to allow the CoAP server to differentiate between different representations of the same resource. If the Request-Tag option is set, the CoAP client MAY perform simultaneous operations that utilize Block1 fragmentation from the same endpoint towards the same resource, lifting the limitation of {{RFC7959}} section 2.5. A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and wants to concurrently start another blockwise request operations to the same resource without cancelling the first, then the CoAP client MUST set the Request-Tag.
+A CoAP client MAY set the Request-Tag option to allow the CoAP server to differentiate between different representations of the same resource. If the Request-Tag option is set, the CoAP client MAY perform simultaneous operations that utilize Block1 fragmentation from the same endpoint towards the same resource, lifting the limitation of {{RFC7959}} section 2.5. A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and wants to concurrently start another blockwise request operations to the same resource without cancelling the first, then the CoAP client MUST set the Request-Tag. The CoAP client MUST include the Request-Tag option in each request.
 
-If the CoAP server receives a message with a Block1 option and Request-Tag option then server MUST NOT act on any block in the same blockwise operation that has a different Request-Tag set. A server MUST NOT act on blocks with and blocks without Request-Tag option in the same blockwise operation. The CoAP server is still under no obligation to keep state of more than one transaction. When an operation is in progress and a second one cannot be served at the same time, the CoAP server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.  
+If the CoAP server receives a message with a Block1 option and a Request-Tag option then server MUST NOT act on any block in the same blockwise operation that has a different Request-Tag set. A CoAP server MUST NOT act on blocks with and blocks without Request-Tag option in the same blockwise operation. The CoAP server is still under no obligation to keep state of more than one transaction. When an operation is in progress and a second one cannot be served at the same time, the CoAP server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.  
 
-(TBD If we want the functionality that the client should be able to interupt an operation in progress and perform a different operation, then that should IMHO not be implemented as only sendning the other operation. Instead an "interrupt" message should be sent. RFC7959 2.9.2 mentions that if a different Content-Format is indicated than the server expects from the current state of the resource that can lead to 4.08, should we recommend something like that?)
+If a CoAP server receives a message with a Block1 option having the same Request-Tag value (with or without the Request-Tag option) and block number (NUM) as a previously received message to the same resource in a blockwise request operation that is not concluded then the CoAP server SHOULD send a <error code TBD>.
 
 A CoAP server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure. 
 
 The option is not used in responses.
 
-If a request that uses Request-Tag is rejected with 4.02 Bad Option, the CoAP client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid
-dropping the Request-Tag option.
+If a request that uses Request-Tag is rejected with 4.02 Bad Option, the CoAP client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the Request-Tag option.
 
 
 ## Applications {#req-tag-applications}
 
-### Parallel blockwise operations
+### Multiple Concurrent Blockwise Operations
 
-Clients, especially proxies, can be in situations in which they want to initiate a blockwise request operation at a resource where another one is already in progress, which the new request should not cancel.
-The situation in which this is most likely to occur is when a proxy relays OSCOAP messages with outer-blockwise fragmentation, where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is yet another blockwise request operation at the server's `/` path.
+CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel. One example is when a CoAP proxy fragments an OSCOAP messages using blockwise (so-called "outer" blockwise, see Section 4.3.1. of {{I-D.ietf-core-object-security}})), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the CoAP server's `/` path.
 
-For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged.
+When a CoAP client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set. For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged. When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the CoAP client can use a different Request-Tag value (as specified in {{req-tag-format}}). The possible outcomes are:
 
-When a proxy forwards an incoming blockwise request operation, it can do so without a Request-Tag option set.
+* The CoAP server responds with a successful code.
 
-When another blockwise request operation is requested from it, it can try forward it with a new Request-Tag value.
-This can have two possible outcomes:
+  The concurrent blockwise operations can then continue.
+  
 
-* The server responds 4.02 Bad Option.
+* The CoAP server responds 4.02 Bad Option.
 
-  This can indicate that the server does not support Request-Tag.
-  The proxy should wait for the first operation to conclude, and then try the same request without a Request-Tag option.
+  This can indicate that the server does not support Request-Tag. The CoAP client should wait for the first operation to conclude, and then try the same request without a Request-Tag option.
+  
 
-* The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
+* The CoAP server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
 
-  This can indicate that the server supports Request-Tag, but still is not prepared to handle simultaneous requests.
-  The proxy should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
+  This can indicate that the server supports Request-Tag, but still is not prepared to handle simultaneous requests. The CoAP client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
+  
 
-* The server responds with a successful code.
-
-  The blockwise operation can continue.
-
-In the waiting cases, the proxy can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself.
-Note that this behavior is no different from what the proxy would need to do were it unaware of the Request-Tag option.
+In the cases where a CoAP proxy receives an error code, it can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself. Note that this behavior is no different from what a CoAP proxy would need to do were it unaware of the Request-Tag option.
 
 
-### Body integrity based on Payload integrity
+### Body Integrity Based on Payload Integrity
 
-Clients can use the Request-Tag option to ensure that a request body is assembled only from the payloads of the messages the client created for that operation. In order to gain that protection, these rules apply:
+In the case of a CoAP client fragmenting a request body into message payloads using Block1, the CoAP client can mitigate mixing of message payloads from different blockwise request operations by using the Request-Tag option. In order to gain that protection, these rules apply:
 
-* The client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded.
+* The message payloads MUST be integrity protected end-to-end between CoAP client and server
 
-  Note that the server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per {{RFC7252}}, and blocks need to be transferred between the same set of endpoints (TBD does it actually say that anywhere? Didn't find it in 7959).
+* The CoAP client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded. 
 
-* The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism to be considered invalid by the server in a replay.
+  Note that the CoAP server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per {{RFC7252}}.
+  
+* The CoAP client MUST NOT regard a blockwise request operation as concluded unless all of the messages the CoAP client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the CoAP server if replayed.
 
-  Typically, this confirmation can result either from reception of an ACK to the message, or because the message's sequence number is old enough to be outside the server's receive window.
+  Typically, these confirmations can result either from the CoAP client receiving of a 2.31 (Continue) with a Block1 indicating the block number received, or because the message's sequence number is old enough to be outside the CoAP server's receive window.
 
-Authors of other documents (eg. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. Thus, the server can rely on the conforming client to set the Request-Tag option when required, and thus rely on the integrity of the assembled body.
+Authors of other documents (eg. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for CoAP clients that execute blockwise interactions over secured transports. Thus, the CoAP server can rely on a conforming CoAP client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
 
-# The ETag Option # {#etag}
+# Block2 / ETag Processing # {#etag}
 
-For dynamically changing resources the Block2 Option MUST be used in conjunction with the ETag Option ({{RFC7252}}, Section 5.10.6), to ensure that the blocks being reassembled are from the same version of the representation: The server MUST include an ETag Option in each response.  
+To achieve the same secure operation for Block2 as for Block1, processing of the ETag option needs to be analogous to the Request-Tag processing defined in this document. 
 
+In the case of different concurrent blockwise response operations from the same resource, e.g. dynamically changing resources, the Block2 option MUST be used in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6), to ensure that the blocks being reassembled are from the same version of the representation.  
+
+If the CoAP server is running a blockwise response operation without the ETag, and wants to concurrently start another blockwise response operations to the same resource without cancelling the first, then the CoAP client MUST set the ETag option. The CoAP server MUST include an ETag option in each response. 
 
 
 # IANA Considerations {#iana}
@@ -269,16 +267,14 @@ For dynamically changing resources the Block2 Option MUST be used in conjunction
 
 # Security Considerations {#sec-cons}
 
-Servers that store the Repeat challenge per client can be attacked for resource exhaustion, and should consider minimizing the state kept per client, eg. using a mechanism as described in {{repeat-state}}.
+CoAP servers that store the Repeat challenge per CoAP client can be attacked for resource exhaustion, and should consider minimizing the state kept per CoAP client, e.g. using a mechanism as described in {{repeat-state}}.
 
 
 --- back
 
-# Appendix
-
 ## Performance Impact When Using the Repeat Option {#repeat-state}
 
-The Repeat option requires the server to keep some state in order to later verify the repeated request.
+The Repeat option requires the CoAP server to keep some state in order to later verify the repeated request.
 
 Instead of caching Repeat option values and response transmission times, the CoAP server MAY use the encryption of the response transmit time t0 as Repeat option value. Such a scheme needs to ensure that the CoAP server can detect a replay of a previous encrypted response transmit time. 
 
@@ -293,7 +289,9 @@ The two methods - (a) the list of cached values, and (b) the encryption of trans
    * computation (encryption + decryption vs. generation new nonce + cache + lookup)
 
 
-In general, the encryption of transmission times is most useful if the number of concurrent requests is high. A hybrid scheme is also possible, where the first Repeat option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the server needs to verify both that the Repeat value is not in the list, and that it does not verify and decrypt to a valid transmission time.
+In general, the encryption of transmission times is most useful if the number of concurrent requests is high. 
+
+A hybrid scheme is also possible: the first Repeat option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the CoAP server may need to make both verifications - either that the Repeat value is in the list, or that it verifies in decryption - and in either case that the transmission time is valid.
 
 
 --- fluff
