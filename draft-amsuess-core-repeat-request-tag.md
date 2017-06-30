@@ -265,7 +265,9 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The CoAP client MUST NOT regard a blockwise request operation as concluded unless all of the messages the CoAP client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the CoAP server if replayed.
 
-  Typically, these confirmations can result either from the CoAP client receiving of a 2.31 (Continue) with a Block1 indicating the block number received, or because the message's sequence number is old enough to be outside the CoAP server's receive window.
+  Typically, in OSCOAP, these confirmations can result either from the CoAP client receiving an OSCOAP response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the CoAP server's receive window.
+
+  In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
 
 Authors of other documents (eg. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for CoAP clients that execute blockwise interactions over secured transports. Thus, the CoAP server can rely on a conforming CoAP client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
 
