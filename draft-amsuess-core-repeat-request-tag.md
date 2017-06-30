@@ -81,6 +81,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The terms "payload" and "body" of a message are used as in {{RFC7959}}.  The complete interchange of a request and a response body is called a (REST) "operation", while a request and response message (as matched by their tokens) is called an "exchange". An operation fragmented using {{RFC7959}} is called a "blockwise operation". A blockwise operation which is fragmenting the request body is called a "blockwise request operation".  A blockwise operation which is fragmenting the response body is called a "blockwise response operation".
 
+Two blockwise operations between the same endpoint pair on the same resource are said to be "concurrent" if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of {{RFC7959}} because the second operation's block overwrites any state of the first exchange.).
+
 
 
 # The Repeat Option # {#repeat}
@@ -164,7 +166,7 @@ Constrained server implementations can use the mechanisms outlined in {{repeat-s
 
 # The Request-Tag Option # {#request-tag}
 
-The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving CoAP server to reliably assemble request payloads (blocks) to their message bodies when the individual payloads are integrity protected, and it enables the sending CoAP server to process simultaneous operations on a single resource if the server supports it.
+The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving CoAP server to reliably assemble request payloads (blocks) to their message bodies when the individual payloads are integrity protected, and it enables the sending CoAP server to process concurrent operations on a single resource if the server supports it.
 
 
 ## Option Format ## {#req-tag-format}
@@ -238,7 +240,7 @@ The possible outcomes are:
 
 * The CoAP server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
 
-  This can indicate that the server supports Request-Tag, but still is not prepared to handle simultaneous requests.
+  This can indicate that the server supports Request-Tag, but still is not prepared to handle concurrent requests.
   The CoAP client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
 
 
