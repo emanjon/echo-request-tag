@@ -215,7 +215,7 @@ If a request that uses Request-Tag is rejected with 4.02 Bad Option, the CoAP cl
 
 CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel. One example is when a CoAP proxy fragments an OSCOAP messages using blockwise (so-called "outer" blockwise, see Section 4.3.1. of {{I-D.ietf-core-object-security}})), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the CoAP server's `/` path.
 
-When a CoAP client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set. For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged. When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the CoAP client can use a different Request-Tag value (as specified in {{req-tag-format}}). The possible outcomes are:
+When a CoAP client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set. For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged, or when the client chose not to continue with the operation (eg. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout). When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the CoAP client can use a different Request-Tag value (as specified in {{req-tag-format}}). The possible outcomes are:
 
 * The CoAP server responds with a successful code.
 
