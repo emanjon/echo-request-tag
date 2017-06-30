@@ -200,8 +200,7 @@ What constitutes a concluded operation depends on the application, and is outlin
 
 ## Request-Tag Processing ##
 
-If the CoAP server receives a message with a Block1 option and a Request-Tag option then server MUST NOT act on any block in the same blockwise operation that has a different Request-Tag set.
-A CoAP server MUST NOT act on blocks with and blocks without Request-Tag option in the same blockwise operation.
+A server MUST NOT act on any two blocks in the same blockwise request operation that have different Request-Tag values.
 This also means that a block can not overwrite kept context when the Request-Tag does not match (cf. {{RFC7959}} Section 2.5).
 The CoAP server is still under no obligation to keep state of more than one transaction.
 When an operation is in progress and a second one cannot be served at the same time, the CoAP server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.
