@@ -209,6 +209,8 @@ When an operation is in progress and a second one cannot be served at the same t
 
 A CoAP server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure.
 
+Two messages arriving at the server with the same Request-Tag value do not necessarily belong to the same operation. They can still be treated as independent messages by the server (eg. when it sends 2.01/2.04 responses for every block), or initiate a new operation (overwriting kept context) when sending the first block again.
+
 The option is not used in responses.
 
 If a request that uses Request-Tag is rejected with 4.02 Bad Option, the CoAP client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the Request-Tag option.
