@@ -39,6 +39,7 @@ informative:
   I-D.ietf-core-object-security:
   I-D.mattsson-core-coap-actuators:
   I-D.amsuess-core-request-tag:
+  I-D.tschofenig-core-coap-tcp-tls:
 
 --- abstract
 
@@ -253,12 +254,11 @@ Note that this behavior is no different from what a CoAP proxy would need to do 
 
 ### Body Integrity Based on Payload Integrity {#body-integrity}
 
-When a client fragments a request body into integrity protected messages, there is a possibility of attacks where an earlier operation's blocks can alter a later operation's meaning (see Section 3.2 of the earlier version -00 of {{I-D.amsuess-core-request-tag}}; later versions of {{I-D.mattsson-core-coap-actuators}} will take that part up).
-Therefore, the integrity protection of the messages does not extend to the operation's request body.
+When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation's blocks with earlier operation's blocks (see Section 3.2 of {{I-D.amsuess-core-request-tag}}). Therefore, the integrity protection of each block does not extend to the operation's request body.
 
 In order to gain that protection, use the Request-Tag mechanism as follows:
 
-* The message payloads MUST be integrity protected end-to-end between client and server
+* The message payloads MUST be integrity protected end-to-end between client and server.
 
 * The client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded.
 
@@ -270,9 +270,9 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
   In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
 
-Authors of other documents (e.g. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. Thus, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
+Authors of other documents (e.g. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
 
-Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TLS). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.
+Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TCP, protected by TLS or OSCOAP {{I-D.tschofenig-core-coap-tcp-tls}}). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.
 
 # Block2 / ETag Processing # {#etag}
 
