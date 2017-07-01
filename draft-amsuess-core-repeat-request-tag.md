@@ -322,14 +322,15 @@ In general, the encryption of transmission times is most useful if the number of
 
 A hybrid scheme is also possible: the first Repeat option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the server may need to make both verifications - either that the Repeat value is in the list, or that it verifies in decryption - and in either case that the transmission time is valid.
 
-# Request-Tag message size impact
+# Request-Tag Message Size Impact
 
-In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: if no operations are aborted due to repeated transmission failure in OSCOAP, or if no packages are lost in DTLS),
-or when blockwise request operations happen rarely (OSCOAP: only one with losses within the window size).
+In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCOAP, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost),
+or when blockwise request operations happen rarely (in OSCOAP, if only one request operation with losses within the replay window).
 
 In those situations, the Request-Tag value of no Request-Tag option present can be reused over and over again.
 
-When that value becomes unusable in a security context, the Request-Tag value of a present but empty option can be used (1 Byte overhead), and when that becomes unusable, 256 values from one byte long options (2 Bytes overhead) can be used.
+When the "no-Request-Tag value" is used-up within a security context, the Request-Tag value of a present but empty option can be used (1 Byte overhead), and when that is used-up, 256 values from one byte long options (2 Bytes overhead) can be used.
+
 In situations where those overheads are unacceptable (e.g. because the payloads are known to be at a fragmentation threshold), the absent Request-Tag value can be made usable again:
 
 * In DTLS, a new session can be established.
