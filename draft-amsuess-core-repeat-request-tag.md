@@ -220,6 +220,29 @@ If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client 
 
 ## Applications {#req-tag-applications}
 
+
+### Body Integrity Based on Payload Integrity {#body-integrity}
+
+When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation's blocks with earlier operation's blocks (see Section 3.2 of {{I-D.amsuess-core-request-tag}}). Therefore, the integrity protection of each block does not extend to the operation's request body.
+
+In order to gain that protection, use the Request-Tag mechanism as follows:
+
+* The message payloads MUST be integrity protected end-to-end between client and server.
+
+* The client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded.
+
+  Note that the server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per {{RFC7252}}.
+
+* The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
+
+  Typically, in OSCOAP, these confirmations can result either from the client receiving an OSCOAP response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the server's receive window.
+
+  In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
+
+Authors of other documents (e.g. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
+
+Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TCP, protected by TLS or OSCOAP {{I-D.tschofenig-core-coap-tcp-tls}}). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.
+
 ### Multiple Concurrent Blockwise Operations
 
 CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.
@@ -252,27 +275,6 @@ In the cases where a CoAP proxy receives an error code, it can indicate the anti
 Note that this behavior is no different from what a CoAP proxy would need to do were it unaware of the Request-Tag option.
 
 
-### Body Integrity Based on Payload Integrity {#body-integrity}
-
-When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation's blocks with earlier operation's blocks (see Section 3.2 of {{I-D.amsuess-core-request-tag}}). Therefore, the integrity protection of each block does not extend to the operation's request body.
-
-In order to gain that protection, use the Request-Tag mechanism as follows:
-
-* The message payloads MUST be integrity protected end-to-end between client and server.
-
-* The client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded.
-
-  Note that the server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per {{RFC7252}}.
-
-* The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
-
-  Typically, in OSCOAP, these confirmations can result either from the client receiving an OSCOAP response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the server's receive window.
-
-  In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
-
-Authors of other documents (e.g. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
-
-Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TCP, protected by TLS or OSCOAP {{I-D.tschofenig-core-coap-tcp-tls}}). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.
 
 # Block2 / ETag Processing # {#etag}
 
