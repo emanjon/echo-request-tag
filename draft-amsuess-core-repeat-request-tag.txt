@@ -6,8 +6,8 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft                               Energy Harvesting Solutions
 Updates: RFC7959 (if approved)                               J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: January 1, 2018                                     Ericsson AB
-                                                           June 30, 2017
+Expires: January 2, 2018                                     Ericsson AB
+                                                           July 01, 2017
 
 
                          Repeat And Request-Tag
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 1, 2018.
+   This Internet-Draft will expire on January 2, 2018.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Amsuess, et al.          Expires January 1, 2018                [Page 1]
+Amsuess, et al.          Expires January 2, 2018                [Page 1]
 
-Internet-Draft           Repeat And Request-Tag                June 2017
+Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 Copyright Notice
@@ -79,24 +79,24 @@ Table of Contents
      1.1.  Request Freshness . . . . . . . . . . . . . . . . . . . .   3
      1.2.  Fragmented Message Body Integrity . . . . . . . . . . . .   3
      1.3.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   4
-   2.  The Repeat Option . . . . . . . . . . . . . . . . . . . . . .   4
+   2.  The Repeat Option . . . . . . . . . . . . . . . . . . . . . .   5
      2.1.  Option Format . . . . . . . . . . . . . . . . . . . . . .   5
      2.2.  Repeat Processing . . . . . . . . . . . . . . . . . . . .   5
      2.3.  Applications  . . . . . . . . . . . . . . . . . . . . . .   7
-   3.  The Request-Tag Option  . . . . . . . . . . . . . . . . . . .   7
+   3.  The Request-Tag Option  . . . . . . . . . . . . . . . . . . .   8
      3.1.  Option Format . . . . . . . . . . . . . . . . . . . . . .   8
      3.2.  Request-Tag Processing  . . . . . . . . . . . . . . . . .   9
-     3.3.  Applications  . . . . . . . . . . . . . . . . . . . . . .   9
-       3.3.1.  Multiple Concurrent Blockwise Operations  . . . . . .   9
-       3.3.2.  Body Integrity Based on Payload Integrity . . . . . .  10
+     3.3.  Applications  . . . . . . . . . . . . . . . . . . . . . .  10
+       3.3.1.  Body Integrity Based on Payload Integrity . . . . . .  10
+       3.3.2.  Multiple Concurrent Blockwise Operations  . . . . . .  11
    4.  Block2 / ETag Processing  . . . . . . . . . . . . . . . . . .  12
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  13
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  13
-   Appendix A.  Performance Impact When Using the Repeat Option  . .  13
-   Appendix B.  Request-Tag message size impact  . . . . . . . . . .  14
+   Appendix A.  Performance Impact When Using the Repeat Option  . .  14
+   Appendix B.  Request-Tag Message Size Impact  . . . . . . . . . .  15
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Amsuess, et al.          Expires January 1, 2018                [Page 2]
+Amsuess, et al.          Expires January 2, 2018                [Page 2]
 
-Internet-Draft           Repeat And Request-Tag                June 2017
+Internet-Draft           Repeat And Request-Tag                July 2017
 
 
    This document specifies two server-oriented CoAP options, the Repeat
@@ -165,9 +165,9 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
 
 
-Amsuess, et al.          Expires January 1, 2018                [Page 3]
+Amsuess, et al.          Expires January 2, 2018                [Page 3]
 
-Internet-Draft           Repeat And Request-Tag                June 2017
+Internet-Draft           Repeat And Request-Tag                July 2017
 
 
    and response payload, respectively.  The blockwise functionality does
@@ -193,6 +193,10 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in [RFC2119].
 
+   Unless otherwise specified, the terms "client" and "server" refers to
+   "CoAP client" and "CoAP server", respectively, as defined in
+   [RFC7252].
+
    The terms "payload" and "body" of a message are used as in [RFC7959].
    The complete interchange of a request and a response body is called a
    (REST) "operation", while a request and response message (as matched
@@ -211,20 +215,22 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    second operation's block overwrites any state of the first
    exchange.).
 
+   The Repeat and Request-Tag options are defined in this document.  The
+   concept "Request-Tag value" is defined in Section 3.1.
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018                [Page 4]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
+
 2.  The Repeat Option
 
    The Repeat option is a server-driven challenge-response mechanism for
    CoAP.  The Repeat option value is a challenge from the server to the
    client included in a CoAP response and echoed in a CoAP request.
-
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018                [Page 4]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
 
 2.1.  Option Format
 
@@ -248,8 +254,7 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
    The value of the Repeat option MUST be a (pseudo-)random bit string
    of a length of at least 64 bits.  A new (pseudo-)random bit string
-   MUST be generated by the CoAP server for each use of the Repeat
-   option.
+   MUST be generated by the server for each use of the Repeat option.
 
 2.2.  Repeat Processing
 
@@ -259,51 +264,79 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    in the request, and conditions in the environment such as the state
    of the server or the time of the day.
 
-   A CoAP server MAY include the Repeat option in a response.  The
-   Repeat option MUST NOT be used with empty CoAP requests.  If the
-   server receives a request which has freshness requirements, and the
-   request does not contain the Repeat option, the CoAP server SHOULD
-   send a 4.03 Forbidden response with a Repeat option.  The CoAP server
-   SHOULD cache the transmitted Repeat option value and the response
-   transmit time (here denoted t0).
+   A server MAY include the Repeat option in a response.  The Repeat
+   option MUST NOT be used with empty CoAP requests.  If the server
+   receives a request which has freshness requirements, and the request
+   does not contain the Repeat option, the server SHOULD send a 4.03
+   Forbidden response with a Repeat option.  The server SHOULD cache the
+   transmitted Repeat option value and the response transmit time (here
+   denoted t0).
 
    Upon receiving a response with the Repeat option within the
-   EXCHANGE_LIFETIME ([RFC7252]) of the original request, the CoAP
-   client SHOULD echo the Repeat option with the same value in a new
-   request to the CoAP server.  Upon receiving a 4.03 Forbidden response
-   with the Repeat option in response to a request within the
-   EXCHANGE_LIFETIME of the original request, the CoAP client SHOULD
+   EXCHANGE_LIFETIME ([RFC7252]) of the original request, the client
 
 
 
-
-Amsuess, et al.          Expires January 1, 2018                [Page 5]
+Amsuess, et al.          Expires January 2, 2018                [Page 5]
 
-Internet-Draft           Repeat And Request-Tag                June 2017
+Internet-Draft           Repeat And Request-Tag                July 2017
 
 
-   resend the original request.  The CoAP client MAY send a different
-   request compared to the original request.
+   SHOULD echo the Repeat option with the same value in a new request to
+   the server.  Upon receiving a 4.03 Forbidden response with the Repeat
+   option in response to a request within the EXCHANGE_LIFETIME of the
+   original request, the client SHOULD resend the original request.  The
+   client MAY send a different request compared to the original request.
 
    If the server receives a request which has freshness requirements,
-   and the request contains the Repeat option, the CoAP server MUST
-   verify that the option value equals a cached value; otherwise the
-   request is not processed further.  The CoAP server MUST calculate the
-   round-trip time RTT = (t1 - t0), where t1 is the request receive
-   time.  The CoAP server MUST only accept requests with a round-trip
-   time below a certain threshold T, i.e. RTT < T, otherwise the request
-   is not processed further, and an error message MAY be sent.  The
-   threshold T is application specific, its value depends e.g. on the
-   freshness requirements of the request.  An example message flow is
-   illustrated in Figure 2.
+   and the request contains the Repeat option, the server MUST verify
+   that the option value equals a cached value; otherwise the request is
+   not processed further.  The server MUST calculate the round-trip time
+   RTT = (t1 - t0), where t1 is the request receive time.  The server
+   MUST only accept requests with a round-trip time below a certain
+   threshold T, i.e. RTT < T, otherwise the request is not processed
+   further, and an error message MAY be sent.  The threshold T is
+   application specific, its value depends e.g. on the freshness
+   requirements of the request.  An example message flow is illustrated
+   in Figure 2.
 
    When used to serve freshness requirements, CoAP messages containing
    the Repeat option MUST be integrity protected, e.g. using DTLS or
    OSCOAP ([I-D.ietf-core-object-security]).
 
-   If the CoAP server loses time synchronization, e.g. due to reboot, it
-   MUST delete all cached Repeat option values and response transmission
+   If the server loses time synchronization, e.g. due to reboot, it MUST
+   delete all cached Repeat option values and response transmission
    times.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018                [Page 6]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
 
                    Client  Server
                       |      |
@@ -329,15 +362,6 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
                    Figure 2: Repeat option message flow
 
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018                [Page 6]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
    Constrained server implementations can use the mechanisms outlined in
    Appendix A to minimize the memory impact of having many unanswered
    Repeat responses.
@@ -360,6 +384,15 @@ Internet-Draft           Repeat And Request-Tag                June 2017
        For example, with OSCOAP it is possible to reuse a persistently
        stored security context by synchronizing the Partial IV (sequence
        number) using the Repeat option.
+
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018                [Page 7]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
 
    4.  When a device joins a multicast/broadcast group the device may
        need to synchronize state or time with the sender to ensure that
@@ -385,15 +418,7 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
    The Request-Tag is intended for use as a short-lived identifier for
    keeping apart distinct blockwise request operations on one resource
-   from one client.  It enables the receiving CoAP server to reliably
-
-
-
-Amsuess, et al.          Expires January 1, 2018                [Page 7]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
+   from one client.  It enables the receiving server to reliably
    assemble request payloads (blocks) to their message bodies, and, if
    it chooses to support it, to reliably process simultaneous blockwise
    request operations on a single resource.  The requests must be be
@@ -418,127 +443,192 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
                    Figure 3: Request-Tag Option Summary
 
-   [Note to editor: If this document is not released together with
+
+
+Amsuess, et al.          Expires January 2, 2018                [Page 8]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
+
+   [Note to RFC editor: If this document is not released together with
    OSCOAP but before it, the following paragraph and the "E" column
-   above need to move into OSCOAP; the authors expect simultaneous
-   publication.]
+   above need to move into OSCOAP.]
 
    Request-Tag, like the Block1 option, is a special class E option in
    terms of OSCOAP processing (see Section 4.3.1.2 of
    [I-D.ietf-core-object-security]): The Request-Tag MAY be an inner or
-   outer option.  In case of inner, it is encrypted and integrity
-   protected between CoAP client and server, and provides message body
-   identification in case of end-to-end fragmentation of requests.  In
-   case of outer, it is visible to proxies and labels message bodies in
-   case of hop-by-hop fragmentation of requests.
+   outer option.  The inner option is encrypted and integrity protected
+   between client and server, and provides message body identification
+   in case of end-to-end fragmentation of requests.  The outer option is
+   visible to proxies and labels message bodies in case of hop-by-hop
+   fragmentation of requests.
 
    Every message in which the Block1 option is set is considered to
-   carry a Request-Tag value that can be compared for equality with any
-   other such message's value.  Absence of the Request-Tag option
-   implies a value that is distinct from any value of a message with the
-   Request-Tag option set, and equal to that of any other message
-   without the Request-Tag option.  Messages with the Request-Tag option
-   set have equal Request-Tag values if and only if their option lengths
-   and option values are equal.
-
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018                [Page 8]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
+   carry a "Request-Tag value" that can be compared for equality with
+   the value of any other such message.  Absence of the Request-Tag
+   option implies a value that is distinct from any value of a message
+   with the Request-Tag option set, and equal to that of any other
+   message without the Request-Tag option.  Messages with the Request-
+   Tag option set have equal Request-Tag values if and only if their
+   option lengths and option values are equal.
 
    The value of the Request-Tag option is generated by the client for
-   every blockwise request operation.  It MUST be different from any
+   every blockwise request operation.  Clients are encouraged to
+   generate compact Request-Tag values.  It MUST be different from any
    other Request-Tag value used in the same security context on the same
    resource, but MAY be reused when all earlier operations with the same
-   value are concluded.  (Clients are encouraged to generate compact
-   values)
-
-   What constitutes a concluded operation depends on the application,
-   and is outlined individually in Section 3.3.
+   value are concluded.  What constitutes a concluded operation depends
+   on the application, and is outlined individually in Section 3.3.
 
 3.2.  Request-Tag Processing
 
    A server MUST NOT act on any two blocks in the same blockwise request
    operation that have different Request-Tag values.  This also means
-   that a block can not overwrite kept context when the Request-Tag does
-   not match (cf.  [RFC7959] Section 2.5).  The CoAP server is still
-   under no obligation to keep state of more than one transaction.  When
-   an operation is in progress and a second one cannot be served at the
-   same time, the CoAP server MUST respond to the second request with a
-   5.03 (Service Unavailable) response code and SHOULD indicate the time
-   it is willing to wait for additional blocks in the first operation
-   using the Max-Age option, as specified in Section 5.9.3.4 of
-   [RFC7252].
+   that a block cannot overwrite kept context when the Request-Tag does
+   not match (cf.  [RFC7959] Section 2.5).  The server is still under no
+   obligation to keep state of more than one transaction.  When an
+   operation is in progress and a second one cannot be served at the
+   same time, the server MUST respond to the second request with a 5.03
+   (Service Unavailable) response code and SHOULD indicate the time it
+   is willing to wait for additional blocks in the first operation using
+   the Max-Age option, as specified in Section 5.9.3.4 of [RFC7252].
 
-   A CoAP server receiving a Request-Tag MUST treat it as opaque and
-   make no assumptions about its content or structure.
+   A server receiving a Request-Tag MUST treat it as opaque and make no
+   assumptions about its content or structure.
 
    Two messages arriving at the server with the same Request-Tag value
    do not necessarily belong to the same operation.  They can still be
-   treated as independent messages by the server (eg. when it sends
+
+
+
+Amsuess, et al.          Expires January 2, 2018                [Page 9]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
+
+   treated as independent messages by the server (e.g. when it sends
    2.01/2.04 responses for every block), or initiate a new operation
    (overwriting kept context) when sending the first block again.
 
-   The option is not used in responses.
+   The Request-Tag option is not used in responses.
 
    If a request that uses Request-Tag is rejected with 4.02 Bad Option,
-   the CoAP client MAY retry the operation without it, but then it MUST
+   the client MAY retry the operation without it, but then it MUST
    serialize all operations that affect the same resource.  Security
    requirements can forbid dropping the Request-Tag option.
 
 3.3.  Applications
 
-3.3.1.  Multiple Concurrent Blockwise Operations
+3.3.1.  Body Integrity Based on Payload Integrity
+
+   When a client fragments a request body into multiple message
+   payloads, even if the individual messages are integrity protected, it
+   is still possible for a man-in-the-middle to maliciously replace
+   later operation's blocks with earlier operation's blocks (see
+   Section 3.2 of [I-D.amsuess-core-request-tag]).  Therefore, the
+   integrity protection of each block does not extend to the operation's
+   request body.
+
+   In order to gain that protection, use the Request-Tag mechanism as
+   follows:
+
+   o  The message payloads MUST be integrity protected end-to-end
+      between client and server.
+
+   o  The client MUST NOT reuse a Request-Tag value within a security
+      association unless all previous blockwise request operations on
+      the same resource that used the same Request-Tag value have
+      concluded.
+
+      Note that the server needs to verify that all blocks within an
+      operation come from the same security association, because the
+      security association is a part of the endpoint as per [RFC7252].
+
+   o  The client MUST NOT regard a blockwise request operation as
+      concluded unless all of the messages the client previously sent in
+      the operation have been confirmed by the message integrity
+      protection mechanism, or are considered invalid by the server if
+      replayed.
+
+      Typically, in OSCOAP, these confirmations can result either from
+      the client receiving an OSCOAP response message matching the
+      request (an empty ACK is insufficient), or because the message's
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018               [Page 10]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
+
+      sequence number is old enough to be outside the server's receive
+      window.
+
+      In DTLS, this can only be confirmed if the request message was not
+      retransmitted, and was responded to.
+
+   Authors of other documents (e.g.  [I-D.ietf-core-object-security])
+   are invited to mandate this behavior for clients that execute
+   blockwise interactions over secured transports.  In this way, the
+   server can rely on a conforming client to set the Request-Tag option
+   when required, and thereby conclude on the integrity of the assembled
+   body.
+
+   Note that this mechanism is implicitly implemented when the security
+   layer guarantees ordered delivery (e.g.  CoAP over TLS
+   [I-D.tschofenig-core-coap-tcp-tls]).  This is because with each
+   message, any earlier operation can be regarded as concluded by the
+   client, so it never needs to set the Request-Tag option unless it
+   wants to perform concurrent operations.
+
+3.3.2.  Multiple Concurrent Blockwise Operations
 
    CoAP clients, especially CoAP proxies, may initiate a blockwise
    request operation to a resource, to which a previous one is already
    in progress, and which the new request should not cancel.  One
    example is when a CoAP proxy fragments an OSCOAP messages using
-
-
-
-Amsuess, et al.          Expires January 1, 2018                [Page 9]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
    blockwise (so-called "outer" blockwise, see Section 4.3.1. of
    [I-D.ietf-core-object-security])), where the Uri-Path is hidden
-   inside the encrypted message, and all the proxy sees is the CoAP
-   server's "/" path.
+   inside the encrypted message, and all the proxy sees is the server's
+   "/" path.
 
-   When a CoAP client fragments a message as part of a blockwise request
+   When a client fragments a message as part of a blockwise request
    operation, it can do so without a Request-Tag option set.  For this
    application, an operation can be regarded as concluded when a final
    Block1 option has been sent and acknowledged, or when the client
-   chose not to continue with the operation (eg. by user choice, or in
+   chose not to continue with the operation (e.g. by user choice, or in
    the case of a proxy when it decides not to take any further messages
    in the operation due to a timeout).  When another concurrent
    blockwise request operation is made (i.e. before the operation is
-   concluded), the CoAP client can use a different Request-Tag value (as
+   concluded), the client can use a different Request-Tag value (as
    specified in Section 3.1).  The possible outcomes are:
 
-   o  The CoAP server responds with a successful code.
+   o  The server responds with a successful code.
 
       The concurrent blockwise operations can then continue.
 
-   o  The CoAP server responds 4.02 Bad Option.
+   o  The server responds 4.02 Bad Option.
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018               [Page 11]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
 
       This can indicate that the server does not support Request-Tag.
-      The CoAP client should wait for the first operation to conclude,
-      and then try the same request without a Request-Tag option.
+      The client should wait for the first operation to conclude, and
+      then try the same request without a Request-Tag option.
 
-   o  The CoAP server responds 5.03 Service Unavailable with a Max-Age
-      option to indicate when it is likely to be available again.
+   o  The server responds 5.03 Service Unavailable with a Max-Age option
+      to indicate when it is likely to be available again.
 
       This can indicate that the server supports Request-Tag, but still
-      is not prepared to handle concurrent requests.  The CoAP client
-      should wait for as long as the response is valid, and then retry
-      the operation, which may not need to carry a Request-Tag option by
+      is not prepared to handle concurrent requests.  The client should
+      wait for as long as the response is valid, and then retry the
+      operation, which may not need to carry a Request-Tag option by
       then any more.
 
    In the cases where a CoAP proxy receives an error code, it can
@@ -547,80 +637,9 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    CoAP proxy would need to do were it unaware of the Request-Tag
    option.
 
-3.3.2.  Body Integrity Based on Payload Integrity
-
-   When a CoAP client fragments a request body into integrity protected
-   messages, there is a possibility of attacks where an earlier
-   operation's blocks can alter a later operation's meaning (see
-   Section 3.2 of the earlier version -00 of
-   [I-D.amsuess-core-request-tag]; later versions of
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 10]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
-   [I-D.mattsson-core-coap-actuators] will take that part up).
-   Therefore, the integrity protection of the messages does not extend
-   to the operation's request body.
-
-   In order to gain that protection, use the Request-Tag mechanism as
-   follows:
-
-   o  The message payloads MUST be integrity protected end-to-end
-      between CoAP client and server
-
-   o  The CoAP client MUST NOT reuse a Request-Tag value within a
-      security association unless all previous blockwise request
-      operations on the same resource that used the same Request-Tag
-      value have concluded.
-
-      Note that the CoAP server needs to verify that all blocks within
-      an operation come from the same security association, because the
-      security association is a part of the endpoint as per [RFC7252].
-
-   o  The CoAP client MUST NOT regard a blockwise request operation as
-      concluded unless all of the messages the CoAP client previously
-      sent in the operation have been confirmed by the message integrity
-      protection mechanism, or are considered invalid by the CoAP server
-      if replayed.
-
-      Typically, in OSCOAP, these confirmations can result either from
-      the CoAP client receiving an OSCOAP response message matching the
-      request (an empty ACK is insufficient), or because the message's
-      sequence number is old enough to be outside the CoAP server's
-      receive window.
-
-      In DTLS, this can only be confirmed if the request message was not
-      retransmitted, and was responded to.
-
-   Authors of other documents (eg.  [I-D.ietf-core-object-security]) are
-   invited to mandate this behavior for CoAP clients that execute
-   blockwise interactions over secured transports.  Thus, the CoAP
-   server can rely on a conforming CoAP client to set the Request-Tag
-   option when required, and thereby conclude on the integrity of the
-   assembled body.
-
-   Note that this mechanism is implicitly implemented when the security
-   layer guarantees ordered delivery (eg.  CoAP over TLS).  This is
-   because with each message, any earlier operation can be regarded as
-   concluded by the client, so it never needs to set the Request-Tag
-   option unless it wants to perform concurrent operations.
-
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 11]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
 4.  Block2 / ETag Processing
 
-   The same security properties as in Section 3.3.2 can be obtained for
+   The same security properties as in Section 3.3.1 can be obtained for
    blockwise response operations.  The threat model here is not an
    attacker (because the response is made sure to belong to the current
    request by the security layer), but blocks in the client's cache.
@@ -628,7 +647,7 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    Analogous rules to Section 3.2 are already in place for assembling a
    response body in Section 2.4 of [RFC7959].
 
-   To gain equivalent protection to Section 3.3.2, a server MUST use the
+   To gain equivalent protection to Section 3.3.1, a server MUST use the
    Block2 option in conjunction with the ETag option ([RFC7252],
    Section 5.10.6), and MUST NOT use the same ETag value for different
    representations of a resource.
@@ -639,10 +658,21 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
 6.  Security Considerations
 
-   CoAP servers that store the Repeat challenge per CoAP client can be
-   attacked for resource exhaustion, and should consider minimizing the
-   state kept per CoAP client, e.g. using a mechanism as described in
-   Appendix A.
+   Servers that store a Repeat challenge per client can be attacked for
+   resource exhaustion, and should consider minimizing the state kept
+   per client, e.g. using a mechanism as described in Appendix A.
+
+
+
+
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018               [Page 12]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
 
 7.  References
 
@@ -663,17 +693,6 @@ Internet-Draft           Repeat And Request-Tag                June 2017
               DOI 10.17487/RFC7959, August 2016,
               <http://www.rfc-editor.org/info/rfc7959>.
 
-
-
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 12]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
-
 7.2.  Informative References
 
    [I-D.amsuess-core-request-tag]
@@ -691,9 +710,25 @@ Internet-Draft           Repeat And Request-Tag                June 2017
               mattsson-core-coap-actuators-02 (work in progress),
               November 2016.
 
+   [I-D.tschofenig-core-coap-tcp-tls]
+              Bormann, C., Lemay, S., Technologies, Z., and H.
+              Tschofenig, "A TCP and TLS Transport for the Constrained
+              Application Protocol (CoAP)", draft-tschofenig-core-coap-
+              tcp-tls-05 (work in progress), November 2015.
+
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
+
+
+
+
+
+
+Amsuess, et al.          Expires January 2, 2018               [Page 13]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
 
    [RFC7641]  Hartke, K., "Observing Resources in the Constrained
               Application Protocol (CoAP)", RFC 7641,
@@ -702,33 +737,25 @@ Internet-Draft           Repeat And Request-Tag                June 2017
 
 Appendix A.  Performance Impact When Using the Repeat Option
 
-   The Repeat option requires the CoAP server to keep some state in
-   order to later verify the repeated request.
+   The Repeat option requires the server to keep some state in order to
+   later verify the repeated request.
 
    Instead of caching Repeat option values and response transmission
-   times, the CoAP server MAY use the encryption of the response
-   transmit time t0 as Repeat option value.  Such a scheme needs to
-   ensure that the CoAP server can detect a replay of a previous
-   encrypted response transmit time.
+   times, the server MAY use the encryption of the response transmit
+   time t0 as Repeat option value.  Such a scheme needs to ensure that
+   the server can detect a replay of a previous encrypted response
+   transmit time.
 
-   For example, the CoAP server MAY encrypt t0 with AES-CCM-128-64-64
-   using a (pseudo-)random secret key k generated and cached by the
-   server.  A unique IV MUST be used with each encryption, e.g. using a
-   sequence number.  If the CoAP server loses time synchronization, e.g.
-   due to reboot, then k MUST be deleted and replaced by a new random
-   secret key.  When using encrypted response transmit times, the Repeat
+   For example, the server MAY encrypt t0 with AES-CCM-128-64-64 using a
+   (pseudo-)random secret key k generated and cached by the server.  A
+   unique IV MUST be used with each encryption, e.g. using a sequence
+   number.  If the server loses time synchronization, e.g. due to
+   reboot, then k MUST be deleted and replaced by a new random secret
+   key.  When using encrypted response transmit times, the Repeat
    processing is modified in the following way: The verification of
-   cached option value in the CoAP server processing is replaced by the
+   cached option value in the server processing is replaced by the
    verification of the integrity of the encrypted option value using the
    cached key and IV (e.g. sequence number).
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 13]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
 
    The two methods - (a) the list of cached values, and (b) the
    encryption of transmit time - have different impact on the
@@ -747,30 +774,38 @@ Internet-Draft           Repeat And Request-Tag                June 2017
    A hybrid scheme is also possible: the first Repeat option values are
    cached, and if the number of concurrent requests reach a certain
    threshold, then encrypted times are used until there is space for
-   storing new values in the list.  In that case, the CoAP server may
-   need to make both verifications - either that the Repeat value is in
-   the list, or that it verifies in decryption - and in either case that
-   the transmission time is valid.
+   storing new values in the list.  In that case, the server may need to
+   make both verifications - either that the Repeat value is in the
+   list, or that it verifies in decryption - and in either case that the
+   transmission time is valid.
 
-Appendix B.  Request-Tag message size impact
+
+
+Amsuess, et al.          Expires January 2, 2018               [Page 14]
+
+Internet-Draft           Repeat And Request-Tag                July 2017
+
+
+Appendix B.  Request-Tag Message Size Impact
 
    In absence of concurrent operations, the Request-Tag mechanism for
-   body integrity (Section 3.3.2) incurs no overhead if no messages are
-   lost (more precisely: if no operations are aborted due to repeated
-   transmission failure in OSCOAP, or if no packages are lost in DTLS),
-   or when blockwise request operations happen rarely (OSCOAP: only one
-   with losses within the window size).
+   body integrity (Section 3.3.1) incurs no overhead if no messages are
+   lost (more precisely: in OSCOAP, if no operations are aborted due to
+   repeated transmission failure; in DTLS, if no packages are lost), or
+   when blockwise request operations happen rarely (in OSCOAP, if only
+   one request operation with losses within the replay window).
 
    In those situations, the Request-Tag value of no Request-Tag option
    present can be reused over and over again.
 
-   When that value becomes unusable in a security context, the Request-
-   Tag value of a present but empty option can be used (1 Byte
-   overhead), and when that becomes unusable, 256 values from one byte
-   long options (2 Bytes overhead) can be used.  In situations where
-   those overheads are unacceptable (eg. because the payloads are known
-   to be at a fragmentation threshold), the absent Request-Tag value can
-   be made usable again:
+   When the "no-Request-Tag value" is used-up within a security context,
+   the Request-Tag value of a present but empty option can be used (1
+   Byte overhead), and when that is used-up, 256 values from one byte
+   long options (2 Bytes overhead) can be used.
+
+   In situations where those overheads are unacceptable (e.g. because
+   the payloads are known to be at a fragmentation threshold), the
+   absent Request-Tag value can be made usable again:
 
    o  In DTLS, a new session can be established.
 
@@ -778,13 +813,6 @@ Appendix B.  Request-Tag message size impact
       that all lost messages are outside of the replay window by the
       time the first request of the new operation gets processed, and
       all earlier operations can therefore be regarded as concluded.
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 14]
-
-Internet-Draft           Repeat And Request-Tag                June 2017
-
 
 Authors' Addresses
 
@@ -809,32 +837,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Amsuess, et al.          Expires January 1, 2018               [Page 15]
+Amsuess, et al.          Expires January 2, 2018               [Page 15]
