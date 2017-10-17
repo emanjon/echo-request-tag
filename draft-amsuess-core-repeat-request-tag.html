@@ -23,13 +23,12 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    right: calc(50vw - 500px);
+    right: calc(50vw - 525px);
     width: 300px;
-    padding: 0 1em;
     z-index: 1;
   }
   #rfc\.toc {
-    top: 16px;
+    top: 15px;
   }
   ul.toc {
     top: 80px;
@@ -37,8 +36,7 @@
   }
 
   body {
-    padding-left: 1.5em;
-    padding-right: 29em;
+    padding-right: 350px;
   }
 }
 
@@ -47,7 +45,7 @@ body {
   color: #333;
   font-size-adjust: 0.5;
   line-height: 130%;
-  margin: 2.5em auto;
+  margin: 25px auto;
   max-width: 724px;
 }
 
@@ -307,7 +305,7 @@ address {
 
   <meta name="dct.creator" content="Amsuess, C., Mattsson, J., and G. Selander" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-amsuess-core-repeat-request-tag-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-7-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-10-17" />
   <meta name="dct.abstract" content="This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Repeat option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCOAP, protects against certain attacks on CoAP message exchanges." />
   <meta name="description" content="This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Repeat option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCOAP, protects against certain attacks on CoAP message exchanges." />
 
@@ -335,12 +333,12 @@ address {
   <td class="right">G. Selander</td>
 </tr>
 <tr>
-  <td class="left">Expires: January 2, 2018</td>
+  <td class="left">Expires: April 20, 2018</td>
   <td class="right">Ericsson AB</td>
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">July 01, 2017</td>
+  <td class="right">October 17, 2017</td>
 </tr>
 
     	
@@ -361,7 +359,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 2, 2018.</p>
+<p>This Internet-Draft will expire on April 20, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -415,7 +413,7 @@ address {
 <p id="rfc.section.1.3.p.2">Unless otherwise specified, the terms &#8220;client&#8221; and &#8220;server&#8221; refers to &#8220;CoAP client&#8221; and &#8220;CoAP server&#8221;, respectively, as defined in <a href="#RFC7252">[RFC7252]</a>.</p>
 <p id="rfc.section.1.3.p.3">The terms &#8220;payload&#8221; and &#8220;body&#8221; of a message are used as in <a href="#RFC7959">[RFC7959]</a>.  The complete interchange of a request and a response body is called a (REST) &#8220;operation&#8221;, while a request and response message (as matched by their tokens) is called an &#8220;exchange&#8221;. An operation fragmented using <a href="#RFC7959">[RFC7959]</a> is called a &#8220;blockwise operation&#8221;. A blockwise operation which is fragmenting the request body is called a &#8220;blockwise request operation&#8221;.  A blockwise operation which is fragmenting the response body is called a &#8220;blockwise response operation&#8221;.</p>
 <p id="rfc.section.1.3.p.4">Two blockwise operations between the same endpoint pair on the same resource are said to be &#8220;concurrent&#8221; if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of <a href="#RFC7959">[RFC7959]</a> because the second operation&#8217;s block overwrites any state of the first exchange.).</p>
-<p id="rfc.section.1.3.p.5">The Repeat and Request-Tag options are defined in this document. The concept &#8220;Request-Tag value&#8221; is defined in <a href="#req-tag-format">Section 3.1</a>.</p>
+<p id="rfc.section.1.3.p.5">The Repeat and Request-Tag options are defined in this document. The concept of two messages being &#8220;Request-Tag-matchable&#8221; is defined in <a href="#req-tag-format">Section 3.1</a>.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#repeat" id="repeat">The Repeat Option</a></h1>
 <p id="rfc.section.2.p.1">The Repeat option is a server-driven challenge-response mechanism for CoAP. The Repeat option value is a challenge from the server to the client included in a CoAP response and echoed in a CoAP request.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#repeat-format" id="repeat-format">Option Format</a></h1>
@@ -499,14 +497,15 @@ address {
 <p class="figure">Figure 3: Request-Tag Option Summary</p>
 <p id="rfc.section.3.1.p.2">[Note to RFC editor: If this document is not released together with OSCOAP but before it, the following paragraph and the &#8220;E&#8221; column above need to move into OSCOAP.]</p>
 <p id="rfc.section.3.1.p.3">Request-Tag, like the Block1 option, is a special class E option in terms of OSCOAP processing (see Section 4.3.1.2 of <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.</p>
-<p id="rfc.section.3.1.p.4">Every message in which the Block1 option is set is considered to carry a &#8220;Request-Tag value&#8221; that can be compared for equality with the value of any other such message.  Absence of the Request-Tag option implies a value that is distinct from any value of a message with the Request-Tag option set, and equal to that of any other message without the Request-Tag option.  Messages with the Request-Tag option set have equal Request-Tag values if and only if their option lengths and option values are equal.</p>
-<p id="rfc.section.3.1.p.5">The value of the Request-Tag option is generated by the client for every blockwise request operation. Clients are encouraged to generate compact Request-Tag values. It MUST be different from any other Request-Tag value used in the same security context on the same resource, but MAY be reused when all earlier operations with the same value are concluded. What constitutes a concluded operation depends on the application, and is outlined individually in <a href="#req-tag-applications">Section 3.3</a>.</p>
+<p id="rfc.section.3.1.p.4">The Request-Tag option is only used in request messages, and only in conjunction with the Block1 option.</p>
+<p id="rfc.section.3.1.p.5">Two messages are defined to be Request-Tag-matchable if and only if they are sent from and to the same end points (including security associations), and target the same URI, and if either neither carries a Request-Tag option, or both carry exactly one Request-Tag option and the option values are of same length and content.</p>
+<p id="rfc.section.3.1.p.6">For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.  Creating a new request operation whose messages are Request-Tag-matchable to a previous operation is called request tag recycling.  Clients MUST NOT recycle a request tag unless the first operation has concluded.  What constitutes a concluded operation depends on the application, and is outlined individually in <a href="#req-tag-applications">Section 3.3</a>.</p>
+<p id="rfc.section.3.1.p.7">Clients are encouraged to generate compact messages. This means sending messages without Request-Tag options whenever possible, and using short values when the absent option can not be recycled.</p>
 <h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#request-tag-processing" id="request-tag-processing">Request-Tag Processing</a></h1>
-<p id="rfc.section.3.2.p.1">A server MUST NOT act on any two blocks in the same blockwise request operation that have different Request-Tag values.  This also means that a block cannot overwrite kept context when the Request-Tag does not match (cf. <a href="#RFC7959">[RFC7959]</a> Section 2.5).  The server is still under no obligation to keep state of more than one transaction.  When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of <a href="#RFC7252">[RFC7252]</a>.</p>
+<p id="rfc.section.3.2.p.1">A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable.  This also means that a block cannot overwrite kept context when the Request-Tag does not match (cf. <a href="#RFC7959">[RFC7959]</a> Section 2.5).  The server is still under no obligation to keep state of more than one transaction.  When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of <a href="#RFC7252">[RFC7252]</a>.</p>
 <p id="rfc.section.3.2.p.2">A server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure.</p>
-<p id="rfc.section.3.2.p.3">Two messages arriving at the server with the same Request-Tag value do not necessarily belong to the same operation. They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block), or initiate a new operation (overwriting kept context) when sending the first block again.</p>
-<p id="rfc.section.3.2.p.4">The Request-Tag option is not used in responses.</p>
-<p id="rfc.section.3.2.p.5">If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the Request-Tag option.</p>
+<p id="rfc.section.3.2.p.3">Two messages being Request-Tag-matchable is a necessary but not sufficient condition for being part of the same operation.  They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block), or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.</p>
+<p id="rfc.section.3.2.p.4">If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the Request-Tag option.</p>
 <h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#req-tag-applications" id="req-tag-applications">Applications</a></h1>
 <h1 id="rfc.section.3.3.1"><a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#body-integrity" id="body-integrity">Body Integrity Based on Payload Integrity</a></h1>
 <p id="rfc.section.3.3.1.p.1">When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation&#8217;s blocks with earlier operation&#8217;s blocks (see Section 3.2 of <a href="#I-D.amsuess-core-request-tag">[I-D.amsuess-core-request-tag]</a>). Therefore, the integrity protection of each block does not extend to the operation&#8217;s request body.</p>
@@ -515,14 +514,15 @@ address {
 
 <ul>
   <li>The message payloads MUST be integrity protected end-to-end between client and server.</li>
-  <li>The client MUST NOT reuse a Request-Tag value within a security association unless all previous blockwise request operations on the same resource that used the same Request-Tag value have concluded.  <br/><br/> Note that the server needs to verify that all blocks within an operation come from the same security association, because the security association is a part of the endpoint as per <a href="#RFC7252">[RFC7252]</a>.</li>
+  <li>The client MUST NOT recycle a request tag unless the previous blockwise request operation that used matchable Request-Tags has concluded.</li>
   <li>The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.  <br/><br/> Typically, in OSCOAP, these confirmations can result either from the client receiving an OSCOAP response message matching the request (an empty ACK is insufficient), or because the message&#8217;s sequence number is old enough to be outside the server&#8217;s receive window.  <br/><br/> In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.</li>
+  <li>The client MUST NOT fall back to not using the Request-Tag mechanisms when receiving a 4.02 Bad Option response.</li>
 </ul>
 <p id="rfc.section.3.3.1.p.4">Authors of other documents (e.g. <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.</p>
 <p id="rfc.section.3.3.1.p.5">Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TLS <a href="#I-D.tschofenig-core-coap-tcp-tls">[I-D.tschofenig-core-coap-tcp-tls]</a>). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.</p>
 <h1 id="rfc.section.3.3.2"><a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#multiple-concurrent-blockwise-operations" id="multiple-concurrent-blockwise-operations">Multiple Concurrent Blockwise Operations</a></h1>
 <p id="rfc.section.3.3.2.p.1">CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.  One example is when a CoAP proxy fragments an OSCOAP messages using blockwise (so-called &#8220;outer&#8221; blockwise, see Section 4.3.1. of <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>)), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server&#8217;s <samp>/</samp> path.</p>
-<p id="rfc.section.3.3.2.p.2">When a client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set.  For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged, or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).  When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can use a different Request-Tag value (as specified in <a href="#req-tag-format">Section 3.1</a>).  The possible outcomes are:</p>
+<p id="rfc.section.3.3.2.p.2">When a client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set.  For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged, or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).  When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can not recycle the request tag, and has to pick a new one.  The possible outcomes are:</p>
 <p/>
 
 <ul>
@@ -576,7 +576,7 @@ address {
       <td class="reference">
         <b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b>
       </td>
-      <td class="top"><a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-object-security-03">Object Security of CoAP (OSCOAP)</a>", Internet-Draft draft-ietf-core-object-security-03, May 2017.</td>
+      <td class="top"><a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-object-security-05">Object Security for Constrained RESTful Environments (OSCORE)</a>", Internet-Draft draft-ietf-core-object-security-05, September 2017.</td>
     </tr>
     <tr>
       <td class="reference">

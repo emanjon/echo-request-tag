@@ -6,8 +6,8 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft                               Energy Harvesting Solutions
 Updates: RFC7959 (if approved)                               J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: January 2, 2018                                     Ericsson AB
-                                                           July 01, 2017
+Expires: April 20, 2018                                      Ericsson AB
+                                                        October 17, 2017
 
 
                          Repeat And Request-Tag
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 2, 2018.
+   This Internet-Draft will expire on April 20, 2018.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 1]
+Amsuess, et al.          Expires April 20, 2018                 [Page 1]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 2]
+Amsuess, et al.          Expires April 20, 2018                 [Page 2]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    This document specifies two server-oriented CoAP options, the Repeat
@@ -165,9 +165,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 3]
+Amsuess, et al.          Expires April 20, 2018                 [Page 3]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    and response payload, respectively.  The blockwise functionality does
@@ -216,14 +216,14 @@ Internet-Draft           Repeat And Request-Tag                July 2017
    exchange.).
 
    The Repeat and Request-Tag options are defined in this document.  The
-   concept "Request-Tag value" is defined in Section 3.1.
+   concept of two messages being "Request-Tag-matchable" is defined in
+   Section 3.1.
 
 
 
-
-Amsuess, et al.          Expires January 2, 2018                [Page 4]
+Amsuess, et al.          Expires April 20, 2018                 [Page 4]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
 2.  The Repeat Option
@@ -277,9 +277,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 5]
+Amsuess, et al.          Expires April 20, 2018                 [Page 5]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    SHOULD echo the Repeat option with the same value in a new request to
@@ -333,9 +333,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 6]
+Amsuess, et al.          Expires April 20, 2018                 [Page 6]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
                    Client  Server
@@ -389,9 +389,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 7]
+Amsuess, et al.          Expires April 20, 2018                 [Page 7]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    4.  When a device joins a multicast/broadcast group the device may
@@ -445,9 +445,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018                [Page 8]
+Amsuess, et al.          Expires April 20, 2018                 [Page 8]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    [Note to RFC editor: If this document is not released together with
@@ -463,29 +463,33 @@ Internet-Draft           Repeat And Request-Tag                July 2017
    visible to proxies and labels message bodies in case of hop-by-hop
    fragmentation of requests.
 
-   Every message in which the Block1 option is set is considered to
-   carry a "Request-Tag value" that can be compared for equality with
-   the value of any other such message.  Absence of the Request-Tag
-   option implies a value that is distinct from any value of a message
-   with the Request-Tag option set, and equal to that of any other
-   message without the Request-Tag option.  Messages with the Request-
-   Tag option set have equal Request-Tag values if and only if their
-   option lengths and option values are equal.
+   The Request-Tag option is only used in request messages, and only in
+   conjunction with the Block1 option.
 
-   The value of the Request-Tag option is generated by the client for
-   every blockwise request operation.  Clients are encouraged to
-   generate compact Request-Tag values.  It MUST be different from any
-   other Request-Tag value used in the same security context on the same
-   resource, but MAY be reused when all earlier operations with the same
-   value are concluded.  What constitutes a concluded operation depends
-   on the application, and is outlined individually in Section 3.3.
+   Two messages are defined to be Request-Tag-matchable if and only if
+   they are sent from and to the same end points (including security
+   associations), and target the same URI, and if either neither carries
+   a Request-Tag option, or both carry exactly one Request-Tag option
+   and the option values are of same length and content.
+
+   For each separate blockwise request operation, the client can choose
+   a Request-Tag value, or choose not to set a Request-Tag.  Creating a
+   new request operation whose messages are Request-Tag-matchable to a
+   previous operation is called request tag recycling.  Clients MUST NOT
+   recycle a request tag unless the first operation has concluded.  What
+   constitutes a concluded operation depends on the application, and is
+   outlined individually in Section 3.3.
+
+   Clients are encouraged to generate compact messages.  This means
+   sending messages without Request-Tag options whenever possible, and
+   using short values when the absent option can not be recycled.
 
 3.2.  Request-Tag Processing
 
    A server MUST NOT act on any two blocks in the same blockwise request
-   operation that have different Request-Tag values.  This also means
-   that a block cannot overwrite kept context when the Request-Tag does
-   not match (cf.  [RFC7959] Section 2.5).  The server is still under no
+   operation that are not Request-Tag-matchable.  This also means that a
+   block cannot overwrite kept context when the Request-Tag does not
+   match (cf.  [RFC7959] Section 2.5).  The server is still under no
    obligation to keep state of more than one transaction.  When an
    operation is in progress and a second one cannot be served at the
    same time, the server MUST respond to the second request with a 5.03
@@ -493,24 +497,24 @@ Internet-Draft           Repeat And Request-Tag                July 2017
    is willing to wait for additional blocks in the first operation using
    the Max-Age option, as specified in Section 5.9.3.4 of [RFC7252].
 
+
+
+
+
+Amsuess, et al.          Expires April 20, 2018                 [Page 9]
+
+Internet-Draft           Repeat And Request-Tag             October 2017
+
+
    A server receiving a Request-Tag MUST treat it as opaque and make no
    assumptions about its content or structure.
 
-   Two messages arriving at the server with the same Request-Tag value
-   do not necessarily belong to the same operation.  They can still be
-
-
-
-Amsuess, et al.          Expires January 2, 2018                [Page 9]
-
-Internet-Draft           Repeat And Request-Tag                July 2017
-
-
-   treated as independent messages by the server (e.g. when it sends
-   2.01/2.04 responses for every block), or initiate a new operation
-   (overwriting kept context) when sending the first block again.
-
-   The Request-Tag option is not used in responses.
+   Two messages being Request-Tag-matchable is a necessary but not
+   sufficient condition for being part of the same operation.  They can
+   still be treated as independent messages by the server (e.g. when it
+   sends 2.01/2.04 responses for every block), or initiate a new
+   operation (overwriting kept context) when the later message carries
+   Block1 number 0.
 
    If a request that uses Request-Tag is rejected with 4.02 Bad Option,
    the client MAY retry the operation without it, but then it MUST
@@ -535,14 +539,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
    o  The message payloads MUST be integrity protected end-to-end
       between client and server.
 
-   o  The client MUST NOT reuse a Request-Tag value within a security
-      association unless all previous blockwise request operations on
-      the same resource that used the same Request-Tag value have
+   o  The client MUST NOT recycle a request tag unless the previous
+      blockwise request operation that used matchable Request-Tags has
       concluded.
-
-      Note that the server needs to verify that all blocks within an
-      operation come from the same security association, because the
-      security association is a part of the endpoint as per [RFC7252].
 
    o  The client MUST NOT regard a blockwise request operation as
       concluded unless all of the messages the client previously sent in
@@ -553,20 +552,21 @@ Internet-Draft           Repeat And Request-Tag                July 2017
       Typically, in OSCOAP, these confirmations can result either from
       the client receiving an OSCOAP response message matching the
       request (an empty ACK is insufficient), or because the message's
-
-
-
-
-Amsuess, et al.          Expires January 2, 2018               [Page 10]
-
-Internet-Draft           Repeat And Request-Tag                July 2017
-
-
       sequence number is old enough to be outside the server's receive
       window.
 
+
+
+Amsuess, et al.          Expires April 20, 2018                [Page 10]
+
+Internet-Draft           Repeat And Request-Tag             October 2017
+
+
       In DTLS, this can only be confirmed if the request message was not
       retransmitted, and was responded to.
+
+   o  The client MUST NOT fall back to not using the Request-Tag
+      mechanisms when receiving a 4.02 Bad Option response.
 
    Authors of other documents (e.g.  [I-D.ietf-core-object-security])
    are invited to mandate this behavior for clients that execute
@@ -601,8 +601,8 @@ Internet-Draft           Repeat And Request-Tag                July 2017
    the case of a proxy when it decides not to take any further messages
    in the operation due to a timeout).  When another concurrent
    blockwise request operation is made (i.e. before the operation is
-   concluded), the client can use a different Request-Tag value (as
-   specified in Section 3.1).  The possible outcomes are:
+   concluded), the client can not recycle the request tag, and has to
+   pick a new one.  The possible outcomes are:
 
    o  The server responds with a successful code.
 
@@ -613,9 +613,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018               [Page 11]
+Amsuess, et al.          Expires April 20, 2018                [Page 11]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
       This can indicate that the server does not support Request-Tag.
@@ -669,9 +669,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
 
 
-Amsuess, et al.          Expires January 2, 2018               [Page 12]
+Amsuess, et al.          Expires April 20, 2018                [Page 12]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
 7.  References
@@ -680,18 +680,18 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
-              DOI 10.17487/RFC7252, June 2014,
-              <http://www.rfc-editor.org/info/rfc7252>.
+              DOI 10.17487/RFC7252, June 2014, <https://www.rfc-
+              editor.org/info/rfc7252>.
 
    [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
               the Constrained Application Protocol (CoAP)", RFC 7959,
-              DOI 10.17487/RFC7959, August 2016,
-              <http://www.rfc-editor.org/info/rfc7959>.
+              DOI 10.17487/RFC7959, August 2016, <https://www.rfc-
+              editor.org/info/rfc7959>.
 
 7.2.  Informative References
 
@@ -701,8 +701,9 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
-              "Object Security of CoAP (OSCOAP)", draft-ietf-core-
-              object-security-03 (work in progress), May 2017.
+              "Object Security for Constrained RESTful Environments
+              (OSCORE)", draft-ietf-core-object-security-05 (work in
+              progress), September 2017.
 
    [I-D.mattsson-core-coap-actuators]
               Mattsson, J., Fornehed, J., Selander, G., and F.
@@ -718,22 +719,21 @@ Internet-Draft           Repeat And Request-Tag                July 2017
 
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
-              January 2012, <http://www.rfc-editor.org/info/rfc6347>.
+              January 2012, <https://www.rfc-editor.org/info/rfc6347>.
 
 
 
 
 
-
-Amsuess, et al.          Expires January 2, 2018               [Page 13]
+Amsuess, et al.          Expires April 20, 2018                [Page 13]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
    [RFC7641]  Hartke, K., "Observing Resources in the Constrained
               Application Protocol (CoAP)", RFC 7641,
-              DOI 10.17487/RFC7641, September 2015,
-              <http://www.rfc-editor.org/info/rfc7641>.
+              DOI 10.17487/RFC7641, September 2015, <https://www.rfc-
+              editor.org/info/rfc7641>.
 
 Appendix A.  Performance Impact When Using the Repeat Option
 
@@ -781,9 +781,9 @@ Appendix A.  Performance Impact When Using the Repeat Option
 
 
 
-Amsuess, et al.          Expires January 2, 2018               [Page 14]
+Amsuess, et al.          Expires April 20, 2018                [Page 14]
 
-Internet-Draft           Repeat And Request-Tag                July 2017
+Internet-Draft           Repeat And Request-Tag             October 2017
 
 
 Appendix B.  Request-Tag Message Size Impact
@@ -837,4 +837,4 @@ Authors' Addresses
 
 
 
-Amsuess, et al.          Expires January 2, 2018               [Page 15]
+Amsuess, et al.          Expires April 20, 2018                [Page 15]
