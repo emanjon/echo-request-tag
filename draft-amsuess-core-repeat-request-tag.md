@@ -202,6 +202,10 @@ they are sent from and to the same end points (including security associations),
 and if either neither carries a Request-Tag option,
 or both carry exactly one Request-Tag option and the option values are of same length and content.
 
+The Request-Tag mechanism is applied independently on the server and client sides of CoAP-CoAP proxies.
+CoAP-HTTP proxies and HTTP-CoAP proxies can use Request-Tag on their CoAP sides;
+it is not applicable to HTTP requests.
+
 For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
 Creating a new request operation whose messages are Request-Tag-matchable to a previous operation is called request tag recycling.
 Clients MUST NOT recycle a request tag unless the first operation has concluded.
