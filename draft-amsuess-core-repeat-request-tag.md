@@ -228,7 +228,7 @@ Two messages being Request-Tag-matchable is a necessary but not sufficient condi
 They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block),
 or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.
 
-If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the Request-Tag option.
+If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the use of Request-Tag mechanism.
 
 
 ## Applications {#req-tag-applications}
