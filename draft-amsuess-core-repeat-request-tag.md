@@ -156,6 +156,10 @@ If the server loses time synchronization, e.g. due to reboot, it MUST delete all
 
 Constrained server implementations can use the mechanisms outlined in {{repeat-state}} to minimize the memory impact of having many unanswered Repeat responses.
 
+CoAP-CoAP proxies MUST relay the Repeat option unmodified, and SHOULD NOT cache responses when a Repeat option is present in request or response for more than the exchange.
+CoAP-HTTP proxies MAY request freshness, especially if they have reason to assume that access may require it (eg. because it is a PUT or POST); how this is determined is out of scope for this document.
+HTTP-CoAP-Proxies SHOULD respond to Repeat challenges themselves, as they know that the HTTP request is fresh, and can not forward the option anyway.
+
 ## Applications ##
 
 1. Actuation requests often require freshness guarantees to avoid accidental or malicious delayed actuator actions. 
