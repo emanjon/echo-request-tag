@@ -119,9 +119,9 @@ The value of the Repeat option MUST be a (pseudo-)random bit string of a length 
 
 It is important to identify under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.
 
-A server MAY include the Repeat option in a response. The Repeat option MUST NOT be used with empty CoAP requests.  If the server receives a request which has freshness requirements, and the request does not contain the Repeat option, the server SHOULD send a 4.03 Forbidden response with a Repeat option. The server SHOULD cache the transmitted Repeat option value and the response transmit time (here denoted t0).
+A server MAY include the Repeat option in a response. The Repeat option MUST NOT be used with empty CoAP requests.  If the server receives a request which has freshness requirements, and the request does not contain the Repeat option, the server SHOULD send a 4.01 Unauthorized response with a Repeat option. The server SHOULD cache the transmitted Repeat option value and the response transmit time (here denoted t0).
 
-Upon receiving a response with the Repeat option within the EXCHANGE_LIFETIME ({{RFC7252}}) of the original request, the client SHOULD echo the Repeat option with the same value in a new request to the server. Upon receiving a 4.03 Forbidden response with the Repeat option in response to a request within the EXCHANGE_LIFETIME of the original request, the client SHOULD resend the original request. The client MAY send a different request compared to the original request.
+Upon receiving a response with the Repeat option within the EXCHANGE_LIFETIME ({{RFC7252}}) of the original request, the client SHOULD echo the Repeat option with the same value in a new request to the server. Upon receiving a 4.01 Unauthorized response with the Repeat option in response to a request within the EXCHANGE_LIFETIME of the original request, the client SHOULD resend the original request. The client MAY send a different request compared to the original request.
 
 If the server receives a request which has freshness requirements, and the request contains the Repeat option, the server MUST verify that the option value equals a cached value; otherwise the request is not processed further.  The server MUST calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time.  The server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT < T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in {{repeat-figure}}.
 
@@ -137,8 +137,8 @@ If the server loses time synchronization, e.g. due to reboot, it MUST delete all
                    |      |    Uri-Path: lock
                    |      |     Payload: 0 (Unlock)
                    |      |
-                   |<-----+ t0     Code: 4.03 (Forbidden)
-                   | 4.03 |       Token: 0x41
+                   |<-----+ t0     Code: 4.01 (Unauthorized)
+                   | 4.01 |       Token: 0x41
                    |      |      Repeat: 0x6c880d41167ba807
                    |      |
                    +----->| t1     Code: 0.03 (PUT)
