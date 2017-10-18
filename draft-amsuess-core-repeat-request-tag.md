@@ -215,7 +215,8 @@ Clients are encouraged to generate compact messages. This means sending messages
 
 ## Request-Tag Processing ## {#request-tag-processing}
 
-A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable.
+A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable. This rule applies independent of whether the request actually carries a Request-Tag option (in this case, the request can only be acted on together with other messages not carrying the option, as per matchability definition).
+
 This also means that a block cannot overwrite kept context when the Request-Tag does not match (cf. {{RFC7959}} Section 2.5).
 The server is still under no obligation to keep state of more than one transaction.
 When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.
