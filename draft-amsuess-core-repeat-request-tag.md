@@ -2,7 +2,7 @@
 title: Repeat And Request-Tag
 docname: draft-amsuess-core-repeat-request-tag-latest
 category: std
-updates: RFC7959
+updates: 7959
 
 ipr: trust200902
 area: General
@@ -14,9 +14,9 @@ pi: [toc, sortrefs, symrefs]
 author:
  -
     ins: C. Amsuess
-    name: Christian Amsüss 
+    name: Christian Amsüss
     organization: Energy Harvesting Solutions
-    email: c.amsuess@energyharvesting.at 
+    email: c.amsuess@energyharvesting.at
  -
     ins: J. Mattsson
     name: John Mattsson
@@ -44,7 +44,7 @@ informative:
 --- abstract
 
 
-This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Repeat option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCOAP, protects against certain attacks on CoAP message exchanges. 
+This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Repeat option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCOAP, protects against certain attacks on CoAP message exchanges.
 
 The Repeat option enables a CoAP server to verify the freshness of a request by requiring the CoAP client to make another request and include a server-provided challenge. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request message, fragmented using the CoAP Block-Wise Transfer mechanism.
 This document also specifies additional processing requirements on Block1 and Block2 options.
@@ -55,16 +55,16 @@ This document also specifies additional processing requirements on Block1 and Bl
 
 # Introduction # {#intro}
 
-The initial CoAP suite of specifications ({{RFC7252}}, {{RFC7641}}, {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations. 
+The initial CoAP suite of specifications ({{RFC7252}}, {{RFC7641}}, {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations.
 
-This document specifies two server-oriented CoAP options, the Repeat option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS ({{RFC6347}}) or OSCOAP ({{I-D.ietf-core-object-security}}), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document. 
+This document specifies two server-oriented CoAP options, the Repeat option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS ({{RFC6347}}) or OSCOAP ({{I-D.ietf-core-object-security}}), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document.
 
 
 ## Request Freshness ## {#req-fresh}
 
 A CoAP server receiving a request may not be able to verify when the request was sent by the CoAP client. This remains true even if the request was protected with a security protocol, such as DTLS. This makes CoAP requests vulnerable to certain delay attacks which are particularly incriminating in the case of actuators ({{I-D.mattsson-core-coap-actuators}}). Some attacks are possible to mitigate by establishing fresh session keys (e.g. performing the DTLS handshake) for each actuation, but in general this is not a solution suitable for constrained environments.
 
-A straightforward mitigation of potential delayed requests is that the CoAP server rejects a request the first time it appears and asks the CoAP client to prove that it intended to make the request at this point in time. The Repeat option, defined in this document, specifies such a mechanism which thereby enables the CoAP server to verify the freshness of a request. This mechanism is not only important in the case of actuators, or other use cases where the CoAP operations require freshness of requests, but also in general for synchronizing state between CoAP client and server.  
+A straightforward mitigation of potential delayed requests is that the CoAP server rejects a request the first time it appears and asks the CoAP client to prove that it intended to make the request at this point in time. The Repeat option, defined in this document, specifies such a mechanism which thereby enables the CoAP server to verify the freshness of a request. This mechanism is not only important in the case of actuators, or other use cases where the CoAP operations require freshness of requests, but also in general for synchronizing state between CoAP client and server.
 
 
 ## Fragmented Message Body Integrity ## {#body-int}
@@ -73,7 +73,7 @@ CoAP was designed to work over unreliable transports, such as UDP, and include a
 
 The Block-Wise Transfer mechanism {{RFC7959}} extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCOAP, within the replay window ({{I-D.amsuess-core-request-tag}}), which is a vulnerability of CoAP when using RFC7959.
 
-A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client. 
+A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.
 
 
 ## Terminology
@@ -97,7 +97,7 @@ The Repeat option is a server-driven challenge-response mechanism for CoAP. The 
 
 ## Option Format ## {#repeat-format}
 
-The Repeat Option is elective, safe-to-forward, not part of the cache-key, and not repeatable, see {{repeat-table}}. Note that the Repeat option has nothing to do with the property of an option being repeatable, i.e. be allowed to occur more than once in a message, as defined in Section 5.4.5 of {{RFC7252}}. 
+The Repeat Option is elective, safe-to-forward, not part of the cache-key, and not repeatable, see {{repeat-table}}. Note that the Repeat option has nothing to do with the property of an option being repeatable, i.e. be allowed to occur more than once in a message, as defined in Section 5.4.5 of {{RFC7252}}.
 
 ~~~~~~~~~~
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
@@ -106,13 +106,13 @@ The Repeat Option is elective, safe-to-forward, not part of the cache-key, and n
 | TBD |   |   |   |   | Repeat      | opaque |   8-40 | (none)  | x |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
-        C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable, 
+        C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable,
         E=Encrypt and Integrity Protect (when using OSCOAP)
-        
+
 ~~~~~~~~~~
 {: #repeat-table title="Repeat Option Summary"}
 
-The value of the Repeat option MUST be a (pseudo-)random bit string of a length of at least 64 bits. A new (pseudo-)random bit string MUST be generated by the server for each use of the Repeat option. 
+The value of the Repeat option MUST be a (pseudo-)random bit string of a length of at least 64 bits. A new (pseudo-)random bit string MUST be generated by the server for each use of the Repeat option.
 
 
 ## Repeat Processing ##
@@ -158,9 +158,9 @@ Constrained server implementations can use the mechanisms outlined in {{repeat-s
 
 ## Applications ##
 
-1. Actuation requests often require freshness guarantees to avoid accidental or malicious delayed actuator actions. 
+1. Actuation requests often require freshness guarantees to avoid accidental or malicious delayed actuator actions.
 
-2. To avoid additional roundtrips for applications with multiple actuator requests in rapid sequence between the same client and server, the server may use the Repeat option (with a new value) in response to a request containing the Repeat option. The client then uses the Repeat option with the new value in the next actuation request, and the server compares the receive time accordingly. 
+2. To avoid additional roundtrips for applications with multiple actuator requests in rapid sequence between the same client and server, the server may use the Repeat option (with a new value) in response to a request containing the Repeat option. The client then uses the Repeat option with the new value in the next actuation request, and the server compares the receive time accordingly.
 
 3. If a server reboots during operation it may need to synchronize state with requesting clients before continuing the interaction. For example, with OSCOAP it is possible to reuse a persistently stored security context by synchronizing the Partial IV (sequence number) using the Repeat option.
 
@@ -318,20 +318,20 @@ Servers that store a Repeat challenge per client can be attacked for resource ex
 
 The Repeat option requires the server to keep some state in order to later verify the repeated request.
 
-Instead of caching Repeat option values and response transmission times, the server MAY use the encryption of the response transmit time t0 as Repeat option value. Such a scheme needs to ensure that the server can detect a replay of a previous encrypted response transmit time. 
+Instead of caching Repeat option values and response transmission times, the server MAY use the encryption of the response transmit time t0 as Repeat option value. Such a scheme needs to ensure that the server can detect a replay of a previous encrypted response transmit time.
 
-For example, the server MAY encrypt t0 with AES-CCM-128-64-64 using a (pseudo-)random secret key k generated and cached by the server. A unique IV MUST be used with each encryption, e.g. using a sequence number. If the server loses time synchronization, e.g. due to reboot, then k MUST be deleted and replaced by a new random secret key. When using encrypted response transmit times, the Repeat processing is modified in the following way: The verification of cached option value in the server processing is replaced by the verification of the integrity of the encrypted option value using the cached key and IV (e.g. sequence number). 
+For example, the server MAY encrypt t0 with AES-CCM-128-64-64 using a (pseudo-)random secret key k generated and cached by the server. A unique IV MUST be used with each encryption, e.g. using a sequence number. If the server loses time synchronization, e.g. due to reboot, then k MUST be deleted and replaced by a new random secret key. When using encrypted response transmit times, the Repeat processing is modified in the following way: The verification of cached option value in the server processing is replaced by the verification of the integrity of the encrypted option value using the cached key and IV (e.g. sequence number).
 
 The two methods - (a) the list of cached values, and (b) the encryption of transmit time - have different impact on the implementation:
 
    * size of cached data (list of cached values vs. key and IV)
 
    * size of message (typically larger with encrypted time)
-   
+
    * computation (encryption + decryption vs. generation new nonce + cache + lookup)
 
 
-In general, the encryption of transmission times is most useful if the number of concurrent requests is high. 
+In general, the encryption of transmission times is most useful if the number of concurrent requests is high.
 
 A hybrid scheme is also possible: the first Repeat option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the server may need to make both verifications - either that the Repeat value is in the list, or that it verifies in decryption - and in either case that the transmission time is valid.
 
