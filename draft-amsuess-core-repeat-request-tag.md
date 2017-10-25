@@ -337,7 +337,7 @@ A hybrid scheme is also possible: the first Echo option values are cached, and i
 
 # Request-Tag Message Size Impact
 
-In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to echoed transmission failure; in DTLS, if no packages are lost),
+In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost),
 or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).
 
 In those situations, the Request-Tag value of no Request-Tag option present can be reused over and over again.
