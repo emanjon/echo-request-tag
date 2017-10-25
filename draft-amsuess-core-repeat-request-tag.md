@@ -44,7 +44,7 @@ informative:
 --- abstract
 
 
-This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Echo option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCOAP, protects against certain attacks on CoAP message exchanges.
+This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Echo option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCORE, protects against certain attacks on CoAP message exchanges.
 
 The Echo option enables a CoAP server to verify the freshness of a request by requiring the CoAP client to make another request and include a server-provided challenge. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request message, fragmented using the CoAP Block-Wise Transfer mechanism.
 This document also specifies additional processing requirements on Block1 and Block2 options.
@@ -57,7 +57,7 @@ This document also specifies additional processing requirements on Block1 and Bl
 
 The initial CoAP suite of specifications ({{RFC7252}}, {{RFC7641}}, {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations.
 
-This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS ({{RFC6347}}) or OSCOAP ({{I-D.ietf-core-object-security}}), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document.
+This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS ({{RFC6347}}) or OSCORE ({{I-D.ietf-core-object-security}}), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document.
 
 
 ## Request Freshness ## {#req-fresh}
@@ -71,7 +71,7 @@ A straightforward mitigation of potential delayed requests is that the CoAP serv
 
 CoAP was designed to work over unreliable transports, such as UDP, and include a lightweight reliability feature to handle messages which are lost or arrive out of order. In order for a security protocol to support CoAP operations over unreliable transports, it must allow out-of-order delivery of messages using e.g. a sliding replay window such as described in Section 4.1.2.6 of DTLS ({{RFC6347}}).
 
-The Block-Wise Transfer mechanism {{RFC7959}} extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCOAP, within the replay window ({{I-D.amsuess-core-request-tag}}), which is a vulnerability of CoAP when using RFC7959.
+The Block-Wise Transfer mechanism {{RFC7959}} extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window ({{I-D.amsuess-core-request-tag}}), which is a vulnerability of CoAP when using RFC7959.
 
 A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.
 
@@ -103,11 +103,11 @@ The Echo Option is elective, safe-to-forward, not part of the cache-key, and not
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 | No. | C | U | N | R | Name        | Format | Length | Default | E |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
-| TBD |   |   |   |   | Echo      | opaque |   8-40 | (none)  | x |
+| TBD |   |   |   |   | Echo        | opaque |   8-40 | (none)  | x |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
         C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable,
-        E=Encrypt and Integrity Protect (when using OSCOAP)
+        E=Encrypt and Integrity Protect (when using OSCORE)
 
 ~~~~~~~~~~
 {: #echo-table title="Echo Option Summary"}
@@ -125,7 +125,7 @@ Upon receiving a response with the Echo option within the EXCHANGE_LIFETIME ({{R
 
 If the server receives a request which has freshness requirements, and the request contains the Echo option, the server MUST verify that the option value equals a cached value; otherwise the request is not processed further.  The server MUST calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time.  The server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT < T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in {{echo-figure}}.
 
-When used to serve freshness requirements, CoAP messages containing the Echo option MUST be integrity protected, e.g. using DTLS or OSCOAP ({{I-D.ietf-core-object-security}}).
+When used to serve freshness requirements, CoAP messages containing the Echo option MUST be integrity protected, e.g. using DTLS or OSCORE ({{I-D.ietf-core-object-security}}).
 
 If the server loses time synchronization, e.g. due to reboot, it MUST delete all cached Echo option values and response transmission times.
 
@@ -162,7 +162,7 @@ Constrained server implementations can use the mechanisms outlined in {{echo-sta
 
 2. To avoid additional roundtrips for applications with multiple actuator requests in rapid sequence between the same client and server, the server may use the Echo option (with a new value) in response to a request containing the Echo option. The client then uses the Echo option with the new value in the next actuation request, and the server compares the receive time accordingly.
 
-3. If a server reboots during operation it may need to synchronize state with requesting clients before continuing the interaction. For example, with OSCOAP it is possible to reuse a persistently stored security context by synchronizing the Partial IV (sequence number) using the Echo option.
+3. If a server reboots during operation it may need to synchronize state with requesting clients before continuing the interaction. For example, with OSCORE it is possible to reuse a persistently stored security context by synchronizing the Partial IV (sequence number) using the Echo option.
 
 4. When a device joins a multicast/broadcast group the device may need to synchronize state or time with the sender to ensure that the received message is fresh. By synchronizing time with the broadcaster, time can be used for synchronizing subsequent broadcast messages. A server MUST NOT synchronize state or time with clients which are not the authority of the property being synchronized. E.g. if access to a server resource is dependent on time, then the client MUST NOT set the time of the server.
 
@@ -186,14 +186,14 @@ The Request-Tag option has the same properties as the Block1 option: it is criti
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
             C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable,
-            E=Encrypt and Integrity Protect (when using OSCOAP)
+            E=Encrypt and Integrity Protect (when using OSCORE)
 
 ~~~~~~~~~~
 {: #req-tag-table title="Request-Tag Option Summary"}
 
-[Note to RFC editor: If this document is not released together with OSCOAP but before it, the following paragraph and the "E" column above need to move into OSCOAP.]
+[Note to RFC editor: If this document is not released together with OSCORE but before it, the following paragraph and the "E" column above need to move into OSCORE.]
 
-Request-Tag, like the Block1 option, is a special class E option in terms of OSCOAP processing (see Section 4.3.1.2 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
+Request-Tag, like the Block1 option, is a special class E option in terms of OSCORE processing (see Section 4.3.1.2 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
 
 The Request-Tag option is only used in request messages, and only in conjunction with the Block1 option.
 
@@ -246,7 +246,7 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
 
-  Typically, in OSCOAP, these confirmations can result either from the client receiving an OSCOAP response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the server's receive window.
+  Typically, in OSCORE, these confirmations can result either from the client receiving an OSCORE response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the server's receive window.
 
   In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
 
@@ -259,7 +259,7 @@ Note that this mechanism is implicitly implemented when the security layer guara
 ### Multiple Concurrent Blockwise Operations
 
 CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.
-One example is when a CoAP proxy fragments an OSCOAP messages using blockwise (so-called "outer" blockwise, see Section 4.3.1. of {{I-D.ietf-core-object-security}})), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server's `/` path.
+One example is when a CoAP proxy fragments an OSCORE messages using blockwise (so-called "outer" blockwise, see Section 4.3.1. of {{I-D.ietf-core-object-security}})), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server's `/` path.
 
 When a client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set.
 For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged,
@@ -337,8 +337,8 @@ A hybrid scheme is also possible: the first Echo option values are cached, and i
 
 # Request-Tag Message Size Impact
 
-In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCOAP, if no operations are aborted due to echoed transmission failure; in DTLS, if no packages are lost),
-or when blockwise request operations happen rarely (in OSCOAP, if only one request operation with losses within the replay window).
+In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to echoed transmission failure; in DTLS, if no packages are lost),
+or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).
 
 In those situations, the Request-Tag value of no Request-Tag option present can be reused over and over again.
 
@@ -347,7 +347,7 @@ When the "no-Request-Tag value" is used-up within a security context, the Reques
 In situations where those overheads are unacceptable (e.g. because the payloads are known to be at a fragmentation threshold), the absent Request-Tag value can be made usable again:
 
 * In DTLS, a new session can be established.
-* In OSCOAP, the sequence number can be artificially increased so that all lost messages are outside of the replay window by the time the first request of the new operation gets processed, and all earlier operations can therefore be regarded as concluded.
+* In OSCORE, the sequence number can be artificially increased so that all lost messages are outside of the replay window by the time the first request of the new operation gets processed, and all earlier operations can therefore be regarded as concluded.
 
 
 --- fluff
