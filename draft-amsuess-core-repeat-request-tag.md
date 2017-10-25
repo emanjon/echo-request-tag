@@ -119,9 +119,9 @@ The value of the Echo option MUST be a (pseudo-)random bit string of a length of
 
 It is important to identify under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.
 
-A server MAY include the Echo option in a response. The Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).  If the server receives a request which has freshness requirements, and the request does not contain the Echo option, the server SHOULD send a 4.03 Forbidden response with a Echo option. The server SHOULD cache the transmitted Echo option value and the response transmit time (here denoted t0).
+A server MAY include the Echo option in a response. The Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).  If the server receives a request which has freshness requirements, and the request does not contain the Echo option, the server SHOULD send a 4.01 Unauthorized response with a Echo option. The server SHOULD cache the transmitted Echo option value and the response transmit time (here denoted t0).
 
-Upon receiving a response with the Echo option within the EXCHANGE_LIFETIME ({{RFC7252}}) of the original request, the client SHOULD echo the Echo option with the same value in a new request to the server. Upon receiving a 4.03 Forbidden response with the Echo option in response to a request within the EXCHANGE_LIFETIME of the original request, the client SHOULD resend the original request. The client MAY send a different request compared to the original request.
+Upon receiving a response with the Echo option within the EXCHANGE_LIFETIME ({{RFC7252}}) of the original request, the client SHOULD echo the Echo option with the same value in a new request to the server. Upon receiving a 4.01 Unauthorized response with the Echo option in response to a request within the EXCHANGE_LIFETIME of the original request, the client SHOULD resend the original request. The client MAY send a different request compared to the original request.
 
 If the server receives a request which has freshness requirements, and the request contains the Echo option, the server MUST verify that the option value equals a cached value; otherwise the request is not processed further.  The server MUST calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time.  The server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT < T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in {{echo-figure}}.
 
@@ -137,7 +137,7 @@ If the server loses time synchronization, e.g. due to reboot, it MUST delete all
                    |      |    Uri-Path: lock
                    |      |     Payload: 0 (Unlock)
                    |      |
-                   |<-----+ t0     Code: 4.03 (Forbidden)
+                   |<-----+ t0     Code: 4.01 (Unauthorized)
                    | 4.03 |       Token: 0x41
                    |      |        Echo: 0x6c880d41167ba807
                    |      |
