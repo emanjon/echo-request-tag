@@ -1,10 +1,10 @@
-# Repeat And Request-Tag
+# Echo and Request-Tag
 
-This is the working area for the individual Internet-Draft, "Repeat And Request-Tag".
+This is the working area for the IETF CORE Working Group Internet-Draft, "Echo and Request-Tag".
 
-* [Editor's Copy](https://chrysn.github.io/repeat-request-tag/#go.draft-amsuess-core-repeat-request-tag.html)
-* [Working Group Draft](https://tools.ietf.org/html/draft-amsuess-core-repeat-request-tag)
-* [Compare Editor's Copy to Working Group Draft](https://chrysn.github.io/repeat-request-tag/#go.draft-amsuess-core-repeat-request-tag.diff)
+* [Editor's Copy](https://chrysn.github.io/repeat-request-tag/#go.draft-ietf-core-echo-request-tag.html)
+* [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-echo-request-tag)
+* [Compare Editor's Copy to Working Group Draft](https://chrysn.github.io/repeat-request-tag/#go.draft-ietf-core-echo-request-tag.diff)
 
 ## Building the Draft
 
