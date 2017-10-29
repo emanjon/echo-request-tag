@@ -59,6 +59,8 @@ The initial CoAP suite of specifications ({{RFC7252}}, {{RFC7641}}, {{RFC7959}})
 
 This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS ({{RFC6347}}) or OSCORE ({{I-D.ietf-core-object-security}}), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document.
 
+Additional applications of the options are introduced. For example, Echo can be used to mitigate amplification attacks.
+
 
 ## Request Freshness ## {#req-fresh}
 
