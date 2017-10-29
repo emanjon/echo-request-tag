@@ -1,6 +1,6 @@
 ---
-title: Echo And Request-Tag
-docname: draft-amsuess-core-repeat-request-tag-latest
+title: Echo and Request-Tag
+docname: draft-ietf-core-echo-request-tag-latest
 category: std
 updates: 7959
 
