@@ -433,7 +433,7 @@ address {
 <a href="#rfc.section.1.2">1.2.</a> <a href="#body-int" id="body-int">Fragmented Message Body Integrity</a>
 </h1>
 <p id="rfc.section.1.2.p.1">CoAP was designed to work over unreliable transports, such as UDP, and include a lightweight reliability feature to handle messages which are lost or arrive out of order. In order for a security protocol to support CoAP operations over unreliable transports, it must allow out-of-order delivery of messages using e.g. a sliding replay window such as described in Section 4.1.2.6 of DTLS (<a href="#RFC6347" class="xref">[RFC6347]</a>).</p>
-<p id="rfc.section.1.2.p.2">The Block-Wise Transfer mechanism <a href="#RFC7959" class="xref">[RFC7959]</a> extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window (<a href="#I-D.amsuess-core-request-tag" class="xref">[I-D.amsuess-core-request-tag]</a>), which is a vulnerability of CoAP when using RFC7959.</p>
+<p id="rfc.section.1.2.p.2">The Block-Wise Transfer mechanism <a href="#RFC7959" class="xref">[RFC7959]</a> extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window (<a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>), which is a vulnerability of CoAP when using RFC7959.</p>
 <p id="rfc.section.1.2.p.3">A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option <a href="#RFC7252" class="xref">[RFC7252]</a>, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.</p>
 <h1 id="rfc.section.1.3">
 <a href="#rfc.section.1.3">1.3.</a> <a href="#terminology" id="terminology">Terminology</a>
@@ -558,7 +558,7 @@ address {
 <h1 id="rfc.section.3.3.1">
 <a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#body-integrity" id="body-integrity">Body Integrity Based on Payload Integrity</a>
 </h1>
-<p id="rfc.section.3.3.1.p.1">When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation&#8217;s blocks with earlier operation&#8217;s blocks (see Section 3.2 of <a href="#I-D.amsuess-core-request-tag" class="xref">[I-D.amsuess-core-request-tag]</a>). Therefore, the integrity protection of each block does not extend to the operation&#8217;s request body.</p>
+<p id="rfc.section.3.3.1.p.1">When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation&#8217;s blocks with earlier operation&#8217;s blocks (see Section 2.5 of <a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>). Therefore, the integrity protection of each block does not extend to the operation&#8217;s request body.</p>
 <p id="rfc.section.3.3.1.p.2">In order to gain that protection, use the Request-Tag mechanism as follows:</p>
 <p></p>
 
@@ -621,11 +621,6 @@ address {
 <h1 id="rfc.references.2">
 <a href="#rfc.references.2">7.2.</a> Informative References</h1>
 <table><tbody>
-<tr>
-<td class="reference"><b id="I-D.amsuess-core-request-tag">[I-D.amsuess-core-request-tag]</b></td>
-<td class="top">
-<a>Amsuess, C.</a>, "<a href="https://tools.ietf.org/html/draft-amsuess-core-request-tag-00">Request-Tag option</a>", Internet-Draft draft-amsuess-core-request-tag-00, March 2017.</td>
-</tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b></td>
 <td class="top">
