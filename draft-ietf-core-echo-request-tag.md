@@ -356,6 +356,15 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
 * In DTLS, a new session can be established.
 * In OSCORE, the sequence number can be artificially increased so that all lost messages are outside of the replay window by the time the first request of the new operation gets processed, and all earlier operations can therefore be regarded as concluded.
 
+# Change Log
+
+\[ The editor is asked to remove this section before publication. \]
+
+* Major changes since draft-amsuess-core-repeat-request-tag-00:
+    * The option used for establishing freshness was renamed from "Repeat" to "Echo" to reduce confusion about repeatable options.
+    * The response code that goes with Echo was changed from 4.03 to 4.01 because the client needs to provide better credentials.
+    * The interaction between the new option and (cross) proxies is now covered.
+    * Two messages being "Request-Tag matchable" was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.
 
 --- fluff
 Echo
