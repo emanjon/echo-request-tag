@@ -1,14 +1,152 @@
 [
   {
-    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13",
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/18",
     "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
-    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/labels{/name}",
-    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/comments",
-    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/events",
-    "html_url": "https://github.com/chrysn/repeat-request-tag/issues/13",
-    "id": 265870897,
-    "number": 13,
-    "title": "Better name for Repeat option",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/18/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/18/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/18/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/issues/18",
+    "id": 269080768,
+    "number": 18,
+    "title": "Echo value must be unpredictable",
+    "user": {
+      "login": "gselander",
+      "id": 11752340,
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gselander",
+      "html_url": "https://github.com/gselander",
+      "followers_url": "https://api.github.com/users/gselander/followers",
+      "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+      "organizations_url": "https://api.github.com/users/gselander/orgs",
+      "repos_url": "https://api.github.com/users/gselander/repos",
+      "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gselander/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2017-10-27T11:51:49Z",
+    "updated_at": "2017-10-27T11:51:49Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "body": "The value of the Echo needs to be unpredictable, it is not sufficient with random."
+  },
+  {
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/17",
+    "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/17/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/17/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/17/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/issues/17",
+    "id": 269079153,
+    "number": 17,
+    "title": "Not necessary to cache Echo value",
+    "user": {
+      "login": "gselander",
+      "id": 11752340,
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gselander",
+      "html_url": "https://github.com/gselander",
+      "followers_url": "https://api.github.com/users/gselander/followers",
+      "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+      "organizations_url": "https://api.github.com/users/gselander/orgs",
+      "repos_url": "https://api.github.com/users/gselander/repos",
+      "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gselander/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2017-10-27T11:45:19Z",
+    "updated_at": "2017-10-27T11:45:19Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "body": "The Echo value sent in a response needs to be reproduced when the request arrives, but not cached. We should change the description to emphasize this. We note in the appendix that the nonce may be an encrypted value, but even in other cases it need not necessarily be cached."
+  },
+  {
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/16",
+    "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/16/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/16/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/16/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/issues/16",
+    "id": 269078008,
+    "number": 16,
+    "title": "Multiple requests within RTT<T",
+    "user": {
+      "login": "gselander",
+      "id": 11752340,
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gselander",
+      "html_url": "https://github.com/gselander",
+      "followers_url": "https://api.github.com/users/gselander/followers",
+      "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+      "organizations_url": "https://api.github.com/users/gselander/orgs",
+      "repos_url": "https://api.github.com/users/gselander/repos",
+      "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gselander/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2017-10-27T11:40:47Z",
+    "updated_at": "2017-10-27T11:40:47Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "body": "Multiple requests withing the T-window may use the same Echo value."
+  },
+  {
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/15",
+    "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/15/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/15/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/15/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/pull/15",
+    "id": 266587996,
+    "number": 15,
+    "title": "Echo: Add paragraph about proxy (CC, HC, CH) handling",
     "user": {
       "login": "chrysn",
       "id": 442326,
@@ -29,15 +167,9 @@
       "site_admin": false
     },
     "labels": [
-      {
-        "id": 721715314,
-        "url": "https://api.github.com/repos/chrysn/repeat-request-tag/labels/terminology",
-        "name": "terminology",
-        "color": "fbca04",
-        "default": false
-      }
+
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "gselander",
@@ -81,9 +213,191 @@
     ],
     "milestone": null,
     "comments": 0,
+    "created_at": "2017-10-18T18:04:19Z",
+    "updated_at": "2017-10-25T07:24:15Z",
+    "closed_at": "2017-10-25T07:13:40Z",
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/chrysn/repeat-request-tag/pulls/15",
+      "html_url": "https://github.com/chrysn/repeat-request-tag/pull/15",
+      "diff_url": "https://github.com/chrysn/repeat-request-tag/pull/15.diff",
+      "patch_url": "https://github.com/chrysn/repeat-request-tag/pull/15.patch"
+    },
+    "body": "This opens up questions in https://github.com/core-wg/oscoap/pull/184...\r\n\r\nCloses: https://github.com/chrysn/repeat-request-tag/issues/7"
+  },
+  {
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/14",
+    "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/14/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/14/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/14/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/pull/14",
+    "id": 266576992,
+    "number": 14,
+    "title": "Use 4.01 Unauthorized rather than 4.03 Forbidden",
+    "user": {
+      "login": "chrysn",
+      "id": 442326,
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chrysn",
+      "html_url": "https://github.com/chrysn",
+      "followers_url": "https://api.github.com/users/chrysn/followers",
+      "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+      "organizations_url": "https://api.github.com/users/chrysn/orgs",
+      "repos_url": "https://api.github.com/users/chrysn/repos",
+      "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chrysn/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": {
+      "login": "gselander",
+      "id": 11752340,
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gselander",
+      "html_url": "https://github.com/gselander",
+      "followers_url": "https://api.github.com/users/gselander/followers",
+      "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+      "organizations_url": "https://api.github.com/users/gselander/orgs",
+      "repos_url": "https://api.github.com/users/gselander/repos",
+      "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gselander/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "assignees": [
+      {
+        "login": "gselander",
+        "id": 11752340,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gselander",
+        "html_url": "https://github.com/gselander",
+        "followers_url": "https://api.github.com/users/gselander/followers",
+        "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+        "organizations_url": "https://api.github.com/users/gselander/orgs",
+        "repos_url": "https://api.github.com/users/gselander/repos",
+        "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gselander/received_events",
+        "type": "User",
+        "site_admin": false
+      }
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2017-10-18T17:30:14Z",
+    "updated_at": "2017-10-25T07:25:14Z",
+    "closed_at": "2017-10-25T07:25:06Z",
+    "author_association": "OWNER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/chrysn/repeat-request-tag/pulls/14",
+      "html_url": "https://github.com/chrysn/repeat-request-tag/pull/14",
+      "diff_url": "https://github.com/chrysn/repeat-request-tag/pull/14.diff",
+      "patch_url": "https://github.com/chrysn/repeat-request-tag/pull/14.patch"
+    },
+    "body": "As suggested by Carsten.\r\n\r\nThe semantics match Unauthorized pretty well: \"should not repeat the\r\nrequest without first improving its authentication status\"; like with\r\nthe WWW-Authenticate header in HTTP, the server gives a way how to do so\r\nin the response.\r\n\r\n[1]: https://tools.ietf.org/html/rfc7231#section-6.5.3"
+  },
+  {
+    "url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13",
+    "repository_url": "https://api.github.com/repos/chrysn/repeat-request-tag",
+    "labels_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/labels{/name}",
+    "comments_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/comments",
+    "events_url": "https://api.github.com/repos/chrysn/repeat-request-tag/issues/13/events",
+    "html_url": "https://github.com/chrysn/repeat-request-tag/issues/13",
+    "id": 265870897,
+    "number": 13,
+    "title": "Better name for Repeat option",
+    "user": {
+      "login": "chrysn",
+      "id": 442326,
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chrysn",
+      "html_url": "https://github.com/chrysn",
+      "followers_url": "https://api.github.com/users/chrysn/followers",
+      "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+      "organizations_url": "https://api.github.com/users/chrysn/orgs",
+      "repos_url": "https://api.github.com/users/chrysn/repos",
+      "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chrysn/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "id": 721715314,
+        "url": "https://api.github.com/repos/chrysn/repeat-request-tag/labels/terminology",
+        "name": "terminology",
+        "color": "fbca04",
+        "default": false
+      }
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": {
+      "login": "gselander",
+      "id": 11752340,
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/gselander",
+      "html_url": "https://github.com/gselander",
+      "followers_url": "https://api.github.com/users/gselander/followers",
+      "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+      "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+      "organizations_url": "https://api.github.com/users/gselander/orgs",
+      "repos_url": "https://api.github.com/users/gselander/repos",
+      "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/gselander/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "assignees": [
+      {
+        "login": "gselander",
+        "id": 11752340,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gselander",
+        "html_url": "https://github.com/gselander",
+        "followers_url": "https://api.github.com/users/gselander/followers",
+        "following_url": "https://api.github.com/users/gselander/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gselander/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gselander/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gselander/subscriptions",
+        "organizations_url": "https://api.github.com/users/gselander/orgs",
+        "repos_url": "https://api.github.com/users/gselander/repos",
+        "events_url": "https://api.github.com/users/gselander/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gselander/received_events",
+        "type": "User",
+        "site_admin": false
+      }
+    ],
+    "milestone": null,
+    "comments": 2,
     "created_at": "2017-10-16T18:35:13Z",
-    "updated_at": "2017-10-16T18:57:17Z",
-    "closed_at": null,
+    "updated_at": "2017-10-25T04:50:42Z",
+    "closed_at": "2017-10-25T04:50:42Z",
     "author_association": "OWNER",
     "body": "The Repeat option obviously needs renaming from the feedback we've gathered, but nobody suggested any better name.\r\n\r\nCandidates I'm collecting:\r\n* Challenge (quite generic term)\r\n* Echo (sticking with the current mental image but using a less laden term)\r\n* Cookie (in analogy to the DTLS handshake's Cookie, but people might not like the taste of dough and chocolate)\r\n* Freshness (indicates its purpose but not its mechanism, could be confused with a time value)\r\n* maybe a compositum of those, like Freshness-Challenge?\r\n\r\nMy personal favorite right now is Freshness-Challenge; @gselander, should we ask back about this on-list again, or just take another shot?"
   },
@@ -201,7 +515,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "chrysn",
@@ -244,10 +558,10 @@
       }
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2017-10-16T15:02:06Z",
-    "updated_at": "2017-10-16T15:16:51Z",
-    "closed_at": null,
+    "updated_at": "2017-10-30T08:30:38Z",
+    "closed_at": "2017-10-30T08:30:38Z",
     "author_association": "OWNER",
     "body": "* Can this work for DTLS too? (Yes, but no reuse because seqence numbers inaccessible)\r\n* DTLS windows can be unilaterally increased (so sequence number access would be pointloess)\r\n\r\n(Carried over from old issue tracker at <https://github.com/chrysn/request-tag/issues/2>.)"
   },
@@ -283,7 +597,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "chrysn",
@@ -326,10 +640,10 @@
       }
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2017-10-16T15:01:33Z",
-    "updated_at": "2017-10-16T15:16:50Z",
-    "closed_at": null,
+    "updated_at": "2017-10-18T16:39:48Z",
+    "closed_at": "2017-10-18T16:39:48Z",
     "author_association": "OWNER",
     "body": "Request-Tag can only be used with Block1 in descriptive use; this needs to be much clearer from the option description.\r\n\r\n(Carried over from old issue tracker at <https://github.com/chrysn/request-tag/issues/3>)"
   },
@@ -371,7 +685,7 @@
         "default": false
       }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "chrysn",
@@ -416,8 +730,8 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2017-08-04T08:42:33Z",
-    "updated_at": "2017-10-16T18:58:58Z",
-    "closed_at": null,
+    "updated_at": "2017-10-18T19:01:08Z",
+    "closed_at": "2017-10-18T19:01:08Z",
     "author_association": "NONE",
     "body": "Firstly, I am unsure if I should file this issue here or in the OSCOAP repo. \r\n\r\nWhat error message should the server send to the client if the client is missing the Request Tag when Block1 is set. (In the case of OSCOAP, with outer block options the Request Tag MUST be used. Thus  #3 cannot be applied to the OSCOAP case). \r\n\r\nSo which error message, to indicate to the client that it must use Request Tag?\r\n\r\nBest regards,\r\nTobias"
   },
@@ -453,18 +767,18 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2017-08-02T11:02:39Z",
-    "updated_at": "2017-08-02T11:02:39Z",
-    "closed_at": null,
-    "author_association": "NONE",
+    "updated_at": "2017-10-30T08:47:27Z",
+    "closed_at": "2017-10-30T08:47:27Z",
+    "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/chrysn/repeat-request-tag/pulls/8",
       "html_url": "https://github.com/chrysn/repeat-request-tag/pull/8",
@@ -503,9 +817,15 @@
       "site_admin": false
     },
     "labels": [
-
+      {
+        "id": 721714700,
+        "url": "https://api.github.com/repos/chrysn/repeat-request-tag/labels/patch%20available",
+        "name": "patch available",
+        "color": "1d76db",
+        "default": false
+      }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -514,8 +834,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2017-07-01T10:51:13Z",
-    "updated_at": "2017-07-01T10:51:13Z",
-    "closed_at": null,
+    "updated_at": "2017-10-25T07:13:40Z",
+    "closed_at": "2017-10-25T07:13:40Z",
     "author_association": "OWNER",
     "body": "Like OSCOAP asked that new options declare themselves E or U, the HTTP mapping document asked for clarification what a cross proxy should do.\r\n\r\nLooks like both Repeat and Request-Tag are never expressed in HTTP, and that a cross proxy needs to repeat the request or run an operation with a Request-Tag just as a CoAP client; a CH proxy (CoAP server) needs to use its own discretion on when to ask for a Repeat."
   },
@@ -738,9 +1058,9 @@
       }
     ],
     "milestone": null,
-    "comments": 2,
+    "comments": 3,
     "created_at": "2017-06-23T05:16:02Z",
-    "updated_at": "2017-10-16T18:59:54Z",
+    "updated_at": "2017-10-18T19:02:12Z",
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "Reading \"Every message in which the Block1 option is set is considered to carry a Request-Tag . . . \" I wonder about the potential confusion between a message with the Block1 option without Request-Tag and a message with the Block1 option with empty Request-Tag option, i.e. no value. As I read it we allow Request-Tag without value (length 0). Then we have two \"special classes\" of Block1 options, for which equality needs to be tested. Or should we require at least 1 byte of value? "
@@ -783,7 +1103,7 @@
         "default": false
       }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "chrysn",
@@ -826,10 +1146,10 @@
       }
     ],
     "milestone": null,
-    "comments": 2,
+    "comments": 3,
     "created_at": "2017-06-21T11:57:42Z",
-    "updated_at": "2017-10-16T19:00:10Z",
-    "closed_at": null,
+    "updated_at": "2017-10-18T18:25:22Z",
+    "closed_at": "2017-10-18T18:25:22Z",
     "author_association": "OWNER",
     "body": "As far as I understand, NoCacheKey becomes irrelevant if an option is both critical and unsafe (because it has to be *understood* by all parties anyway); nevertheless, it remains to decide whether the option should be part of the Cache Key, because that's part of the option number, and implementations will be glad if they can use the behavior implied by number."
   },
