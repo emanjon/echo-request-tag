@@ -347,9 +347,9 @@ A hybrid scheme is also possible: the first Echo option values are cached, and i
 In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost),
 or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).
 
-In those situations, the Request-Tag value of no Request-Tag option present can be reused over and over again.
+In those situations, no message has any Request-Tag option set, and that can be recycled indefinitely.
 
-When the "no-Request-Tag value" is used-up within a security context, the Request-Tag value of a present but empty option can be used (1 Byte overhead), and when that is used-up, 256 values from one byte long options (2 Bytes overhead) can be used.
+When the absence of a Request-Tag option can not be recycled any more within a security context, the messages with a present but empty Request-Tag option can be used (1 Byte overhead), and when that is used-up, 256 values from one byte long options (2 Bytes overhead) are available.
 
 In situations where those overheads are unacceptable (e.g. because the payloads are known to be at a fragmentation threshold), the absent Request-Tag value can be made usable again:
 
