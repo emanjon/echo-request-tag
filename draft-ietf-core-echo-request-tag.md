@@ -160,7 +160,7 @@ Constrained server implementations can use the mechanisms outlined in {{echo-sta
 
 CoAP-CoAP proxies MUST relay the Echo option unmodified, and SHOULD NOT cache responses when a Echo option is present in request or response for more than the exchange.
 CoAP-HTTP proxies MAY request freshness, especially if they have reason to assume that access may require it (eg. because it is a PUT or POST); how this is determined is out of scope for this document.
-HTTP-CoAP-Proxies SHOULD respond to Echo challenges themselves, as they know that the HTTP request is fresh, and can not forward the option anyway.
+HTTP-CoAP-Proxies SHOULD respond to Echo challenges themselves if they know from the recent establishing of the connection that the HTTP request is fresh. Otherwise, they SHOULD respond with 503 Service Unavailable, Retry-After: 0 and terminate any underlying Keep-Alive connection. It MAY also use other mechanisms to establish freshness of the HTTP request that are not specified here.
 
 ## Applications ##
 
