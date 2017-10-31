@@ -6,8 +6,8 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft                               Energy Harvesting Solutions
 Updates: 7959 (if approved)                                  J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: May 3, 2018                                         Ericsson AB
-                                                        October 30, 2017
+Expires: May 4, 2018                                         Ericsson AB
+                                                        October 31, 2017
 
 
                           Echo and Request-Tag
@@ -37,14 +37,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at https://datatracker.ietf.org/drafts/current/.
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 3, 2018.
+   This Internet-Draft will expire on May 4, 2018.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 1]
+Amsuess, et al.            Expires May 4, 2018                  [Page 1]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -65,7 +65,7 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
+   (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 2]
+Amsuess, et al.            Expires May 4, 2018                  [Page 2]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -165,7 +165,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 3]
+Amsuess, et al.            Expires May 4, 2018                  [Page 3]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -221,7 +221,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 4]
+Amsuess, et al.            Expires May 4, 2018                  [Page 4]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -277,7 +277,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 5]
+Amsuess, et al.            Expires May 4, 2018                  [Page 5]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -333,7 +333,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 6]
+Amsuess, et al.            Expires May 4, 2018                  [Page 6]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -389,7 +389,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 7]
+Amsuess, et al.            Expires May 4, 2018                  [Page 7]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -445,7 +445,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 8]
+Amsuess, et al.            Expires May 4, 2018                  [Page 8]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -501,7 +501,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                  [Page 9]
+Amsuess, et al.            Expires May 4, 2018                  [Page 9]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -557,7 +557,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 10]
+Amsuess, et al.            Expires May 4, 2018                 [Page 10]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -613,7 +613,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 11]
+Amsuess, et al.            Expires May 4, 2018                 [Page 11]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -669,7 +669,7 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 12]
+Amsuess, et al.            Expires May 4, 2018                 [Page 12]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -711,13 +711,13 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
-              DOI 10.17487/RFC7252, June 2014,
-              <https://www.rfc-editor.org/info/rfc7252>.
+              DOI 10.17487/RFC7252, June 2014, <https://www.rfc-
+              editor.org/info/rfc7252>.
 
 
 
@@ -725,15 +725,15 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 13]
+Amsuess, et al.            Expires May 4, 2018                 [Page 13]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
 
    [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
               the Constrained Application Protocol (CoAP)", RFC 7959,
-              DOI 10.17487/RFC7959, August 2016,
-              <https://www.rfc-editor.org/info/rfc7959>.
+              DOI 10.17487/RFC7959, August 2016, <https://www.rfc-
+              editor.org/info/rfc7959>.
 
 7.2.  Informative References
 
@@ -744,10 +744,10 @@ Internet-Draft            Echo and Request-Tag              October 2017
               progress), October 2017.
 
    [I-D.mattsson-core-coap-actuators]
-              Mattsson, J., Fornehed, J., Selander, G., and F.
-              Palombini, "Controlling Actuators with CoAP", draft-
-              mattsson-core-coap-actuators-02 (work in progress),
-              November 2016.
+              Mattsson, J., Fornehed, J., Selander, G., Palombini, F.,
+              and C. Amsuess, "Controlling Actuators with CoAP", draft-
+              mattsson-core-coap-actuators-03 (work in progress),
+              October 2017.
 
    [I-D.tschofenig-core-coap-tcp-tls]
               Bormann, C., Lemay, S., Technologies, Z., and H.
@@ -761,8 +761,8 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
    [RFC7641]  Hartke, K., "Observing Resources in the Constrained
               Application Protocol (CoAP)", RFC 7641,
-              DOI 10.17487/RFC7641, September 2015,
-              <https://www.rfc-editor.org/info/rfc7641>.
+              DOI 10.17487/RFC7641, September 2015, <https://www.rfc-
+              editor.org/info/rfc7641>.
 
 Appendix A.  Performance Impact When Using the Echo Option
 
@@ -781,7 +781,7 @@ Appendix A.  Performance Impact When Using the Echo Option
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 14]
+Amsuess, et al.            Expires May 4, 2018                 [Page 14]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -837,7 +837,7 @@ Appendix B.  Request-Tag Message Size Impact
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 15]
+Amsuess, et al.            Expires May 4, 2018                 [Page 15]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -893,7 +893,7 @@ Authors' Addresses
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 16]
+Amsuess, et al.            Expires May 4, 2018                 [Page 16]
 
 Internet-Draft            Echo and Request-Tag              October 2017
 
@@ -949,4 +949,4 @@ Internet-Draft            Echo and Request-Tag              October 2017
 
 
 
-Amsuess, et al.            Expires May 3, 2018                 [Page 17]
+Amsuess, et al.            Expires May 4, 2018                 [Page 17]
