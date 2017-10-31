@@ -2,9 +2,9 @@
 
 This is the working area for the IETF CORE Working Group Internet-Draft, "Echo and Request-Tag".
 
-* [Editor's Copy](https://chrysn.github.io/repeat-request-tag/#go.draft-ietf-core-echo-request-tag.html)
+* [Editor's Copy](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.html)
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-echo-request-tag)
-* [Compare Editor's Copy to Working Group Draft](https://chrysn.github.io/repeat-request-tag/#go.draft-ietf-core-echo-request-tag.diff)
+* [Compare Editor's Copy to Working Group Draft](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.diff)
 
 ## Building the Draft
 
@@ -21,4 +21,4 @@ This requires that you have the necessary software installed.  See
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/chrysn/repeat-request-tag/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/core-wg/echo-request-tag/blob/master/CONTRIBUTING.md).

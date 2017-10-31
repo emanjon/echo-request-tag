@@ -1,4 +1,4 @@
 # License
 
 See the
-[guidelines for contributions](https://github.com/chrysn/repeat-request-tag/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/core-wg/echo-request-tag/blob/master/CONTRIBUTING.md).
