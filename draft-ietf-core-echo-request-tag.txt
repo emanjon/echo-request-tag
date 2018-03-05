@@ -242,9 +242,12 @@ Internet-Draft            Echo and Request-Tag                March 2018
    [RFC7252].
 
    The terms "payload" and "body" of a message are used as in [RFC7959].
-   The complete interchange of a request and a response is called a
+   The complete interchange of a request and a response body is called a
    (REST) "operation".  An operation fragmented using [RFC7959] is
-   called a "blockwise operation".
+   called a "blockwise operation".  A blockwise operation which is
+   fragmenting the request body is called a "blockwise request
+   operation".  A blockwise operation which is fragmenting the response
+   body is called a "blockwise response operation".
 
    Two blockwise operations between the same endpoint pair on the same
    resource are said to be "concurrent" if a block of the second request
@@ -269,9 +272,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
    The Echo Option is elective, safe-to-forward, not part of the cache-
    key, and not repeatable, see Figure 1.
-
-
-
 
 
 
