@@ -274,41 +274,43 @@ address {
   /*]]>*/</style>
 
 
-  <link href="#rfc.toc" rel="Contents"/>
-<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
-<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Request Freshness"/>
-<link href="#rfc.section.1.2" rel="Chapter" title="1.2 Fragmented Message Body Integrity"/>
-<link href="#rfc.section.1.3" rel="Chapter" title="1.3 Terminology"/>
-<link href="#rfc.section.2" rel="Chapter" title="2 The Echo Option"/>
-<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Option Format"/>
-<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Echo Processing"/>
-<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Applications"/>
-<link href="#rfc.section.3" rel="Chapter" title="3 The Request-Tag Option"/>
-<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Option Format"/>
-<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Request-Tag Processing"/>
-<link href="#rfc.section.3.3" rel="Chapter" title="3.3 Applications"/>
-<link href="#rfc.section.3.3.1" rel="Chapter" title="3.3.1 Body Integrity Based on Payload Integrity"/>
-<link href="#rfc.section.3.3.2" rel="Chapter" title="3.3.2 Multiple Concurrent Blockwise Operations"/>
-<link href="#rfc.section.4" rel="Chapter" title="4 Block2 / ETag Processing"/>
-<link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations"/>
-<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations"/>
-<link href="#rfc.references" rel="Chapter" title="7 References"/>
-<link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References"/>
-<link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References"/>
-<link href="#rfc.appendix.A" rel="Chapter" title="A Performance Impact When Using the Echo Option"/>
-<link href="#rfc.appendix.B" rel="Chapter" title="B Request-Tag Message Size Impact"/>
-<link href="#rfc.appendix.C" rel="Chapter" title="C Change Log"/>
-<link href="#rfc.authors" rel="Chapter"/>
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Request Freshness">
+<link href="#rfc.section.1.2" rel="Chapter" title="1.2 Fragmented Message Body Integrity">
+<link href="#rfc.section.1.3" rel="Chapter" title="1.3 Request-Response Binding">
+<link href="#rfc.section.1.4" rel="Chapter" title="1.4 Terminology">
+<link href="#rfc.section.2" rel="Chapter" title="2 The Echo Option">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Option Format">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Echo Processing">
+<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Applications">
+<link href="#rfc.section.3" rel="Chapter" title="3 The Request-Tag Option">
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Option Format">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Request-Tag Processing">
+<link href="#rfc.section.3.3" rel="Chapter" title="3.3 Applications">
+<link href="#rfc.section.3.3.1" rel="Chapter" title="3.3.1 Body Integrity Based on Payload Integrity">
+<link href="#rfc.section.3.3.2" rel="Chapter" title="3.3.2 Multiple Concurrent Blockwise Operations">
+<link href="#rfc.section.4" rel="Chapter" title="4 Block2 / ETag Processing">
+<link href="#rfc.section.5" rel="Chapter" title="5 Token Processing">
+<link href="#rfc.section.6" rel="Chapter" title="6 IANA Considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
+<link href="#rfc.references" rel="Chapter" title="8 References">
+<link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Methods for Generating Echo Option Values">
+<link href="#rfc.appendix.B" rel="Chapter" title="B Request-Tag Message Size Impact">
+<link href="#rfc.appendix.C" rel="Chapter" title="C Change Log">
+<link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.5.1 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.9.6 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Amsuess, C., Mattsson, J., and G. Selander" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-echo-request-tag-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-10-31" />
-  <meta name="dct.abstract" content="This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Echo option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCORE, protects against certain attacks on CoAP message exchanges." />
-  <meta name="description" content="This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Echo option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCORE, protects against certain attacks on CoAP message exchanges." />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-03-05" />
+  <meta name="dct.abstract" content="This document specifies several security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Block options and the Token. The updated Token processing ensures secure binding of responses to requests." />
+  <meta name="description" content="This document specifies several security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Block options and the Token. The updated Token processing ensures secure binding of responses to requests." />
 
 </head>
 
@@ -318,28 +320,28 @@ address {
     <tbody>
     
     	<tr>
-  <td class="left">CoRE Working Group</td>
-  <td class="right">C. Amsuess</td>
+<td class="left">CoRE Working Group</td>
+<td class="right">C. Amsuess</td>
 </tr>
 <tr>
-  <td class="left">Internet-Draft</td>
-  <td class="right">Energy Harvesting Solutions</td>
+<td class="left">Internet-Draft</td>
+<td class="right">Energy Harvesting Solutions</td>
 </tr>
 <tr>
-  <td class="left">Updates: 7959 (if approved)</td>
-  <td class="right">J. Mattsson</td>
+<td class="left">Updates: 7252, 7959 (if approved)</td>
+<td class="right">J. Mattsson</td>
 </tr>
 <tr>
-  <td class="left">Intended status: Standards Track</td>
-  <td class="right">G. Selander</td>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">G. Selander</td>
 </tr>
 <tr>
-  <td class="left">Expires: May 4, 2018</td>
-  <td class="right">Ericsson AB</td>
+<td class="left">Expires: September 6, 2018</td>
+<td class="right">Ericsson AB</td>
 </tr>
 <tr>
-  <td class="left"></td>
-  <td class="right">October 31, 2017</td>
+<td class="left"></td>
+<td class="right">March 05, 2018</td>
 </tr>
 
     	
@@ -349,144 +351,193 @@ address {
   <p class="title">Echo and Request-Tag<br />
   <span class="filename">draft-ietf-core-echo-request-tag-latest</span></p>
   
-  <h1 id="rfc.abstract">
-  <a href="#rfc.abstract">Abstract</a>
-</h1>
-<p>This document defines two optional extensions to the Constrained Application Protocol (CoAP): the Echo option and the Request-Tag option. Each of these options when integrity protected, such as with DTLS or OSCORE, protects against certain attacks on CoAP message exchanges.</p>
-<p>The Echo option enables a CoAP server to verify the freshness of a request by requiring the CoAP client to make another request and include a server-provided challenge. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request message, fragmented using the CoAP Block-Wise Transfer mechanism.  This document also specifies additional processing requirements on Block1 and Block2 options.</p>
-<h1 id="rfc.status">
-  <a href="#rfc.status">Status of This Memo</a>
-</h1>
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document specifies several security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Block options and the Token. The updated Token processing ensures secure binding of responses to requests.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
-<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 4, 2018.</p>
-<h1 id="rfc.copyrightnotice">
-  <a href="#rfc.copyrightnotice">Copyright Notice</a>
-</h1>
-<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
-<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+<p>This Internet-Draft will expire on September 6, 2018.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
   <hr class="noprint" />
   <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
   <ul class="toc">
 
-  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
-<ul><li>1.1.   <a href="#rfc.section.1.1">Request Freshness</a></li>
-<li>1.2.   <a href="#rfc.section.1.2">Fragmented Message Body Integrity</a></li>
-<li>1.3.   <a href="#rfc.section.1.3">Terminology</a></li>
-</ul><li>2.   <a href="#rfc.section.2">The Echo Option</a></li>
-<ul><li>2.1.   <a href="#rfc.section.2.1">Option Format</a></li>
-<li>2.2.   <a href="#rfc.section.2.2">Echo Processing</a></li>
-<li>2.3.   <a href="#rfc.section.2.3">Applications</a></li>
-</ul><li>3.   <a href="#rfc.section.3">The Request-Tag Option</a></li>
-<ul><li>3.1.   <a href="#rfc.section.3.1">Option Format</a></li>
-<li>3.2.   <a href="#rfc.section.3.2">Request-Tag Processing</a></li>
-<li>3.3.   <a href="#rfc.section.3.3">Applications</a></li>
-<ul><li>3.3.1.   <a href="#rfc.section.3.3.1">Body Integrity Based on Payload Integrity</a></li>
-<li>3.3.2.   <a href="#rfc.section.3.3.2">Multiple Concurrent Blockwise Operations</a></li>
-</ul></ul><li>4.   <a href="#rfc.section.4">Block2 / ETag Processing</a></li>
-<li>5.   <a href="#rfc.section.5">IANA Considerations</a></li>
-<li>6.   <a href="#rfc.section.6">Security Considerations</a></li>
-<li>7.   <a href="#rfc.references">References</a></li>
-<ul><li>7.1.   <a href="#rfc.references.1">Normative References</a></li>
-<li>7.2.   <a href="#rfc.references.2">Informative References</a></li>
-</ul><li>Appendix A.   <a href="#rfc.appendix.A">Performance Impact When Using the Echo Option</a></li>
-<li>Appendix B.   <a href="#rfc.appendix.B">Request-Tag Message Size Impact</a></li>
-<li>Appendix C.   <a href="#rfc.appendix.C">Change Log</a></li>
-<li><a href="#rfc.authors">Authors' Addresses</a></li>
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Request Freshness</a>
+</li>
+<li>1.2.   <a href="#rfc.section.1.2">Fragmented Message Body Integrity</a>
+</li>
+<li>1.3.   <a href="#rfc.section.1.3">Request-Response Binding</a>
+</li>
+<li>1.4.   <a href="#rfc.section.1.4">Terminology</a>
+</li>
+</ul><li>2.   <a href="#rfc.section.2">The Echo Option</a>
+</li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Option Format</a>
+</li>
+<li>2.2.   <a href="#rfc.section.2.2">Echo Processing</a>
+</li>
+<li>2.3.   <a href="#rfc.section.2.3">Applications</a>
+</li>
+</ul><li>3.   <a href="#rfc.section.3">The Request-Tag Option</a>
+</li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Option Format</a>
+</li>
+<li>3.2.   <a href="#rfc.section.3.2">Request-Tag Processing</a>
+</li>
+<li>3.3.   <a href="#rfc.section.3.3">Applications</a>
+</li>
+<ul><li>3.3.1.   <a href="#rfc.section.3.3.1">Body Integrity Based on Payload Integrity</a>
+</li>
+<li>3.3.2.   <a href="#rfc.section.3.3.2">Multiple Concurrent Blockwise Operations</a>
+</li>
+</ul></ul><li>4.   <a href="#rfc.section.4">Block2 / ETag Processing</a>
+</li>
+<li>5.   <a href="#rfc.section.5">Token Processing</a>
+</li>
+<li>6.   <a href="#rfc.section.6">IANA Considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">Security Considerations</a>
+</li>
+<li>8.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>8.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>8.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Methods for Generating Echo Option Values</a>
+</li>
+<li>Appendix B.   <a href="#rfc.appendix.B">Request-Tag Message Size Impact</a>
+</li>
+<li>Appendix C.   <a href="#rfc.appendix.C">Change Log</a>
+</li>
+<li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
 
 
   </ul>
 
-  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#intro" id="intro">Introduction</a></h1>
-<p id="rfc.section.1.p.1">The initial CoAP suite of specifications (<a href="#RFC7252">[RFC7252]</a>, <a href="#RFC7641">[RFC7641]</a>, <a href="#RFC7959">[RFC7959]</a>) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS (<a href="#RFC6347">[RFC6347]</a>). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations.</p>
-<p id="rfc.section.1.p.2">This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, addressing the security features request freshness and fragmented message body integrity, respectively. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected in a message, e.g. using DTLS (<a href="#RFC6347">[RFC6347]</a>) or OSCORE (<a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>), provide those security features. The Request-Tag option and also the ETag option are mandatory to use with Block1 and Block2, respectively, to secure blockwise operations with multiple representations of a particular resource as is specified in this document.</p>
-<p id="rfc.section.1.p.3">Additional applications of the options are introduced. For example, Echo can be used to mitigate amplification attacks.</p>
-<h1 id="rfc.section.1.1"><a href="#rfc.section.1.1">1.1.</a> <a href="#req-fresh" id="req-fresh">Request Freshness</a></h1>
-<p id="rfc.section.1.1.p.1">A CoAP server receiving a request may not be able to verify when the request was sent by the CoAP client. This remains true even if the request was protected with a security protocol, such as DTLS. This makes CoAP requests vulnerable to certain delay attacks which are particularly incriminating in the case of actuators (<a href="#I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</a>). Some attacks are possible to mitigate by establishing fresh session keys (e.g. performing the DTLS handshake) for each actuation, but in general this is not a solution suitable for constrained environments.</p>
-<p id="rfc.section.1.1.p.2">A straightforward mitigation of potential delayed requests is that the CoAP server rejects a request the first time it appears and asks the CoAP client to prove that it intended to make the request at this point in time. The Echo option, defined in this document, specifies such a mechanism which thereby enables the CoAP server to verify the freshness of a request. This mechanism is not only important in the case of actuators, or other use cases where the CoAP operations require freshness of requests, but also in general for synchronizing state between CoAP client and server.</p>
-<h1 id="rfc.section.1.2"><a href="#rfc.section.1.2">1.2.</a> <a href="#body-int" id="body-int">Fragmented Message Body Integrity</a></h1>
-<p id="rfc.section.1.2.p.1">CoAP was designed to work over unreliable transports, such as UDP, and include a lightweight reliability feature to handle messages which are lost or arrive out of order. In order for a security protocol to support CoAP operations over unreliable transports, it must allow out-of-order delivery of messages using e.g. a sliding replay window such as described in Section 4.1.2.6 of DTLS (<a href="#RFC6347">[RFC6347]</a>).</p>
-<p id="rfc.section.1.2.p.2">The Block-Wise Transfer mechanism <a href="#RFC7959">[RFC7959]</a> extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same endpoint having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window (<a href="#I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</a>), which is a vulnerability of CoAP when using RFC7959.</p>
-<p id="rfc.section.1.2.p.3">A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option <a href="#RFC7252">[RFC7252]</a>, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.</p>
-<h1 id="rfc.section.1.3"><a href="#rfc.section.1.3">1.3.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
-<p id="rfc.section.1.3.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>.</p>
-<p id="rfc.section.1.3.p.2">Unless otherwise specified, the terms &#8220;client&#8221; and &#8220;server&#8221; refers to &#8220;CoAP client&#8221; and &#8220;CoAP server&#8221;, respectively, as defined in <a href="#RFC7252">[RFC7252]</a>.</p>
-<p id="rfc.section.1.3.p.3">The terms &#8220;payload&#8221; and &#8220;body&#8221; of a message are used as in <a href="#RFC7959">[RFC7959]</a>.  The complete interchange of a request and a response body is called a (REST) &#8220;operation&#8221;. An operation fragmented using <a href="#RFC7959">[RFC7959]</a> is called a &#8220;blockwise operation&#8221;. A blockwise operation which is fragmenting the request body is called a &#8220;blockwise request operation&#8221;.  A blockwise operation which is fragmenting the response body is called a &#8220;blockwise response operation&#8221;.</p>
-<p id="rfc.section.1.3.p.4">Two blockwise operations between the same endpoint pair on the same resource are said to be &#8220;concurrent&#8221; if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of <a href="#RFC7959">[RFC7959]</a> because the second operation&#8217;s block overwrites any state of the first exchange.).</p>
-<p id="rfc.section.1.3.p.5">The Echo and Request-Tag options are defined in this document. The concept of two messages being &#8220;Request-Tag-matchable&#8221; is defined in <a href="#req-tag-format">Section 3.1</a>.</p>
-<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#echo" id="echo">The Echo Option</a></h1>
-<p id="rfc.section.2.p.1">The Echo option is a server-driven challenge-response mechanism for CoAP. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed in a CoAP request.</p>
-<h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#echo-format" id="echo-format">Option Format</a></h1>
-<p id="rfc.section.2.1.p.1">The Echo Option is elective, safe-to-forward, not part of the cache-key, and not repeatable, see <a href="#echo-table">Figure 1</a>.</p>
-<div id="rfc.figure.1"/>
-<div id="echo-table"/>
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#intro" id="intro">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">The initial Constrained Application Protocol (CoAP) suite of specifications (<a href="#RFC7252" class="xref">[RFC7252]</a>, <a href="#RFC7641" class="xref">[RFC7641]</a>, and <a href="#RFC7959" class="xref">[RFC7959]</a>) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS (<a href="#RFC6347" class="xref">[RFC6347]</a>). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations. This document specifies several security enhancements to the Constrained Application Protocol (CoAP).</p>
+<p id="rfc.section.1.p.2">This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, mainly addressing the security features request freshness and fragmented message body integrity, respectively. The Echo option enables a CoAP server to verify the freshness of a request, verify the aliveness of a client, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS (<a href="#RFC6347" class="xref">[RFC6347]</a>), TLS (<a href="#RFC5246" class="xref">[RFC5246]</a>), or OSCORE (<a href="#I-D.ietf-core-object-security" class="xref">[I-D.ietf-core-object-security]</a>), provide the additional security features.</p>
+<p id="rfc.section.1.p.3">The document also updates the processing requirements on the Block1 option, the Block2 option, and the Token. The updated blockwise processing secure blockwise operations with multiple representations of a particular resource. The updated Token processing ensures secure binding of responses to requests.</p>
+<h1 id="rfc.section.1.1">
+<a href="#rfc.section.1.1">1.1.</a> <a href="#req-fresh" id="req-fresh">Request Freshness</a>
+</h1>
+<p id="rfc.section.1.1.p.1">A CoAP server receiving a request is in general not able to verify when the request was sent by the CoAP client. This remains true even if the request was protected with a security protocol, such as DTLS. This makes CoAP requests vulnerable to certain delay attacks which are particularly incriminating in the case of actuators (<a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>). Some attacks are possible to mitigate by establishing fresh session keys (e.g. performing the DTLS handshake) for each actuation, but in general this is not a solution suitable for constrained environments.</p>
+<p id="rfc.section.1.1.p.2">A straightforward mitigation of potential delayed requests is that the CoAP server rejects a request the first time it appears and asks the CoAP client to prove that it intended to make the request at this point in time. The Echo option, defined in this document, specifies such a mechanism which thereby enables the CoAP server to verify the freshness of a request. This mechanism is not only important in the case of actuators, or other use cases where the CoAP operations require freshness of requests, but also in general for synchronizing state between CoAP client and server and to verify aliveness of the client.</p>
+<h1 id="rfc.section.1.2">
+<a href="#rfc.section.1.2">1.2.</a> <a href="#body-int" id="body-int">Fragmented Message Body Integrity</a>
+</h1>
+<p id="rfc.section.1.2.p.1">CoAP was designed to work over unreliable transports, such as UDP, and include a lightweight reliability feature to handle messages which are lost or arrive out of order. In order for a security protocol to support CoAP operations over unreliable transports, it must allow out-of-order delivery of messages using e.g. a sliding replay window such as described in Section 4.1.2.6 of DTLS (<a href="#RFC6347" class="xref">[RFC6347]</a>).</p>
+<p id="rfc.section.1.2.p.2">The Block-Wise Transfer mechanism <a href="#RFC7959" class="xref">[RFC7959]</a> extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same resource having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window (<a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>), which is a vulnerability of CoAP when using RFC7959.</p>
+<p id="rfc.section.1.2.p.3">A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option <a href="#RFC7252" class="xref">[RFC7252]</a>, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.</p>
+<h1 id="rfc.section.1.3">
+<a href="#rfc.section.1.3">1.3.</a> <a href="#request-response-binding" id="request-response-binding">Request-Response Binding</a>
+</h1>
+<p id="rfc.section.1.3.p.1">A fundamental requirement of secure REST operations is that the client can bind a response to a particular request.  In HTTPS this is assured by the ordered and reliable delivery as well as mandating that the server sends responses in the same order that the requests were received.</p>
+<p id="rfc.section.1.3.p.2">The same is not true for CoAP where the server can return responses in any order. Concurrent requests are instead differentiated by their Token. Unfortunately, CoAP <a href="#RFC7252" class="xref">[RFC7252]</a> does not treat Token as a cryptographically important value and does not give stricter guidelines than that the tokens currently &#8220;in use&#8221; SHOULD (not SHALL) be unique. If used with security protocol not providing bindings between requests and responses (e.g. DTLS and TLS) token reuse may result in situations where a client matches a response to the wrong request (see e.g. Section 2.3 of <a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>). Note that mismatches can also happen for other reasons than a malicious attacker, e.g. delayed delivery or a server sending notifications to an uninterested client.</p>
+<p id="rfc.section.1.3.p.3">A straightforward mitigation is to mandate clients to never reuse tokens until the traffic keys have been replaced. As there may be any number of responses to a request (see e.g. <a href="#RFC7641" class="xref">[RFC7641]</a>), the easiest way to accomplish this is to implement the token as a counter and never reuse any tokens at all. This document updates the Token processing in <a href="#RFC7252" class="xref">[RFC7252]</a> to always assure a cryptographically secure binding of responses to requests.</p>
+<h1 id="rfc.section.1.4">
+<a href="#rfc.section.1.4">1.4.</a> <a href="#terminology" id="terminology">Terminology</a>
+</h1>
+<p id="rfc.section.1.4.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<p id="rfc.section.1.4.p.2">Unless otherwise specified, the terms &#8220;client&#8221; and &#8220;server&#8221; refers to &#8220;CoAP client&#8221; and &#8220;CoAP server&#8221;, respectively, as defined in <a href="#RFC7252" class="xref">[RFC7252]</a>.</p>
+<p id="rfc.section.1.4.p.3">The terms &#8220;payload&#8221; and &#8220;body&#8221; of a message are used as in <a href="#RFC7959" class="xref">[RFC7959]</a>.  The complete interchange of a request and a response is called a (REST) &#8220;operation&#8221;. An operation fragmented using <a href="#RFC7959" class="xref">[RFC7959]</a> is called a &#8220;blockwise operation&#8221;.</p>
+<p id="rfc.section.1.4.p.4">Two blockwise operations between the same endpoint pair on the same resource are said to be &#8220;concurrent&#8221; if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of <a href="#RFC7959" class="xref">[RFC7959]</a> because the second operation&#8217;s block overwrites any state of the first exchange.).</p>
+<p id="rfc.section.1.4.p.5">The Echo and Request-Tag options are defined in this document. The concept of two messages being &#8220;Request-Tag-matchable&#8221; is defined in <a href="#req-tag-format" class="xref">Section 3.1</a>.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#echo" id="echo">The Echo Option</a>
+</h1>
+<p id="rfc.section.2.p.1">The Echo option is a server-driven challenge-response mechanism for CoAP. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed in one or more CoAP request.</p>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> <a href="#echo-format" id="echo-format">Option Format</a>
+</h1>
+<p id="rfc.section.2.1.p.1">The Echo Option is elective, safe-to-forward, not part of the cache-key, and not repeatable, see <a href="#echo-table" class="xref">Figure 1</a>.</p>
+<div id="rfc.figure.1"></div>
+<div id="echo-table"></div>
 <pre>
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 | No. | C | U | N | R | Name        | Format | Length | Default | E |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
-| TBD |   |   |   |   | Echo        | opaque |   8-40 | (none)  | x |
+| TBD |   |   | x |   | Echo        | opaque |   4-40 | (none)  | x |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
-        C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable,
-        E=Encrypt and Integrity Protect (when using OSCORE)
-
+      C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
+      E = Encrypt and Integrity Protect (when using OSCORE)
 </pre>
 <p class="figure">Figure 1: Echo Option Summary</p>
-<p id="rfc.section.2.1.p.2">The value of the Echo option MUST be a (pseudo-)random bit string of a length of at least 64 bits. A new (pseudo-)random bit string MUST be generated by the server for each use of the Echo option.</p>
-<h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> <a href="#echo-processing" id="echo-processing">Echo Processing</a></h1>
-<p id="rfc.section.2.2.p.1">It is important to identify under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.</p>
-<p id="rfc.section.2.2.p.2">A server MAY include the Echo option in a response. The Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).  If the server receives a request which has freshness requirements, and the request does not contain the Echo option, the server SHOULD send a 4.01 Unauthorized response with a Echo option. The server SHOULD cache the transmitted Echo option value and the response transmit time (here denoted t0).</p>
-<p id="rfc.section.2.2.p.3">Upon receiving a response with the Echo option within the EXCHANGE_LIFETIME (<a href="#RFC7252">[RFC7252]</a>) of the original request, the client SHOULD echo the Echo option with the same value in a new request to the server. Upon receiving a 4.01 Unauthorized response with the Echo option in response to a request within the EXCHANGE_LIFETIME of the original request, the client SHOULD resend the original request. The client MAY send a different request compared to the original request.</p>
-<p id="rfc.section.2.2.p.4">If the server receives a request which has freshness requirements, and the request contains the Echo option, the server MUST verify that the option value equals a cached value; otherwise the request is not processed further.  The server MUST calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time.  The server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT &lt; T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in <a href="#echo-figure">Figure 2</a>.</p>
-<p id="rfc.section.2.2.p.5">When used to serve freshness requirements, CoAP messages containing the Echo option MUST be integrity protected, e.g. using DTLS or OSCORE (<a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>).</p>
-<p id="rfc.section.2.2.p.6">If the server loses time synchronization, e.g. due to reboot, it MUST delete all cached Echo option values and response transmission times.</p>
-<div id="rfc.figure.2"/>
-<div id="echo-figure"/>
+<p id="rfc.section.2.1.p.2">[Note to RFC editor: If this document is not released together with OSCORE but before it, the following paragraph and the &#8220;E&#8221; column above need to move into OSCORE.]</p>
+<p id="rfc.section.2.1.p.3">The Echo option value is generated by the server, and its content and structure are implementation specific. Different methods for generating Echo option values are outlined in <a href="#echo-state" class="xref">Appendix A</a>. Clients and intermediaries MUST treat an Echo option value as opaque and make no assumptions about its content or structure.</p>
+<p id="rfc.section.2.1.p.4">When receiving an Echo option in a request, the server MUST be able to verify that the Echo option value was generated by the server as well as the point in time when the Echo option value was generated.</p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> <a href="#echo-processing" id="echo-processing">Echo Processing</a>
+</h1>
+<p id="rfc.section.2.2.p.1">The Echo option MAY be included in any request or response (see <a href="#echo-app" class="xref">Section 2.3</a> for different applications), but the Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).</p>
+<p id="rfc.section.2.2.p.2">If the server receives a request which has freshness requirements, the request does not contain a fresh Echo option value, and the server cannot verify the freshness of the request in some other way, the server MUST NOT process the request further and SHOULD send a 4.01 Unauthorized response with an Echo option.</p>
+<p id="rfc.section.2.2.p.3">The application decides under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.</p>
+<p id="rfc.section.2.2.p.4">The server may also include the Echo option in a response to verify the aliveness of a client, to synchronize state, or to force a client to demonstrate reachability at their apparent network address.</p>
+<p id="rfc.section.2.2.p.5">Upon receiving a 4.01 Unauthorized response with the Echo option, the client SHOULD resend the original request with the addition of an Echo option with the received Echo option value. The client MAY send a different request compared to the original request. Upon receiving any other response with the Echo option, the client SHOULD echo the Echo option value in a next request to the server. The client MAY include the same Echo option value in several different requests to the server.</p>
+<p id="rfc.section.2.2.p.6">Upon receiving a request with the Echo option, the server determines if the request has freshness requirement. If the request does not have freshness requirements, the Echo option MAY be ignored. If the request has freshness requirements and the server cannot verify the freshness of the request in some other way, the server MUST verify that the Echo option value was generated by the server; otherwise the request is not processed further. The server MUST then calculate the round-trip time RTT = (t1 - t0), where t1 is the request receive time and t0 is the transmit time of the response that included the specific Echo option value. The server MUST only accept requests with a round-trip time below a certain threshold T, i.e. RTT &lt; T, otherwise the request is not processed further, and an error message MAY be sent. The threshold T is application specific, its value depends e.g. on the freshness requirements of the request. An example message flow is illustrated in <a href="#echo-figure" class="xref">Figure 2</a>.</p>
+<div id="rfc.figure.2"></div>
+<div id="echo-figure"></div>
 <pre>
-                Client  Server
-                   |      |
-                   +-----&gt;|        Code: 0.03 (PUT)
-                   | PUT  |       Token: 0x41
-                   |      |    Uri-Path: lock
-                   |      |     Payload: 0 (Unlock)
-                   |      |
-                   |&lt;-----+ t0     Code: 4.01 (Unauthorized)
-                   | 4.03 |       Token: 0x41
-                   |      |        Echo: 0x6c880d41167ba807
-                   |      |
-                   +-----&gt;| t1     Code: 0.03 (PUT)
-                   | PUT  |       Token: 0x42
-                   |      |    Uri-Path: lock
-                   |      |        Echo: 0x6c880d41167ba807
-                   |      |     Payload: 0 (Unlock)
-                   |      |
-                   |&lt;-----+        Code: 2.04 (Changed)
-                   | 2.04 |       Token: 0x42
-                   |      |
-
+Client   Server           
+   |       |        
+   +------&gt;|        Code: 0.03 (PUT)
+   |  PUT  |       Token: 0x41
+   |       |    Uri-Path: lock
+   |       |     Payload: 0 (Unlock)
+   |       |
+   |&lt;------+ t0     Code: 4.01 (Unauthorized)
+   |  4.03 |       Token: 0x41
+   |       |        Echo: 0x437468756c687521
+   |       |
+   +------&gt;| t1     Code: 0.03 (PUT)
+   |  PUT  |       Token: 0x42
+   |       |    Uri-Path: lock
+   |       |        Echo: 0x437468756c687521
+   |       |     Payload: 0 (Unlock)
+   |       |
+   |&lt;------+        Code: 2.04 (Changed)
+   |  2.04 |       Token: 0x42
+   |       |
 </pre>
-<p class="figure">Figure 2: Echo option message flow</p>
-<p id="rfc.section.2.2.p.7">Constrained server implementations can use the mechanisms outlined in <a href="#echo-state">Appendix A</a> to minimize the memory impact of having many unanswered Echo responses.</p>
-<p id="rfc.section.2.2.p.8">CoAP-CoAP proxies MUST relay the Echo option unmodified, and SHOULD NOT cache responses when a Echo option is present in request or response for more than the exchange.  CoAP-HTTP proxies MAY request freshness, especially if they have reason to assume that access may require it (eg. because it is a PUT or POST); how this is determined is out of scope for this document.  HTTP-CoAP-Proxies SHOULD respond to Echo challenges themselves if they know from the recent establishing of the connection that the HTTP request is fresh. Otherwise, they SHOULD respond with 503 Service Unavailable, Retry-After: 0 and terminate any underlying Keep-Alive connection. It MAY also use other mechanisms to establish freshness of the HTTP request that are not specified here.</p>
-<h1 id="rfc.section.2.3"><a href="#rfc.section.2.3">2.3.</a> <a href="#applications" id="applications">Applications</a></h1>
-<p/>
+<p class="figure">Figure 2: Example Echo Option Message Flow</p>
+<p id="rfc.section.2.2.p.7">When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP requests containing the Echo option MUST be integrity protected, e.g. using DTLS, TLS, or OSCORE (<a href="#I-D.ietf-core-object-security" class="xref">[I-D.ietf-core-object-security]</a>). When used to demonstrate reachability at their apparent network address, the Echo option MAY be used without protection.</p>
+<p id="rfc.section.2.2.p.8">Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. If the server loses time synchronization, e.g. due to reboot, it MUST reject all Echo values that was created before time synchronization was lost.</p>
+<p id="rfc.section.2.2.p.9">CoAP-CoAP proxies MUST relay the Echo option unmodified. The CoAP server side of CoAP-HTTP proxies MAY request freshness, especially if they have reason to assume that access may require it (e.g. because it is a PUT or POST); how this is determined is out of scope for this document. The CoAP client side of HTTP-CoAP-Proxies SHOULD respond to Echo challenges themselves if they know from the recent establishing of the connection that the HTTP request is fresh. Otherwise, they SHOULD respond with 503 Service Unavailable, Retry-After: 0 and terminate any underlying Keep-Alive connection. They MAY also use other mechanisms to establish freshness of the HTTP request that are not specified here.</p>
+<h1 id="rfc.section.2.3">
+<a href="#rfc.section.2.3">2.3.</a> <a href="#echo-app" id="echo-app">Applications</a>
+</h1>
+<p></p>
 
 <ol>
-  <li>Actuation requests often require freshness guarantees to avoid accidental or malicious delayed actuator actions.</li>
-  <li>To avoid additional roundtrips for applications with multiple actuator requests in rapid sequence between the same client and server, the server may use the Echo option (with a new value) in response to a request containing the Echo option. The client then uses the Echo option with the new value in the next actuation request, and the server compares the receive time accordingly.</li>
-  <li>If a server reboots during operation it may need to synchronize state with requesting clients before continuing the interaction. For example, with OSCORE it is possible to reuse a persistently stored security context by synchronizing the Partial IV (sequence number) using the Echo option.</li>
-  <li>When a device joins a multicast/broadcast group the device may need to synchronize state or time with the sender to ensure that the received message is fresh. By synchronizing time with the broadcaster, time can be used for synchronizing subsequent broadcast messages. A server MUST NOT synchronize state or time with clients which are not the authority of the property being synchronized. E.g. if access to a server resource is dependent on time, then the client MUST NOT set the time of the server.</li>
-  <li>A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of <a href="#RFC7252">[RFC7252]</a> (where an attacker would put a victim&#8217;s address in the source address of a CoAP request). For this purpose, the server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer, and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server.  For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.</li>
+<li>Actuation requests often require freshness guarantees to avoid accidental or malicious delayed actuator actions. In general, all non-safe methods (e.g. POST, PUT, DELETE) may require freshness guarantees for secure operation.</li>
+<li>To avoid additional roundtrips for applications with multiple actuator requests in rapid sequence between the same client and server, the server may use the Echo option (with a new value) in response to a request containing the Echo option. The client then uses the Echo option with the new value in the next actuation request, and the server compares the receive time accordingly.</li>
+<li>If a server reboots during operation it may need to synchronize state with requesting clients before continuing the interaction. For example, with OSCORE it is possible to reuse a partly persistently stored security context by synchronizing the Partial IV (sequence number) using the Echo option.</li>
+<li>When a device joins a multicast/broadcast group the device may need to synchronize state or time with the sender to ensure that the received message is fresh. By synchronizing time with the broadcaster, time can be used for synchronizing subsequent broadcast messages. A server MUST NOT synchronize state or time with clients which are not the authority of the property being synchronized. E.g. if access to a server resource is dependent on time, then the client MUST NOT set the time of the server.</li>
+<li>A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of <a href="#RFC7252" class="xref">[RFC7252]</a> (where an attacker would put a victim&#8217;s address in the source address of a CoAP request). For this purpose, the server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server.  For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.</li>
+<li>A server may want to verify the aliveness of a client by responding with an Echo option.</li>
 </ol>
-<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#request-tag" id="request-tag">The Request-Tag Option</a></h1>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#request-tag" id="request-tag">The Request-Tag Option</a>
+</h1>
 <p id="rfc.section.3.p.1">The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving server to reliably assemble request payloads (blocks) to their message bodies, and, if it chooses to support it, to reliably process simultaneous blockwise request operations on a single resource. The requests must be integrity protected in order to protect against interchange of blocks between different message bodies.</p>
-<h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#req-tag-format" id="req-tag-format">Option Format</a></h1>
-<p id="rfc.section.3.1.p.1">The Request-Tag option has the same properties as the Block1 option: it is critical, unsafe, not part of the cache-key, and not repeatable, see <a href="#req-tag-table">Figure 3</a>.</p>
-<div id="rfc.figure.3"/>
-<div id="req-tag-table"/>
+<h1 id="rfc.section.3.1">
+<a href="#rfc.section.3.1">3.1.</a> <a href="#req-tag-format" id="req-tag-format">Option Format</a>
+</h1>
+<p id="rfc.section.3.1.p.1">The Request-Tag option has the same properties as the Block1 option: it is critical, unsafe, not part of the cache-key, and not repeatable, see <a href="#req-tag-table" class="xref">Figure 3</a>.</p>
+<div id="rfc.figure.3"></div>
+<div id="req-tag-table"></div>
 <pre>
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 | No. | C | U | N | R | Name        | Format | Length | Default | E |
@@ -494,151 +545,193 @@ address {
 | TBD | x | x | - |   | Request-Tag | opaque |    0-8 | (none)  | * |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
-            C=Critical, U=Unsafe, N=NoCacheKey, R=Repeatable,
-            E=Encrypt and Integrity Protect (when using OSCORE)
-
+      C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
+      E = Encrypt and Integrity Protect (when using OSCORE)
 </pre>
 <p class="figure">Figure 3: Request-Tag Option Summary</p>
 <p id="rfc.section.3.1.p.2">[Note to RFC editor: If this document is not released together with OSCORE but before it, the following paragraph and the &#8220;E&#8221; column above need to move into OSCORE.]</p>
-<p id="rfc.section.3.1.p.3">Request-Tag, like the Block1 option, is a special class E option in terms of OSCORE processing (see Section 4.3.1.2 of <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.</p>
+<p id="rfc.section.3.1.p.3">Request-Tag, like the Block1 option, is a special class E option in terms of OSCORE processing (see Section 4.3.1.2 of <a href="#I-D.ietf-core-object-security" class="xref">[I-D.ietf-core-object-security]</a>): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.</p>
 <p id="rfc.section.3.1.p.4">The Request-Tag option is only used in request messages, and only in conjunction with the Block1 option.</p>
 <p id="rfc.section.3.1.p.5">Two messages are defined to be Request-Tag-matchable if and only if they are sent from and to the same end points (including security associations), and target the same URI, and if either neither carries a Request-Tag option, or both carry exactly one Request-Tag option and the option values are of same length and content.</p>
 <p id="rfc.section.3.1.p.6">The Request-Tag mechanism is applied independently on the server and client sides of CoAP-CoAP proxies.  CoAP-HTTP proxies and HTTP-CoAP proxies can use Request-Tag on their CoAP sides; it is not applicable to HTTP requests.</p>
-<p id="rfc.section.3.1.p.7">For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.  Creating a new request operation whose messages are Request-Tag-matchable to a previous operation is called request tag recycling.  Clients MUST NOT recycle a request tag unless the first operation has concluded.  What constitutes a concluded operation depends on the application, and is outlined individually in <a href="#req-tag-applications">Section 3.3</a>.</p>
+<p id="rfc.section.3.1.p.7">For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.  Creating a new request operation whose messages are Request-Tag-matchable to a previous operation is called request tag recycling.  Clients MUST NOT recycle a request tag unless the first operation has concluded.  What constitutes a concluded operation depends on the application, and is outlined individually in <a href="#req-tag-applications" class="xref">Section 3.3</a>.</p>
 <p id="rfc.section.3.1.p.8">Clients are encouraged to generate compact messages. This means sending messages without Request-Tag options whenever possible, and using short values when the absent option can not be recycled.</p>
-<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#request-tag-processing" id="request-tag-processing">Request-Tag Processing</a></h1>
+<h1 id="rfc.section.3.2">
+<a href="#rfc.section.3.2">3.2.</a> <a href="#request-tag-processing" id="request-tag-processing">Request-Tag Processing</a>
+</h1>
 <p id="rfc.section.3.2.p.1">A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable. This rule applies independent of whether the request actually carries a Request-Tag option (in this case, the request can only be acted on together with other messages not carrying the option, as per matchability definition).</p>
-<p id="rfc.section.3.2.p.2">As not all messages from the same source can be combined any more, a block not matchable to the first Block1 cannot overwrite context kept for an operation under a different tag (cf. <a href="#RFC7959">[RFC7959]</a> Section 2.5).  The server is still under no obligation to keep state of more than one transaction.  When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of <a href="#RFC7252">[RFC7252]</a>.</p>
+<p id="rfc.section.3.2.p.2">As not all messages from the same source can be combined any more, a block not matchable to the first Block1 cannot overwrite context kept for an operation under a different tag (cf. <a href="#RFC7959" class="xref">[RFC7959]</a> Section 2.5).  The server is still under no obligation to keep state of more than one transaction.  When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of <a href="#RFC7252" class="xref">[RFC7252]</a>.</p>
 <p id="rfc.section.3.2.p.3">A server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure.</p>
 <p id="rfc.section.3.2.p.4">Two messages being Request-Tag-matchable is a necessary but not sufficient condition for being part of the same operation.  They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block), or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.</p>
 <p id="rfc.section.3.2.p.5">If a request that uses Request-Tag is rejected with 4.02 Bad Option, the client MAY retry the operation without it, but then it MUST serialize all operations that affect the same resource. Security requirements can forbid dropping the use of Request-Tag mechanism.</p>
-<h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#req-tag-applications" id="req-tag-applications">Applications</a></h1>
-<h1 id="rfc.section.3.3.1"><a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#body-integrity" id="body-integrity">Body Integrity Based on Payload Integrity</a></h1>
-<p id="rfc.section.3.3.1.p.1">When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation&#8217;s blocks with earlier operation&#8217;s blocks (see Section 2.5 of <a href="#I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</a>). Therefore, the integrity protection of each block does not extend to the operation&#8217;s request body.</p>
+<h1 id="rfc.section.3.3">
+<a href="#rfc.section.3.3">3.3.</a> <a href="#req-tag-applications" id="req-tag-applications">Applications</a>
+</h1>
+<h1 id="rfc.section.3.3.1">
+<a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#body-integrity" id="body-integrity">Body Integrity Based on Payload Integrity</a>
+</h1>
+<p id="rfc.section.3.3.1.p.1">When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation&#8217;s blocks with earlier operation&#8217;s blocks (see Section 2.5 of <a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>). Therefore, the integrity protection of each block does not extend to the operation&#8217;s request body.</p>
 <p id="rfc.section.3.3.1.p.2">In order to gain that protection, use the Request-Tag mechanism as follows:</p>
-<p/>
+<p></p>
 
 <ul>
-  <li>The message payloads MUST be integrity protected end-to-end between client and server.</li>
-  <li>The client MUST NOT recycle a request tag unless the previous blockwise request operation that used matchable Request-Tags has concluded.</li>
-  <li>The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.  <br/><br/> Typically, in OSCORE, these confirmations can result either from the client receiving an OSCORE response message matching the request (an empty ACK is insufficient), or because the message&#8217;s sequence number is old enough to be outside the server&#8217;s receive window.  <br/><br/> In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.</li>
-  <li>The client MUST NOT fall back to not using the Request-Tag mechanisms when receiving a 4.02 Bad Option response.</li>
+<li>The message payloads MUST be integrity protected end-to-end between client and server.</li>
+<li>The client MUST NOT recycle a request tag unless the previous blockwise request operation that used matchable Request-Tags has concluded.</li>
+<li>The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.  <br><br> Typically, in OSCORE, these confirmations can result either from the client receiving an OSCORE response message matching the request (an empty ACK is insufficient), or because the message&#8217;s sequence number is old enough to be outside the server&#8217;s receive window.  <br><br> In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.</li>
+<li>The client MUST NOT fall back to not using the Request-Tag mechanisms when receiving a 4.02 Bad Option response.</li>
 </ul>
-<p id="rfc.section.3.3.1.p.4">Authors of other documents (e.g. <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.</p>
-<p id="rfc.section.3.3.1.p.5">Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TLS <a href="#I-D.tschofenig-core-coap-tcp-tls">[I-D.tschofenig-core-coap-tcp-tls]</a>). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.</p>
-<h1 id="rfc.section.3.3.2"><a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#multiple-concurrent-blockwise-operations" id="multiple-concurrent-blockwise-operations">Multiple Concurrent Blockwise Operations</a></h1>
-<p id="rfc.section.3.3.2.p.1">CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.  One example is when a CoAP proxy fragments an OSCORE messages using blockwise (so-called &#8220;outer&#8221; blockwise, see Section 4.3.1. of <a href="#I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</a>)), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server&#8217;s <samp>/</samp> path.</p>
+<p id="rfc.section.3.3.1.p.4">Authors of other documents (e.g. <a href="#I-D.ietf-core-object-security" class="xref">[I-D.ietf-core-object-security]</a>) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.</p>
+<p id="rfc.section.3.3.1.p.5">Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TLS <a href="#RFC8323" class="xref">[RFC8323]</a>). This is because with each message, any earlier operation can be regarded as concluded by the client, so it never needs to set the Request-Tag option unless it wants to perform concurrent operations.</p>
+<h1 id="rfc.section.3.3.2">
+<a href="#rfc.section.3.3.2">3.3.2.</a> <a href="#multiple-concurrent-blockwise-operations" id="multiple-concurrent-blockwise-operations">Multiple Concurrent Blockwise Operations</a>
+</h1>
+<p id="rfc.section.3.3.2.p.1">CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.  One example is when a CoAP proxy fragments an OSCORE messages using blockwise (so-called &#8220;outer&#8221; blockwise, see Section 4.3.1. of <a href="#I-D.ietf-core-object-security" class="xref">[I-D.ietf-core-object-security]</a>)), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server&#8217;s <samp>/</samp> path.</p>
 <p id="rfc.section.3.3.2.p.2">When a client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set.  For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged, or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).  When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can not recycle the request tag, and has to pick a new one.  The possible outcomes are:</p>
-<p/>
+<p></p>
 
 <ul>
-  <li>The server responds with a successful code.  <br/><br/> The concurrent blockwise operations can then continue.</li>
-  <li>The server responds 4.02 Bad Option.  <br/><br/> This can indicate that the server does not support Request-Tag.  The client should wait for the first operation to conclude, and then try the same request without a Request-Tag option.</li>
-  <li>The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.  <br/><br/> This can indicate that the server supports Request-Tag, but still is not prepared to handle concurrent requests.  The client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.</li>
+<li>The server responds with a successful code.  <br><br> The concurrent blockwise operations can then continue.</li>
+<li>The server responds 4.02 Bad Option.  <br><br> This can indicate that the server does not support Request-Tag.  The client should wait for the first operation to conclude, and then try the same request without a Request-Tag option.</li>
+<li>The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.  <br><br> This can indicate that the server supports Request-Tag, but still is not prepared to handle concurrent requests.  The client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.</li>
 </ul>
 <p id="rfc.section.3.3.2.p.4">In the cases where a CoAP proxy receives an error code, it can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself.  Note that this behavior is no different from what a CoAP proxy would need to do were it unaware of the Request-Tag option.</p>
-<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#etag" id="etag">Block2 / ETag Processing</a></h1>
-<p id="rfc.section.4.p.1">The same security properties as in <a href="#body-integrity">Section 3.3.1</a> can be obtained for blockwise response operations.  The threat model here is not an attacker (because the response is made sure to belong to the current request by the security layer), but blocks in the client&#8217;s cache.</p>
-<p id="rfc.section.4.p.2">Analogous rules to <a href="#request-tag-processing">Section 3.2</a> are already in place for assembling a response body in Section 2.4 of <a href="#RFC7959">[RFC7959]</a>.</p>
-<p id="rfc.section.4.p.3">To gain equivalent protection to <a href="#body-integrity">Section 3.3.1</a>, a server MUST use the Block2 option in conjunction with the ETag option (<a href="#RFC7252">[RFC7252]</a>, Section&#160;5.10.6), and MUST NOT use the same ETag value for different representations of a resource.</p>
-<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#iana" id="iana">IANA Considerations</a></h1>
-<p id="rfc.section.5.p.1">[TBD: Fill out the option templates for Echo and Request-Tag]</p>
-<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#sec-cons" id="sec-cons">Security Considerations</a></h1>
-<p id="rfc.section.6.p.1">Servers that store a Echo challenge per client can be attacked for resource exhaustion, and should consider minimizing the state kept per client, e.g. using a mechanism as described in <a href="#echo-state">Appendix A</a>.</p>
-<h1 id="rfc.references"><a href="#rfc.references">7.</a> References</h1>
-<h1 id="rfc.references.1"><a href="#rfc.references.1">7.1.</a> Normative References</h1>
-<table>
-  <tbody>
-    <tr>
-      <td class="reference">
-        <b id="RFC2119">[RFC2119]</b>
-      </td>
-      <td class="top"><a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7252">[RFC7252]</b>
-      </td>
-      <td class="top"><a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7959">[RFC7959]</b>
-      </td>
-      <td class="top"><a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="http://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
-    </tr>
-  </tbody>
-</table>
-<h1 id="rfc.references.2"><a href="#rfc.references.2">7.2.</a> Informative References</h1>
-<table>
-  <tbody>
-    <tr>
-      <td class="reference">
-        <b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b>
-      </td>
-      <td class="top"><a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-object-security-06">Object Security for Constrained RESTful Environments (OSCORE)</a>", Internet-Draft draft-ietf-core-object-security-06, October 2017.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</b>
-      </td>
-      <td class="top"><a>Mattsson, J.</a>, <a>Fornehed, J.</a>, <a>Selander, G.</a>, <a>Palombini, F.</a> and <a>C. Amsuess</a>, "<a href="http://tools.ietf.org/html/draft-mattsson-core-coap-actuators-03">Controlling Actuators with CoAP</a>", Internet-Draft draft-mattsson-core-coap-actuators-03, October 2017.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="I-D.tschofenig-core-coap-tcp-tls">[I-D.tschofenig-core-coap-tcp-tls]</b>
-      </td>
-      <td class="top"><a>Bormann, C.</a>, <a>Lemay, S.</a>, <a>Technologies, Z.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-tschofenig-core-coap-tcp-tls-05">A TCP and TLS Transport for the Constrained Application Protocol (CoAP)</a>", Internet-Draft draft-tschofenig-core-coap-tcp-tls-05, November 2015.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC6347">[RFC6347]</b>
-      </td>
-      <td class="top"><a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="http://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7641">[RFC7641]</b>
-      </td>
-      <td class="top"><a>Hartke, K.</a>, "<a href="http://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
-    </tr>
-  </tbody>
-</table>
-<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#echo-state" id="echo-state">Performance Impact When Using the Echo Option</a></h1>
-<p id="rfc.section.A.p.1">The Echo option requires the server to keep some state in order to later verify the echoed request.</p>
-<p id="rfc.section.A.p.2">Instead of caching Echo option values and response transmission times, the server MAY use the encryption of the response transmit time t0 as Echo option value. Such a scheme needs to ensure that the server can detect a replay of a previous encrypted response transmit time.</p>
-<p id="rfc.section.A.p.3">For example, the server MAY encrypt t0 with AES-CCM-128-64-64 using a (pseudo-)random secret key k generated and cached by the server. A unique IV MUST be used with each encryption, e.g. using a sequence number. If the server loses time synchronization, e.g. due to reboot, then k MUST be deleted and replaced by a new random secret key. When using encrypted response transmit times, the Echo processing is modified in the following way: The verification of cached option value in the server processing is replaced by the verification of the integrity of the encrypted option value using the cached key and IV (e.g. sequence number).</p>
-<p id="rfc.section.A.p.4">The two methods - (a) the list of cached values, and (b) the encryption of transmit time - have different impact on the implementation:</p>
-<p/>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#etag" id="etag">Block2 / ETag Processing</a>
+</h1>
+<p id="rfc.section.4.p.1">The same security properties as in <a href="#body-integrity" class="xref">Section 3.3.1</a> can be obtained for blockwise response operations.  The threat model here is not an attacker (because the response is made sure to belong to the current request by the security layer), but blocks in the client&#8217;s cache.</p>
+<p id="rfc.section.4.p.2">Analogous rules to <a href="#request-tag-processing" class="xref">Section 3.2</a> are already in place for assembling a response body in Section 2.4 of <a href="#RFC7959" class="xref">[RFC7959]</a>.</p>
+<p id="rfc.section.4.p.3">To gain equivalent protection to <a href="#body-integrity" class="xref">Section 3.3.1</a>, a server MUST use the Block2 option in conjunction with the ETag option (<a href="#RFC7252" class="xref">[RFC7252]</a>, Section&#160;5.10.6), and MUST NOT use the same ETag value for different representations of a resource.</p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#token" id="token">Token Processing</a>
+</h1>
+<p id="rfc.section.5.p.1">This section updates the Token processing in Section 5.3.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> by adding the following text:</p>
+<p id="rfc.section.5.p.2">When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.</p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#iana" id="iana">IANA Considerations</a>
+</h1>
+<p id="rfc.section.6.p.1">This document adds the following option numbers to the &#8220;CoAP Option Numbers&#8221; registry defined by <a href="#RFC7252" class="xref">[RFC7252]</a>:</p>
+<div id="rfc.figure.4"></div>
+<div id="iana-table"></div>
+<pre>
++--------+-------------+------------+
+| Number | Name        | Reference  |
++--------+-------------+------------+
+| TBD1   | Echo        | [RFC XXXX] |
+|        |             |            |
+| TBD2   | Request-Tag | [RFC XXXX] |
++--------+-------------+------------+
+</pre>
+<p class="figure">Figure 4: CoAP Option Numbers</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#sec-cons" id="sec-cons">Security Considerations</a>
+</h1>
+<p id="rfc.section.7.p.1">Servers SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its system time or location. Servers MUST use a monotonic clock to generate timestamps and compute round-trip times. Servers SHOULD NOT use their system time for timestamps, as system time is often not monotonic, may reveal that the server will accept expired certificates, or reveal the server&#8217;s location. Use of non-monotonic clocks is not secure as the server will accept expired Echo option values if the clock is moved backward. The server will also reject fresh Echo option values if the clock is moved forward. An attacker may be able to affect the server&#8217;s system time in various ways such as setting up a fake NTP server or broadcasting false time signals to radio-controlled clocks. Servers SHOULD use the time since reboot measured in some unit of time. Servers MAY reset the timer periodically even when not rebooting.</p>
+<p id="rfc.section.7.p.2">The availability of a secure pseudorandom number generator and truly random seeds are essential for the security of the Echo option. If no true random number generator is available, a truly random seed must be provided from an external source.</p>
+<p id="rfc.section.7.p.3">An Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).</p>
+<p id="rfc.section.7.p.4">The security provided by the Echo and Request-Tag options depends on the security protocol used. CoAP and HTTP proxies require (D)TLS to be terminated at the proxies. The proxies are therefore able to manipulate, inject, delete, or reorder options or packets. The security claims in such architectures only hold under the assumption that all intermediaries are fully trusted and have not been compromised.</p>
+<p id="rfc.section.7.p.5">Servers that use the List of Cached Random Values and Timestamps method described in <a href="#echo-state" class="xref">Appendix A</a> may be vulnerable to resource exhaustion attacks. On way to minimizing state is to use the Integrity Protected Timestamp  method described in <a href="#echo-state" class="xref">Appendix A</a>.</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">8.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">8.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7252">[RFC7252]</b></td>
+<td class="top">
+<a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7959">[RFC7959]</b></td>
+<td class="top">
+<a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="https://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">8.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b></td>
+<td class="top">
+<a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-object-security-08">Object Security for Constrained RESTful Environments (OSCORE)</a>", Internet-Draft draft-ietf-core-object-security-08, January 2018.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</b></td>
+<td class="top">
+<a>Mattsson, J.</a>, <a>Fornehed, J.</a>, <a>Selander, G.</a>, <a>Palombini, F.</a> and <a>C. Amsuess</a>, "<a href="https://tools.ietf.org/html/draft-mattsson-core-coap-actuators-03">Controlling Actuators with CoAP</a>", Internet-Draft draft-mattsson-core-coap-actuators-03, October 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5246">[RFC5246]</b></td>
+<td class="top">
+<a>Dierks, T.</a> and <a>E. Rescorla</a>, "<a href="https://tools.ietf.org/html/rfc5246">The Transport Layer Security (TLS) Protocol Version 1.2</a>", RFC 5246, DOI 10.17487/RFC5246, August 2008.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6347">[RFC6347]</b></td>
+<td class="top">
+<a>Rescorla, E.</a> and <a>N. Modadugu</a>, "<a href="https://tools.ietf.org/html/rfc6347">Datagram Transport Layer Security Version 1.2</a>", RFC 6347, DOI 10.17487/RFC6347, January 2012.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7641">[RFC7641]</b></td>
+<td class="top">
+<a>Hartke, K.</a>, "<a href="https://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8323">[RFC8323]</b></td>
+<td class="top">
+<a>Bormann, C.</a>, <a>Lemay, S.</a>, <a>Tschofenig, H.</a>, <a>Hartke, K.</a>, <a>Silverajan, B.</a> and <a>B. Raymor</a>, "<a href="https://tools.ietf.org/html/rfc8323">CoAP (Constrained Application Protocol) over TCP, TLS, and WebSockets</a>", RFC 8323, DOI 10.17487/RFC8323, February 2018.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.appendix.A">
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#echo-state" id="echo-state">Methods for Generating Echo Option Values</a>
+</h1>
+<p id="rfc.section.A.p.1">The content and structure of the Echo option value are implementation specific and determined by the server. Use of one of the mechanisms outlined in this section is RECOMMENDED.</p>
+<p id="rfc.section.A.p.2">Different mechanisms have different tradeoffs between the size of the Echo option value, the amount of server state, the amount of computation, and the security properties offered.</p>
+<p></p>
 
-<ul>
-  <li>size of cached data (list of cached values vs. key and IV)</li>
-  <li>size of message (typically larger with encrypted time)</li>
-  <li>computation (encryption + decryption vs. generation new nonce + cache + lookup)</li>
-</ul>
-<p id="rfc.section.A.p.6">In general, the encryption of transmission times is most useful if the number of concurrent requests is high.</p>
-<p id="rfc.section.A.p.7">A hybrid scheme is also possible: the first Echo option values are cached, and if the number of concurrent requests reach a certain threshold, then encrypted times are used until there is space for storing new values in the list. In that case, the server may need to make both verifications - either that the Echo value is in the list, or that it verifies in decryption - and in either case that the transmission time is valid.</p>
-<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> <a href="#request-tag-message-size-impact" id="request-tag-message-size-impact">Request-Tag Message Size Impact</a></h1>
-<p id="rfc.section.B.p.1">In absence of concurrent operations, the Request-Tag mechanism for body integrity (<a href="#body-integrity">Section 3.3.1</a>) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost), or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).</p>
+<ul><li>Integrity Protected Timestamp. One method is to construct the Echo option value as an integrity protected timestamp. The timestamp can have different resolution and range. A 32-bit timestamp can e.g. give a resolution of 1 second with a range of 136 years. The (pseudo-)random secret key is generated by the server and not shared with any other party. The use of truncated HMAC-SHA-256 is RECOMMENDED. With a 32-bit timestamp and a 64-bit MAC, the size of the Echo option value is 12 bytes and the Server state is small and constant. A server MAY also want to encrypt its timestamps, depending on the choice of encryption algorithms, this may require a nonce to be included in the Echo option value. If the server loses time synchronization, e.g. due to reboot, the old key MUST be deleted and replaced by a new random secret key.</li></ul>
+<pre>
+      Echo option value: timestamp t0, MAC(k, t0)
+      Server State: secret key k
+</pre>
+<p></p>
+
+<ul><li>List of Cached Random Values and Timestamps. An alternative method is to construct the Echo option value as a (pseudo-)random byte string. The server caches a list containing the random byte strings and their transmission times. Assuming 64-bit random values and 32-bit timestamps, the size of the Echo option value is 8 bytes and the amount of server state is 12n bytes, where n is the number of active Echo Option values. If the server loses time synchronization, e.g. due to reboot, the entries in the old list MUST be deleted.</li></ul>
+<pre>
+      Echo option value: random value r
+      Server State: random value r, timestamp t0
+</pre>
+<p id="rfc.section.A.p.5">A server MAY use different methods and security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).</p>
+<h1 id="rfc.appendix.B">
+<a href="#rfc.appendix.B">Appendix B.</a> <a href="#request-tag-message-size-impact" id="request-tag-message-size-impact">Request-Tag Message Size Impact</a>
+</h1>
+<p id="rfc.section.B.p.1">In absence of concurrent operations, the Request-Tag mechanism for body integrity (<a href="#body-integrity" class="xref">Section 3.3.1</a>) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost), or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).</p>
 <p id="rfc.section.B.p.2">In those situations, no message has any Request-Tag option set, and that can be recycled indefinitely.</p>
 <p id="rfc.section.B.p.3">When the absence of a Request-Tag option can not be recycled any more within a security context, the messages with a present but empty Request-Tag option can be used (1 Byte overhead), and when that is used-up, 256 values from one byte long options (2 Bytes overhead) are available.</p>
 <p id="rfc.section.B.p.4">In situations where those overheads are unacceptable (e.g. because the payloads are known to be at a fragmentation threshold), the absent Request-Tag value can be made usable again:</p>
-<p/>
+<p></p>
 
 <ul>
-  <li>In DTLS, a new session can be established.</li>
-  <li>In OSCORE, the sequence number can be artificially increased so that all lost messages are outside of the replay window by the time the first request of the new operation gets processed, and all earlier operations can therefore be regarded as concluded.</li>
+<li>In DTLS, a new session can be established.</li>
+<li>In OSCORE, the sequence number can be artificially increased so that all lost messages are outside of the replay window by the time the first request of the new operation gets processed, and all earlier operations can therefore be regarded as concluded.</li>
 </ul>
-<h1 id="rfc.appendix.C"><a href="#rfc.appendix.C">Appendix C.</a> <a href="#change-log" id="change-log">Change Log</a></h1>
-<p id="rfc.section.C.p.1">[ The editor is asked to remove this section before publication. ]</p>
-<p/>
-
-<ul>
-  <li>Major changes since draft-amsuess-core-repeat-request-tag-00: <ul><li>The option used for establishing freshness was renamed from &#8220;Repeat&#8221; to &#8220;Echo&#8221; to reduce confusion about repeatable options.</li><li>The response code that goes with Echo was changed from 4.03 to 4.01 because the client needs to provide better credentials.</li><li>The interaction between the new option and (cross) proxies is now covered.</li><li>Two messages being &#8220;Request-Tag matchable&#8221; was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.</li></ul></li>
-</ul>
-<h1 id="rfc.authors">
-  <a href="#rfc.authors">Authors' Addresses</a>
+<h1 id="rfc.appendix.C">
+<a href="#rfc.appendix.C">Appendix C.</a> <a href="#change-log" id="change-log">Change Log</a>
 </h1>
+<p id="rfc.section.C.p.1">[ The editor is asked to remove this section before publication. ]</p>
+<p></p>
+
+<ul><li>Major changes since draft-amsuess-core-repeat-request-tag-00: <ul>
+<li>The option used for establishing freshness was renamed from &#8220;Repeat&#8221; to &#8220;Echo&#8221; to reduce confusion about repeatable options.</li>
+<li>The response code that goes with Echo was changed from 4.03 to 4.01 because the client needs to provide better credentials.</li>
+<li>The interaction between the new option and (cross) proxies is now covered.</li>
+<li>Two messages being &#8220;Request-Tag matchable&#8221; was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.</li>
+</ul>
+</li></ul>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
 	<span class="vcardline">
