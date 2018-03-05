@@ -234,7 +234,8 @@ A server MUST NOT act on any two blocks in the same blockwise request operation 
 As not all messages from the same source can be combined any more,
 a block not matchable to the first Block1 cannot overwrite context kept for an operation under a different tag (cf. {{RFC7959}} Section 2.5).
 The server is still under no obligation to keep state of more than one transaction.
-When an operation is in progress and a second one cannot be served at the same time, the server MUST respond to the second request with a 5.03 (Service Unavailable) response code and SHOULD indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.
+When an operation is in progress and a second one cannot be served at the same time, the server SHOULD respond to the second request with a 5.03 (Service Unavailable) response code and indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.
+(Alternatively, the server can cancel the original operation, especially if it is already likely to time out. Cancelling it unconditionally is the behavior that could be expected of a Request-Tag unaware server.)
 
 A server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure.
 
