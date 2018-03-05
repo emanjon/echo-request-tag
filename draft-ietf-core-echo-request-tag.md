@@ -406,6 +406,8 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
     * Added rules for Token processing.
     * Added security considerations.
     * Added actual IANA section.
+    * Made Request-Tag optional and safe-to-forward, relying on blockwise to treat it as part of the cache-key
+    * Dropped use case about OSCORE outer-blockwise (the case went away when its Partial IV was moved into the Object-Security option)
 
 * Major changes since draft-amsuess-core-repeat-request-tag-00:
     * The option used for establishing freshness was renamed from "Repeat" to "Echo" to reduce confusion about repeatable options.
