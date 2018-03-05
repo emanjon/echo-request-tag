@@ -246,7 +246,7 @@ or initiate a new operation (overwriting kept context) when the later message ca
 Note that RFC 7959 already implies that the cache key is the element that binds exchanges together to operations
 (together with the request's source endpoint),
 but is not explicit about it;
-therefore, teh above rules are spellt out here.
+therefore, the above rules are spelt out here.
 
 ## Applications {#req-tag-applications}
 
