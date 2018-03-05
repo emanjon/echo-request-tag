@@ -15,8 +15,7 @@ author:
  -
     ins: C. Amsuess
     name: Christian Amsüss
-    organization: Energy Harvesting Solutions
-    email: c.amsuess@energyharvesting.at
+    email: christian@amsuess.com
  -
     ins: J. Mattsson
     name: John Mattsson
