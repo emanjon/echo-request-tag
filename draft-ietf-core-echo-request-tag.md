@@ -227,7 +227,7 @@ Clients are encouraged to generate compact messages. This means sending messages
 
 ## Request-Tag Processing ## {#request-tag-processing}
 
-A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable. This rule applies independent of whether the request actually carries a Request-Tag option (in this case, the request can only be acted on together with other messages not carrying the option, as per matchability definition).
+A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable. This rule applies independent of whether the request actually carries a Request-Tag option (if not, the request can only be acted on together with other messages not carrying the option, as per matchability definition).
 
 As not all messages from the same source can be combined any more,
 a block not matchable to the first Block1 cannot overwrite context kept for an operation under a different tag (cf. {{RFC7959}} Section 2.5).
@@ -252,7 +252,7 @@ When a client fragments a request body into multiple message payloads, even if t
 
 In order to gain that protection, use the Request-Tag mechanism as follows:
 
-* The message payloads MUST be integrity protected end-to-end between client and server.
+* The individual exchanges MUST be integrity protected end-to-end between client and server.
 
 * The client MUST NOT recycle a request tag unless the previous blockwise request operation that used matchable Request-Tags has concluded.
 
@@ -273,7 +273,7 @@ Note that this mechanism is implicitly implemented when the security layer guara
 CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.
 One example is when a CoAP proxy fragments an OSCORE messages using blockwise (so-called "outer" blockwise, see Section 4.3.1. of {{I-D.ietf-core-object-security}})), where the Uri-Path is hidden inside the encrypted message, and all the proxy sees is the server's `/` path.
 
-When a client fragments a message as part of a blockwise request operation, it can do so without a Request-Tag option set.
+When a client fragments an initial message as part of a blockwise request operation, it can do so without a Request-Tag option set.
 For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged,
 or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).
 When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can not recycle the request tag, and has to pick a new one.
