@@ -3,7 +3,7 @@
 
 
 CoRE Working Group                                            C. Amsuess
-Internet-Draft                               Energy Harvesting Solutions
+Internet-Draft
 Updates: 7252, 7959 (if approved)                            J. Mattsson
 Intended status: Standards Track                             G. Selander
 Expires: September 6, 2018                                   Ericsson AB
@@ -80,17 +80,18 @@ Table of Contents
      3.3.  Applications  . . . . . . . . . . . . . . . . . . . . . .  11
        3.3.1.  Body Integrity Based on Payload Integrity . . . . . .  11
        3.3.2.  Multiple Concurrent Blockwise Operations  . . . . . .  12
-   4.  Block2 / ETag Processing  . . . . . . . . . . . . . . . . . .  13
+     3.4.  Rationale for the option properties . . . . . . . . . . .  13
+   4.  Block2 / ETag Processing  . . . . . . . . . . . . . . . . . .  14
    5.  Token Processing  . . . . . . . . . . . . . . . . . . . . . .  14
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .  15
      8.2.  Informative References  . . . . . . . . . . . . . . . . .  16
-   Appendix A.  Methods for Generating Echo Option Values  . . . . .  16
-   Appendix B.  Request-Tag Message Size Impact  . . . . . . . . . .  17
+   Appendix A.  Methods for Generating Echo Option Values  . . . . .  17
+   Appendix B.  Request-Tag Message Size Impact  . . . . . . . . . .  18
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  18
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  19
 
 1.  Introduction
 
@@ -105,7 +106,6 @@ Table of Contents
    This document specifies two server-oriented CoAP options, the Echo
    option and the Request-Tag option, mainly addressing the security
    features request freshness and fragmented message body integrity,
-   respectively.  The Echo option enables a CoAP server to verify the
 
 
 
@@ -114,6 +114,7 @@ Amsuess, et al.         Expires September 6, 2018               [Page 2]
 Internet-Draft            Echo and Request-Tag                March 2018
 
 
+   respectively.  The Echo option enables a CoAP server to verify the
    freshness of a request, verify the aliveness of a client, synchronize
    state, or force a client to demonstrate reachability at its apparent
    network address.  The Request-Tag option allows the CoAP server to
@@ -161,7 +162,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
    and include a lightweight reliability feature to handle messages
    which are lost or arrive out of order.  In order for a security
    protocol to support CoAP operations over unreliable transports, it
-   must allow out-of-order delivery of messages using e.g. a sliding
 
 
 
@@ -170,6 +170,7 @@ Amsuess, et al.         Expires September 6, 2018               [Page 3]
 Internet-Draft            Echo and Request-Tag                March 2018
 
 
+   must allow out-of-order delivery of messages using e.g. a sliding
    replay window such as described in Section 4.1.2.6 of DTLS
    ([RFC6347]).
 
@@ -217,7 +218,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
    A straightforward mitigation is to mandate clients to never reuse
    tokens until the traffic keys have been replaced.  As there may be
-   any number of responses to a request (see e.g.  [RFC7641]), the
 
 
 
@@ -226,6 +226,7 @@ Amsuess, et al.         Expires September 6, 2018               [Page 4]
 Internet-Draft            Echo and Request-Tag                March 2018
 
 
+   any number of responses to a request (see e.g.  [RFC7641]), the
    easiest way to accomplish this is to implement the token as a counter
    and never reuse any tokens at all.  This document updates the Token
    processing in [RFC7252] to always assure a cryptographically secure
@@ -272,7 +273,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
    The Echo Option is elective, safe-to-forward, not part of the cache-
    key, and not repeatable, see Figure 1.
-
 
 
 
@@ -484,20 +484,20 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
 3.1.  Option Format
 
-   The Request-Tag option has the same properties as the Block1 option:
-   it is critical, unsafe, not part of the cache-key, and not
-   repeatable, see Figure 3.
+   The Request-Tag option is not critical, safe to forward, and part of
+   the cache key as illustrated in Figure 3.
 
    +-----+---+---+---+---+-------------+--------+--------+---------+---+
    | No. | C | U | N | R | Name        | Format | Length | Default | E |
    +-----+---+---+---+---+-------------+--------+--------+---------+---+
-   | TBD | x | x | - |   | Request-Tag | opaque |    0-8 | (none)  | * |
+   | TBD |   |   |   |   | Request-Tag | opaque |    0-8 | (none)  | * |
    +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
          C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
          E = Encrypt and Integrity Protect (when using OSCORE)
 
                    Figure 3: Request-Tag Option Summary
+
 
 
 
@@ -510,7 +510,7 @@ Internet-Draft            Echo and Request-Tag                March 2018
    OSCORE but before it, the following paragraph and the "E" column
    above need to move into OSCORE.]
 
-   Request-Tag, like the Block1 option, is a special class E option in
+   Request-Tag, like the block options, is a special class E option in
    terms of OSCORE processing (see Section 4.3.1.2 of
    [I-D.ietf-core-object-security]): The Request-Tag MAY be an inner or
    outer option.  The inner option is encrypted and integrity protected
@@ -519,19 +519,23 @@ Internet-Draft            Echo and Request-Tag                March 2018
    visible to proxies and labels message bodies in case of hop-by-hop
    fragmentation of requests.
 
-   The Request-Tag option is only used in request messages, and only in
-   conjunction with the Block1 option.
+   The Request-Tag option is only used in the request messages of
+   blockwise request operations.
 
    Two messages are defined to be Request-Tag-matchable if and only if
    they are sent from and to the same end points (including security
-   associations), and target the same URI, and if either neither carries
-   a Request-Tag option, or both carry exactly one Request-Tag option
-   and the option values are of same length and content.
+   associations), and target the same URI (precisely: target the same
+   endpoint and cache-key except for cache-key options that are related
+   to blockwise), and if either neither carries a Request-Tag option, or
+   both carry exactly one Request-Tag option and the option values are
+   of same length and content.
 
    The Request-Tag mechanism is applied independently on the server and
-   client sides of CoAP-CoAP proxies.  CoAP-HTTP proxies and HTTP-CoAP
-   proxies can use Request-Tag on their CoAP sides; it is not applicable
-   to HTTP requests.
+   client sides of CoAP-CoAP proxies as are the block options, though
+   given it is safe to forward, a proxy is free to just forward it when
+   processing an operation.  CoAP-HTTP proxies and HTTP-CoAP proxies can
+   use Request-Tag on their CoAP sides; it is not applicable to HTTP
+   requests.
 
    For each separate blockwise request operation, the client can choose
    a Request-Tag value, or choose not to set a Request-Tag.  Creating a
@@ -550,10 +554,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
    A server MUST NOT act on any two blocks in the same blockwise request
    operation that are not Request-Tag-matchable.  This rule applies
    independent of whether the request actually carries a Request-Tag
-   option (in this case, the request can only be acted on together with
-   other messages not carrying the option, as per matchability
-   definition).
-
 
 
 
@@ -562,16 +562,22 @@ Amsuess, et al.         Expires September 6, 2018              [Page 10]
 Internet-Draft            Echo and Request-Tag                March 2018
 
 
+   option (if not, the request can only be acted on together with other
+   messages not carrying the option, as per matchability definition).
+
    As not all messages from the same source can be combined any more, a
    block not matchable to the first Block1 cannot overwrite context kept
    for an operation under a different tag (cf.  [RFC7959] Section 2.5).
    The server is still under no obligation to keep state of more than
    one transaction.  When an operation is in progress and a second one
-   cannot be served at the same time, the server MUST respond to the
+   cannot be served at the same time, the server SHOULD respond to the
    second request with a 5.03 (Service Unavailable) response code and
-   SHOULD indicate the time it is willing to wait for additional blocks
-   in the first operation using the Max-Age option, as specified in
-   Section 5.9.3.4 of [RFC7252].
+   indicate the time it is willing to wait for additional blocks in the
+   first operation using the Max-Age option, as specified in
+   Section 5.9.3.4 of [RFC7252].  (Alternatively, the server can cancel
+   the original operation, especially if it is already likely to time
+   out.  Cancelling it unconditionally is the behavior that could be
+   expected of a Request-Tag unaware server.)
 
    A server receiving a Request-Tag MUST treat it as opaque and make no
    assumptions about its content or structure.
@@ -583,10 +589,10 @@ Internet-Draft            Echo and Request-Tag                March 2018
    operation (overwriting kept context) when the later message carries
    Block1 number 0.
 
-   If a request that uses Request-Tag is rejected with 4.02 Bad Option,
-   the client MAY retry the operation without it, but then it MUST
-   serialize all operations that affect the same resource.  Security
-   requirements can forbid dropping the use of Request-Tag mechanism.
+   Note that RFC 7959 already implies that the cache key is the element
+   that binds exchanges together to operations (together with the
+   request's source endpoint), but is not explicit about it; therefore,
+   the above rules are spelt out here.
 
 3.3.  Applications
 
@@ -603,12 +609,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
    In order to gain that protection, use the Request-Tag mechanism as
    follows:
 
-   o  The message payloads MUST be integrity protected end-to-end
-      between client and server.
-
-   o  The client MUST NOT recycle a request tag unless the previous
-      blockwise request operation that used matchable Request-Tags has
-      concluded.
 
 
 
@@ -617,6 +617,13 @@ Amsuess, et al.         Expires September 6, 2018              [Page 11]
 
 Internet-Draft            Echo and Request-Tag                March 2018
 
+
+   o  The individual exchanges MUST be integrity protected end-to-end
+      between client and server.
+
+   o  The client MUST NOT recycle a request tag unless the previous
+      blockwise request operation that used matchable Request-Tags has
+      concluded.
 
    o  The client MUST NOT regard a blockwise request operation as
       concluded unless all of the messages the client previously sent in
@@ -632,9 +639,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
       In DTLS, this can only be confirmed if the request message was not
       retransmitted, and was responded to.
-
-   o  The client MUST NOT fall back to not using the Request-Tag
-      mechanisms when receiving a 4.02 Bad Option response.
 
    Authors of other documents (e.g.  [I-D.ietf-core-object-security])
    are invited to mandate this behavior for clients that execute
@@ -653,19 +657,15 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
    CoAP clients, especially CoAP proxies, may initiate a blockwise
    request operation to a resource, to which a previous one is already
-   in progress, and which the new request should not cancel.  One
-   example is when a CoAP proxy fragments an OSCORE messages using
-   blockwise (so-called "outer" blockwise, see Section 4.3.1. of
-   [I-D.ietf-core-object-security])), where the Uri-Path is hidden
-   inside the encrypted message, and all the proxy sees is the server's
-   "/" path.
+   in progress, and which the new request should not cancel.  A CoAP
+   proxy would be in such a situation when it forwards operations with
+   the same cache-key options but possibly different payloads.
 
-   When a client fragments a message as part of a blockwise request
-   operation, it can do so without a Request-Tag option set.  For this
-   application, an operation can be regarded as concluded when a final
-   Block1 option has been sent and acknowledged, or when the client
-   chose not to continue with the operation (e.g. by user choice, or in
-   the case of a proxy when it decides not to take any further messages
+   When a client fragments an initial message as part of a blockwise
+   request operation, it can do so without a Request-Tag option set.
+   For this application, an operation can be regarded as concluded when
+   a final Block1 option has been sent and acknowledged, or when the
+   client chose not to continue with the operation (e.g. by user choice,
 
 
 
@@ -674,20 +674,20 @@ Amsuess, et al.         Expires September 6, 2018              [Page 12]
 Internet-Draft            Echo and Request-Tag                March 2018
 
 
-   in the operation due to a timeout).  When another concurrent
+   or in the case of a proxy when it decides not to take any further
+   messages in the operation due to a timeout).  When another concurrent
    blockwise request operation is made (i.e. before the operation is
    concluded), the client can not recycle the request tag, and has to
    pick a new one.  The possible outcomes are:
 
    o  The server responds with a successful code.
 
-      The concurrent blockwise operations can then continue.
+      The second concurrent blockwise operations can then continue.
 
-   o  The server responds 4.02 Bad Option.
-
-      This can indicate that the server does not support Request-Tag.
-      The client should wait for the first operation to conclude, and
-      then try the same request without a Request-Tag option.
+      The first operation might have been cancelled by that (typical of
+      servers that only support a single blockwise operation), in which
+      case its resumption will result in a 4.08 Request Entity
+      Incomplete error.
 
    o  The server responds 5.03 Service Unavailable with a Max-Age option
       to indicate when it is likely to be available again.
@@ -698,11 +698,37 @@ Internet-Draft            Echo and Request-Tag                March 2018
       operation, which may not need to carry a Request-Tag option by
       then any more.
 
-   In the cases where a CoAP proxy receives an error code, it can
-   indicate the anticipated delay by sending a 5.03 Service Unavailable
-   response itself.  Note that this behavior is no different from what a
-   CoAP proxy would need to do were it unaware of the Request-Tag
-   option.
+      In this, the proxy can indicate the anticipated delay by sending a
+      5.03 Service Unavailable response itself.
+
+   Note that a correctly implemented Request-Tag unaware proxy in the
+   same situation would need to make a choice to either send a 5.03 with
+   Max-Age by itself (holding off the second operation), or to commence
+   the second operation and reject any further requests on the first
+   operation with 4.08 Request Entity Incompelte errors by itself
+   without forwarding them.
+
+3.4.  Rationale for the option properties
+
+   The Request-Tag option used to be critical and unsafe to forward in
+   earlier revisions of this draft.
+
+   Given that supporting it will be mandated for where it is used for
+   its security properties, the choice of whether it is mandatory or
+   safe to forward can be made as required for the multiple concurrent
+   operations use case.  For those cases, Request-Tag is the proxy-safe
+   elective option suggested in [RFC7959] Section 2.4 last paragraph.
+
+
+
+
+
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 13]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
 
 4.  Block2 / ETag Processing
 
@@ -718,17 +744,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
    Block2 option in conjunction with the ETag option ([RFC7252],
    Section 5.10.6), and MUST NOT use the same ETag value for different
    representations of a resource.
-
-
-
-
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 13]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
 
 5.  Token Processing
 
@@ -763,6 +778,14 @@ Internet-Draft            Echo and Request-Tag                March 2018
    information about the server such as its system time or location.
    Servers MUST use a monotonic clock to generate timestamps and compute
    round-trip times.  Servers SHOULD NOT use their system time for
+
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 14]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
+
    timestamps, as system time is often not monotonic, may reveal that
    the server will accept expired certificates, or reveal the server's
    location.  Use of non-monotonic clocks is not secure as the server
@@ -777,15 +800,6 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
    The availability of a secure pseudorandom number generator and truly
    random seeds are essential for the security of the Echo option.  If
-
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 14]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
-
    no true random number generator is available, a truly random seed
    must be provided from an external source.
 
@@ -817,6 +831,17 @@ Internet-Draft            Echo and Request-Tag                March 2018
 
 8.1.  Normative References
 
+
+
+
+
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 15]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -832,29 +857,19 @@ Internet-Draft            Echo and Request-Tag                March 2018
               DOI 10.17487/RFC7959, August 2016,
               <https://www.rfc-editor.org/info/rfc7959>.
 
-
-
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 15]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
-
 8.2.  Informative References
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
               "Object Security for Constrained RESTful Environments
-              (OSCORE)", draft-ietf-core-object-security-08 (work in
-              progress), January 2018.
+              (OSCORE)", draft-ietf-core-object-security-09 (work in
+              progress), March 2018.
 
    [I-D.mattsson-core-coap-actuators]
               Mattsson, J., Fornehed, J., Selander, G., Palombini, F.,
               and C. Amsuess, "Controlling Actuators with CoAP", draft-
-              mattsson-core-coap-actuators-03 (work in progress),
-              October 2017.
+              mattsson-core-coap-actuators-04 (work in progress), March
+              2018.
 
    [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
               (TLS) Protocol Version 1.2", RFC 5246,
@@ -876,6 +891,13 @@ Internet-Draft            Echo and Request-Tag                March 2018
               RFC 8323, DOI 10.17487/RFC8323, February 2018,
               <https://www.rfc-editor.org/info/rfc8323>.
 
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 16]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
+
 Appendix A.  Methods for Generating Echo Option Values
 
    The content and structure of the Echo option value are implementation
@@ -890,14 +912,6 @@ Appendix A.  Methods for Generating Echo Option Values
       Echo option value as an integrity protected timestamp.  The
       timestamp can have different resolution and range.  A 32-bit
       timestamp can e.g. give a resolution of 1 second with a range of
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 16]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
-
       136 years.  The (pseudo-)random secret key is generated by the
       server and not shared with any other party.  The use of truncated
       HMAC-SHA-256 is RECOMMENDED.  With a 32-bit timestamp and a 64-bit
@@ -928,6 +942,18 @@ Internet-Draft            Echo and Request-Tag                March 2018
    uses cases (client aliveness, request freshness, state
    synchronization, network address reachability, etc.).
 
+
+
+
+
+
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 17]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
+
 Appendix B.  Request-Tag Message Size Impact
 
    In absence of concurrent operations, the Request-Tag mechanism for
@@ -946,14 +972,6 @@ Appendix B.  Request-Tag Message Size Impact
    used-up, 256 values from one byte long options (2 Bytes overhead) are
    available.
 
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 17]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
-
    In situations where those overheads are unacceptable (e.g. because
    the payloads are known to be at a fragmentation threshold), the
    absent Request-Tag value can be made usable again:
@@ -968,6 +986,33 @@ Internet-Draft            Echo and Request-Tag                March 2018
 Appendix C.  Change Log
 
    [ The editor is asked to remove this section before publication. ]
+
+   o  Major changes since draft-ietf-core-echo-request-tag-00:
+
+      *  Reworded the Echo section.
+
+      *  Added rules for Token processing.
+
+      *  Added security considerations.
+
+      *  Added actual IANA section.
+
+      *  Made Request-Tag optional and safe-to-forward, relying on
+         blockwise to treat it as part of the cache-key
+
+
+
+
+
+
+Amsuess, et al.         Expires September 6, 2018              [Page 18]
+
+Internet-Draft            Echo and Request-Tag                March 2018
+
+
+      *  Dropped use case about OSCORE outer-blockwise (the case went
+         away when its Partial IV was moved into the Object-Security
+         option)
 
    o  Major changes since draft-amsuess-core-repeat-request-tag-00:
 
@@ -988,9 +1033,8 @@ Appendix C.  Change Log
 Authors' Addresses
 
    Christian Amsuess
-   Energy Harvesting Solutions
 
-   Email: c.amsuess@energyharvesting.at
+   Email: christian@amsuess.com
 
 
    John Mattsson
@@ -999,54 +1043,10 @@ Authors' Addresses
    Email: john.mattsson@ericsson.com
 
 
-
-
-
-
-
-
-Amsuess, et al.         Expires September 6, 2018              [Page 18]
-
-Internet-Draft            Echo and Request-Tag                March 2018
-
-
    Goeran Selander
    Ericsson AB
 
    Email: goran.selander@ericsson.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
