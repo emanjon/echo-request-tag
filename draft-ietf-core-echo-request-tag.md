@@ -194,7 +194,7 @@ The Request-Tag option is not critical, safe to forward, and part of the cache k
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 | No. | C | U | N | R | Name        | Format | Length | Default | E |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
-| TBD | - | - | - |   | Request-Tag | opaque |    0-8 | (none)  | * |
+| TBD |   |   |   |   | Request-Tag | opaque |    0-8 | (none)  | * |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
       C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
