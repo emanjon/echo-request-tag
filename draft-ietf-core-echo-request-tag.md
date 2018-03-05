@@ -145,7 +145,7 @@ Client   Server
    |       |     Payload: 0 (Unlock)
    |       |
    |<------+ t0     Code: 4.01 (Unauthorized)
-   |  4.03 |       Token: 0x41
+   |  4.01 |       Token: 0x41
    |       |        Echo: 0x437468756c687521
    |       |
    +------>| t1     Code: 0.03 (PUT)
