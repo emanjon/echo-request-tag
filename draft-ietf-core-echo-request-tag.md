@@ -391,6 +391,12 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
 
 \[ The editor is asked to remove this section before publication. \]
 
+* Major changes since draft-ietf-core-echo-request-tag-00:
+    * Reworded the Echo section.
+    * Added rules for Token processing.
+    * Added security considerations.
+    * Added actual IANA section.
+
 * Major changes since draft-amsuess-core-repeat-request-tag-00:
     * The option used for establishing freshness was renamed from "Repeat" to "Echo" to reduce confusion about repeatable options.
     * The response code that goes with Echo was changed from 4.03 to 4.01 because the client needs to provide better credentials.
