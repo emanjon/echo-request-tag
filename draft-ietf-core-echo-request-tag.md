@@ -312,6 +312,17 @@ Given that supporting it will be mandated for where it is used for its security 
 the choice of whether it is mandatory or safe to forward can be made as required for the multiple concurrent operations use case.
 For those cases, Request-Tag is the proxy-safe elective option suggested in {{RFC7959}} Section 2.4 last paragraph.
 
+## Rationale for introducing the option
+
+An alternative that was considered to the Request-Tag option
+for coping with the problem of fragmented message body integrity ({{body-integrity}})
+was to update {{RFC7959}} to say that blocks could only be assembled
+if their fragments' order corresponded to the sequence numbers.
+
+That approach would have been difficult to roll out reliably on DTLS
+where many implementations do not expose sequence numbers,
+and would still not prevent attacks like in {{I-D.mattsson-core-coap-actuators}} Section 2.5.2.
+
 # Block2 / ETag Processing # {#etag}
 
 The same security properties as in {{body-integrity}} can be obtained for blockwise response operations.
