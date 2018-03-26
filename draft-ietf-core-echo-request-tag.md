@@ -189,13 +189,13 @@ The Request-Tag is intended for use as a short-lived identifier for keeping apar
 
 ## Option Format ## {#req-tag-format}
 
-The Request-Tag option is not critical, safe to forward, and part of the cache key, see {{req-tag-table}}, which extends Table 4 of {{RFC7252}}).
+The Request-Tag option is not critical, safe to forward, repeatable, and part of the cache key, see {{req-tag-table}}, which extends Table 4 of {{RFC7252}}).
 
 ~~~~~~~~~~
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 | No. | C | U | N | R | Name        | Format | Length | Default | E |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
-| TBD |   |   |   |   | Request-Tag | opaque |    0-8 | (none)  | * |
+| TBD |   |   |   | x | Request-Tag | opaque |    0-8 | (none)  | * |
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
 
       C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
@@ -303,6 +303,25 @@ Note that a correctly implemented Request-Tag unaware proxy in the same situatio
 to either send a 5.03 with Max-Age by itself (holding off the second operation),
 or to commence the second operation and reject any further requests on the first operation
 with 4.08 Request Entity Incompelte errors by itself without forwarding them.
+
+### Simplified block-wise Handling for constrained proxies
+
+The Block options were defined to be unsafe to forward
+because a proxy that woud forward blocks as plain messages would risk mixing up clients' requests.
+
+The Request-Tag option provides a very simple way for a proxy to keep them separate:
+if it appends a Request-Tag that is particular to the requesting endpoint
+to all request carrying any Block option,
+it does not need to keep track of any further block state.
+{{?I-D.ietf-lwig-coap}} Section TBD provides further details.
+
+[ Note to reviewers and co-authors:
+That section was so far only syggested in input for lwig-coap.
+If it does not get into the document, we should drop it here
+(for I don't want to explain all this case's details and security considerations here),
+but if the reference works,
+this section shows why Request-Tag has become repeatable. ]
+
 
 ## Rationale for the option properties
 
