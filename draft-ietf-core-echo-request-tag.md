@@ -186,10 +186,12 @@ CoAP-CoAP proxies MUST relay the Echo option unmodified. The CoAP server side of
 
 The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving server to reliably assemble request payloads (blocks) to their message bodies, and, if it chooses to support it, to reliably process simultaneous blockwise request operations on a single resource. The requests must be integrity protected in order to protect against interchange of blocks between different message bodies.
 
+In essence, it is an implementation of the "proxy-safe elective option" used just to "vary the cache key" as suggested in {{RFC7959}} Section 2.4.
+
 
 ## Option Format ## {#req-tag-format}
 
-The Request-Tag option is not critical, safe to forward, repeatable, and part of the cache key, see {{req-tag-table}}, which extends Table 4 of {{RFC7252}}).
+The Request-Tag option is not critical, is safe to forward, repeatable, and part of the cache key, see {{req-tag-table}}, which extends Table 4 of {{RFC7252}}).
 
 ~~~~~~~~~~
 +-----+---+---+---+---+-------------+--------+--------+---------+---+
@@ -207,47 +209,59 @@ The Request-Tag option is not critical, safe to forward, repeatable, and part of
 
 Request-Tag, like the block options, is a special class E option in terms of OSCORE processing (see Section 4.3.1.2 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
 
-The Request-Tag option is only used in the request messages of blockwise request operations.
+The Request-Tag option is only used in the request messages of blockwise operations.
 
-Two messages are defined to be Request-Tag-matchable if and only if
-they are sent from and to the same end points (including security associations), and target the same URI
-(precisely: target the same endpoint and cache-key except for cache-key options that are related to blockwise),
-and if either neither carries a Request-Tag option,
-or both carry exactly one Request-Tag option and the option values are of same length and content.
-
-The Request-Tag mechanism is applied independently on the server and client sides of CoAP-CoAP proxies as are the block options,
+The Request-Tag mechanism can be applied independently on the server and client sides of CoAP-CoAP proxies as are the block options,
 though given it is safe to forward, a proxy is free to just forward it when processing an operation.
 CoAP-HTTP proxies and HTTP-CoAP proxies can use Request-Tag on their CoAP sides;
 it is not applicable to HTTP requests.
 
-For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
-Creating a new request operation whose messages are Request-Tag-matchable to a previous operation is called request tag recycling.
-Clients MUST NOT recycle a request tag unless the first operation has concluded.
-What constitutes a concluded operation depends on the application, and is outlined individually in {{req-tag-applications}}.
+## Request-Tag processing by servers ## {#request-tag-processing}
 
-Clients are encouraged to generate compact messages. This means sending messages without Request-Tag options whenever possible, and using short values when the absent option can not be recycled.
+The Request-Tag option does not require any particular processing on the server side:
+As it varies the set of options that are not Block1/Block2
+(and in particular the cache key),
+the server can not treat them as belonging to the same operation.
 
-## Request-Tag Processing ## {#request-tag-processing}
-
-A server MUST NOT act on any two blocks in the same blockwise request operation that are not Request-Tag-matchable. This rule applies independent of whether the request actually carries a Request-Tag option (if not, the request can only be acted on together with other messages not carrying the option, as per matchability definition).
-
-As not all messages from the same source can be combined any more,
-a block not matchable to the first Block1 cannot overwrite context kept for an operation under a different tag (cf. {{RFC7959}} Section 2.5).
-The server is still under no obligation to keep state of more than one transaction.
-When an operation is in progress and a second one cannot be served at the same time, the server SHOULD respond to the second request with a 5.03 (Service Unavailable) response code and indicate the time it is willing to wait for additional blocks in the first operation using the Max-Age option, as specified in Section 5.9.3.4 of {{RFC7252}}.
-(Alternatively, the server can cancel the original operation, especially if it is already likely to time out. Cancelling it unconditionally is the behavior that could be expected of a Request-Tag unaware server.)
+To keep utilizing the cache,
+a server MAY discard the Request-Tag option
+from an assembled block-wise request when consulting its cache,
+as the option describes the individual blocks but not the operation as a whole.
+For example, a FETCH request with the same body can have a fresh response
+even if they were requested using different request tags.
+(This is similar to the situation about ETag in that it is formally part of the cache key,
+but implementations that are aware of its meaning can cache more efficiently,
+see {{RFC7252}} Section 5.4.2).
 
 A server receiving a Request-Tag MUST treat it as opaque and make no assumptions about its content or structure.
 
-Two messages being Request-Tag-matchable is a necessary but not sufficient condition for being part of the same operation.
+Two messages carrying the same Request-Tag is a necessary but not sufficient condition for being part of the same operation.
 They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block),
 or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.
 
+[ The following paragraph might be better placed in lwig-coap,
+but was left here while restructuring the document. ]
 
-Note that RFC 7959 already implies that the cache key is the element that binds exchanges together to operations
-(together with the request's source endpoint),
-but is not explicit about it;
-therefore, the above rules are spelt out here.
+As it has always been,
+a server that can only serve a limited number of block-wise operations at the same time
+can delay the start of the operation by replying with 5.03 (Service unavailable) and a Max-Age indicating how long it expects the existing operation to go on,
+or it can forget about the state established with the older operation and respond with 4.08 (Request Entity Incompelte) to later blocks on the first operation.
+
+## Setting the Request-Tag
+
+For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
+Starting a request operation
+where the options that are proxy-unsafe or part of the cache key are identical those of a
+previous operation is called request tag recycling.
+Clients MUST NOT recycle a request tag unless the first operation has concluded.
+What constitutes a concluded operation depends on the application, and is outlined individually in {{req-tag-applications}}.
+
+When Block1 and Block2 are combined in an operation,
+the Request-Tag of the Block1 phase is set in the Block2 phase as well
+for otherwise the request would have a different set of options
+and would not be recognized any more.
+
+Clients are encouraged to generate compact messages. This means sending messages without Request-Tag options whenever possible, and using short values when the absent option can not be recycled.
 
 ## Applications {#req-tag-applications}
 
@@ -278,7 +292,7 @@ CoAP clients, especially CoAP proxies, may initiate a blockwise request operatio
 A CoAP proxy would be in such a situation when it forwards operations with the same cache-key options but possibly different payloads.
 
 When a client fragments an initial message as part of a blockwise request operation, it can do so without a Request-Tag option set.
-For this application, an operation can be regarded as concluded when a final Block1 option has been sent and acknowledged,
+For this application, an operation can be regarded as concluded when the (last part of) the response was obtained,
 or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).
 When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can not recycle the request tag, and has to pick a new one.
 The possible outcomes are:
@@ -294,12 +308,12 @@ The possible outcomes are:
 
 * The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
 
-  This can indicate that the server supports Request-Tag, but still is not prepared to handle concurrent requests.
+  This can indicate that the server is not prepared to handle concurrent requests.
   The client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
 
   In this, the proxy can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself.
 
-Note that a correctly implemented Request-Tag unaware proxy in the same situation would need to make a choice
+Note that a correctly implemented proxy that does not know how to use Request-Tag in requests in the same situation would need to make a choice
 to either send a 5.03 with Max-Age by itself (holding off the second operation),
 or to commence the second operation and reject any further requests on the first operation
 with 4.08 Request Entity Incompelte errors by itself without forwarding them.
@@ -324,6 +338,8 @@ this section shows why Request-Tag has become repeatable. ]
 
 
 ## Rationale for the option properties
+
+[ This section needs to be reworked after assuming our RFC7959 interpretation. ]
 
 The Request-Tag option used to be critical and unsafe to forward in earlier revisions of this draft.
 
