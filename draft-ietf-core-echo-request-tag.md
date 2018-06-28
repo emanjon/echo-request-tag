@@ -240,7 +240,7 @@ They can still be treated as independent messages by the server (e.g. when it se
 or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.
 
 [ The following paragraph might be better placed in lwig-coap,
-but was left here while restructuring the document. ]
+but was left here until lwig-coap has decided on its fate there. ]
 
 As it has always been,
 a server that can only serve a limited number of block-wise operations at the same time
@@ -268,7 +268,7 @@ Clients are encouraged to generate compact messages. This means sending messages
 
 ### Body Integrity Based on Payload Integrity {#body-integrity}
 
-When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace later operation's blocks with earlier operation's blocks (see Section 2.5 of {{I-D.mattsson-core-coap-actuators}}). Therefore, the integrity protection of each block does not extend to the operation's request body.
+When a client fragments a request body into multiple message payloads, even if the individual messages are integrity protected, it is still possible for a man-in-the-middle to maliciously replace a later operation's blocks with an earlier operation's blocks (see Section 2.5 of {{I-D.mattsson-core-coap-actuators}}). Therefore, the integrity protection of each block does not extend to the operation's request body.
 
 In order to gain that protection, use the Request-Tag mechanism as follows:
 
@@ -433,7 +433,7 @@ A server MAY use different methods and security levels for different uses cases 
 # Request-Tag Message Size Impact
 
 In absence of concurrent operations, the Request-Tag mechanism for body integrity ({{body-integrity}}) incurs no overhead if no messages are lost (more precisely: in OSCORE, if no operations are aborted due to repeated transmission failure; in DTLS, if no packages are lost),
-or when blockwise request operations happen rarely (in OSCORE, if only one request operation with losses within the replay window).
+or when blockwise request operations happen rarely (in OSCORE, if there is always only one request blockwise operation in the replay window).
 
 In those situations, no message has any Request-Tag option set, and that can be recycled indefinitely.
 
