@@ -194,20 +194,20 @@ In essence, it is an implementation of the "proxy-safe elective option" used jus
 The Request-Tag option is not critical, is safe to forward, repeatable, and part of the cache key, see {{req-tag-table}}, which extends Table 4 of {{RFC7252}}).
 
 ~~~~~~~~~~
-+-----+---+---+---+---+-------------+--------+--------+---------+---+
-| No. | C | U | N | R | Name        | Format | Length | Default | E |
-+-----+---+---+---+---+-------------+--------+--------+---------+---+
-| TBD |   |   |   | x | Request-Tag | opaque |    0-8 | (none)  | * |
-+-----+---+---+---+---+-------------+--------+--------+---------+---+
++-----+---+---+---+---+-------------+--------+--------+---------+---+---+
+| No. | C | U | N | R | Name        | Format | Length | Default | E | U |
++-----+---+---+---+---+-------------+--------+--------+---------+---+---+
+| TBD |   |   |   | x | Request-Tag | opaque |    0-8 | (none)  | x | x |
++-----+---+---+---+---+-------------+--------+--------+---------+---+---+
 
       C = Critical, U = Unsafe, N = NoCacheKey, R = Repeatable,
       E = Encrypt and Integrity Protect (when using OSCORE)
 ~~~~~~~~~~
 {: #req-tag-table title="Request-Tag Option Summary" artwork-align="center"}
 
-[ Note to RFC editor: If this document is not released together with OSCORE but before it, the following paragraph and the "E" column above need to move into OSCORE. ]
+[ Note to RFC editor: If this document is not released together with OSCORE but before it, the following paragraph and the "E"/"U" columns above need to move into OSCORE. ]
 
-Request-Tag, like the block options, is a special class E option in terms of OSCORE processing (see Section 4.3.1.2 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
+Request-Tag, like the block options, is both a class E and a class U option in terms of OSCORE processing (see Section 4.1 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
 
 The Request-Tag option is only used in the request messages of blockwise operations.
 
