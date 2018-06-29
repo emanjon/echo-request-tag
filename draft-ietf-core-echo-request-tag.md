@@ -90,9 +90,12 @@ Unless otherwise specified, the terms "client" and "server" refers to "CoAP clie
 
 The terms "payload" and "body" of a message are used as in {{RFC7959}}.  The complete interchange of a request and a response body is called a (REST) "operation". An operation fragmented using {{RFC7959}} is called a "blockwise operation". A blockwise operation which is fragmenting the request body is called a "blockwise request operation".  A blockwise operation which is fragmenting the response body is called a "blockwise response operation".
 
-Two blockwise operations between the same endpoint pair on the same resource are said to be "concurrent" if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of {{RFC7959}} because the second operation's block overwrites any state of the first exchange.).
+Two operations are said to be "matchable" if they occur between the same endpoint pair, have the same code and the same set of options except for elective NoCacheKey options and options involved in bock-wise transfer (Block1, Block2 and Request-Tag).
+<!-- We could also keep the Request-Tag inside the matchable criterion, but then we'd be saying "matchable except for the Request-Tag" all over the document. -->
 
-The Echo and Request-Tag options are defined in this document. The concept of two messages being "Request-Tag-matchable" is defined in {{req-tag-format}}.
+Two matchable blockwise operations are said to be "concurrent" if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of {{RFC7959}} because the second operation's block overwrites any state of the first exchange.).
+
+The Echo and Request-Tag options are defined in this document.
 
 
 
@@ -251,8 +254,8 @@ or it can forget about the state established with the older operation and respon
 
 For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
 Starting a request operation
-where the options that are proxy-unsafe or part of the cache key are identical those of a
-previous operation is called request tag recycling.
+whose messages are matchable to a
+previous operation and even use the same Request-Tag value is called request tag recycling.
 Clients MUST NOT recycle a request tag unless the first operation has concluded.
 What constitutes a concluded operation depends on the application, and is outlined individually in {{req-tag-applications}}.
 
@@ -274,7 +277,7 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The individual exchanges MUST be integrity protected end-to-end between client and server.
 
-* The client MUST NOT recycle a request tag unless the previous blockwise request operation that used matchable Request-Tags has concluded.
+* The client MUST NOT recycle a request tag in a new operation unless the <!-- or "all", but by this rule there can only be one --> previous operation matchable to the new one has concluded.
 
 * The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
 
@@ -282,6 +285,7 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
   In DTLS, this can only be confirmed if the request message was not retransmitted, and was responded to.
 
+<!-- pending see thread "ERT and OSCORE" -->
 Authors of other documents (e.g. {{I-D.ietf-core-object-security}}) are invited to mandate this behavior for clients that execute blockwise interactions over secured transports. In this way, the server can rely on a conforming client to set the Request-Tag option when required, and thereby conclude on the integrity of the assembled body.
 
 Note that this mechanism is implicitly implemented when the security layer guarantees ordered delivery (e.g. CoAP over TLS {{RFC8323}}). This is because with each message, any earlier message can not be replayed any more, so the client never needs to set the Request-Tag option unless it wants to perform concurrent operations.
@@ -290,6 +294,10 @@ Note that this mechanism is implicitly implemented when the security layer guara
 
 CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.
 A CoAP proxy would be in such a situation when it forwards operations with the same cache-key options but possibly different payloads.
+
+For those cases, Request-Tag is the proxy-safe elective option suggested in {{RFC7959}} Section 2.4 last paragraph.
+
+<!-- still review -->
 
 When a client fragments an initial message as part of a blockwise request operation, it can do so without a Request-Tag option set.
 For this application, an operation can be regarded as concluded when the (last part of) the response was obtained,
@@ -341,11 +349,12 @@ this section shows why Request-Tag has become repeatable. ]
 
 [ This section needs to be reworked after assuming our RFC7959 interpretation. ]
 
-The Request-Tag option used to be critical and unsafe to forward in earlier revisions of this draft.
+The Request-Tag option can be elective, because to servers unaware of the Request-Tag option, operations with differing request tags will not be matchable.
 
-Given that supporting it will be mandated for where it is used for its security properties,
-the choice of whether it is mandatory or safe to forward can be made as required for the multiple concurrent operations use case.
-For those cases, Request-Tag is the proxy-safe elective option suggested in {{RFC7959}} Section 2.4 last paragraph.
+The Request-Tag option can be safe to forward but part of the cache key, because to proxies unaware of the Request-Tag option will consider operations with differing request tags unmatchable but can still forward them.
+
+In earlier versions of this draft, the Request-Tag option used to be critical and unsafe to forward.
+That design was based on an erroneous understanding of which blocks could be composed according to {{RFC7959}}.
 
 ## Rationale for introducing the option
 
