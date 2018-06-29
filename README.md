@@ -1,6 +1,6 @@
 # Echo and Request-Tag
 
-This is the working area for the IETF CORE Working Group Internet-Draft, "Echo and Request-Tag".
+This is the working area for the IETF [CORE Working Group](https://datatracker.ietf.org/wg/core/documents/) Internet-Draft, "Echo and Request-Tag".
 
 * [Editor's Copy](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.html)
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-echo-request-tag)
