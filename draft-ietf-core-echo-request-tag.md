@@ -287,6 +287,9 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The client MUST NOT recycle a request tag in a new operation unless the <!-- or "all", but by this rule there can only be one --> previous operation matchable to the new one has concluded.
 
+  When considering previous operations in protocols where the security association is not tightly bound to an end point (eg. OSCORE),
+  the client MUST consider messages sent to *any* endpoint with the new operation's security context.
+
 * The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
 
   Typically, in OSCORE, these confirmations can result either from the client receiving an OSCORE response message matching the request (an empty ACK is insufficient), or because the message's sequence number is old enough to be outside the server's receive window.
