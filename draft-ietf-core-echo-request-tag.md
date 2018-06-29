@@ -228,7 +228,7 @@ the server can not treat their messages as belonging to the same operation.
 <!-- not speaking of "matchable" here as that working definition explicitly excludes Request-Tag to make the rest of the document easier to read -->
 
 To keep utilizing the cache,
-a server MAY discard the Request-Tag option
+a server (including proxies) MAY discard the Request-Tag option
 from an assembled block-wise request when consulting its cache,
 as the option describes the individual blocks but not the operation as a whole.
 For example, a FETCH request with the same body can have a fresh response
