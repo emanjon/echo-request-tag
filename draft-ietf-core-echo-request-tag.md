@@ -362,7 +362,7 @@ The same security properties as in {{body-integrity}} can be obtained for blockw
 The threat model here is not an attacker (because the response is made sure to belong to the current request by the security layer),
 but blocks in the client's cache.
 
-Analogous rules to {{request-tag-processing}} are already in place for assembling a response body in Section 2.4 of {{RFC7959}}.
+Rules stating that response body reassembly is conditional on matching ETag values are already in place from Section 2.4 of {{RFC7959}}.
 
 To gain equivalent protection to {{body-integrity}},
 a server MUST use the Block2 option in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6),
