@@ -446,6 +446,16 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
 
 \[ The editor is asked to remove this section before publication. \]
 
+* Major changes since draft-ietf-core-echo-request-tag-01:
+
+    * Follow-up changes after the "relying on blockwise" change in -01:
+
+        * Simplify the description of Request-Tag and matchability
+        * Do not update RFC7959 any more
+
+    * Make Request-Tag repeatable.
+    * Add rationale on not relying purely on sequence numbers.
+
 * Major changes since draft-ietf-core-echo-request-tag-00:
     * Reworded the Echo section.
     * Added rules for Token processing.
