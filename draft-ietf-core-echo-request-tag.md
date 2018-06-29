@@ -253,7 +253,7 @@ or it can forget about the state established with the older operation and respon
 
 Especially, that is the case for any correctly implemented proxy
 that does not know how to use Request-Tag in requests and has only one client endpoint.
-When it receives concurrent incoming requests on the same resource, needs to make that very choice:
+When it receives concurrent incoming requests on the same resource, it needs to make that very choice:
 either send a 5.03 with Max-Age (holding off the second operation),
 or to commence the second operation and reject any further requests on the first operation
 with 4.08 Request Entity Incompelte errors without forwarding them.
