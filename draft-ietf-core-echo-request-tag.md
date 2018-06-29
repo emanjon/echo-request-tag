@@ -250,6 +250,14 @@ a server that can only serve a limited number of block-wise operations at the sa
 can delay the start of the operation by replying with 5.03 (Service unavailable) and a Max-Age indicating how long it expects the existing operation to go on,
 or it can forget about the state established with the older operation and respond with 4.08 (Request Entity Incompelte) to later blocks on the first operation.
 
+Especially, that is the case for any correctly implemented proxy
+that does not know how to use Request-Tag in requests and has only one client endpoint.
+When it receives concurrent incoming requests on the same resource, needs to make that very choice:
+either send a 5.03 with Max-Age (holding off the second operation),
+or to commence the second operation and reject any further requests on the first operation
+with 4.08 Request Entity Incompelte errors without forwarding them.
+(Alternatively, it could spool the second request, but the unpredictable nature of the timeouts involved often makes that an unsuitable choice.)
+
 ## Setting the Request-Tag
 
 For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
@@ -297,34 +305,12 @@ A CoAP proxy would be in such a situation when it forwards operations with the s
 
 For those cases, Request-Tag is the proxy-safe elective option suggested in {{RFC7959}} Section 2.4 last paragraph.
 
-<!-- still review -->
+When initializing a new blockwise operation, a client has to look at other active operations:
 
-When a client fragments an initial message as part of a blockwise request operation, it can do so without a Request-Tag option set.
-For this application, an operation can be regarded as concluded when the (last part of) the response was obtained,
-or when the client chose not to continue with the operation (e.g. by user choice, or in the case of a proxy when it decides not to take any further messages in the operation due to a timeout).
-When another concurrent blockwise request operation is made (i.e. before the operation is concluded), the client can not recycle the request tag, and has to pick a new one.
-The possible outcomes are:
+* If any of them is matchable to the new one, and the client neither wants to cancel the old one nor postpone the new one,
+it can pick a Request-Tag value that is not in use by the other matchable operations for the new operation.
 
-* The server responds with a successful code.
-
-  The second concurrent blockwise operations can then continue.
-
-  The first operation might have been cancelled by that
-  (typical of servers that only support a single blockwise operation),
-  in which case its resumption will result in a 4.08 Request Entity Incomplete error.
-
-
-* The server responds 5.03 Service Unavailable with a Max-Age option to indicate when it is likely to be available again.
-
-  This can indicate that the server is not prepared to handle concurrent requests.
-  The client should wait for as long as the response is valid, and then retry the operation, which may not need to carry a Request-Tag option by then any more.
-
-  In this, the proxy can indicate the anticipated delay by sending a 5.03 Service Unavailable response itself.
-
-Note that a correctly implemented proxy that does not know how to use Request-Tag in requests in the same situation would need to make a choice
-to either send a 5.03 with Max-Age by itself (holding off the second operation),
-or to commence the second operation and reject any further requests on the first operation
-with 4.08 Request Entity Incompelte errors by itself without forwarding them.
+* Otherwise, it can start the new operation without setting the Request-Tag option on it.
 
 ### Simplified block-wise Handling for constrained proxies
 
