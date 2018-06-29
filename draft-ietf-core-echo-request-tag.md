@@ -90,8 +90,9 @@ Unless otherwise specified, the terms "client" and "server" refers to "CoAP clie
 
 The terms "payload" and "body" of a message are used as in {{RFC7959}}.  The complete interchange of a request and a response body is called a (REST) "operation". An operation fragmented using {{RFC7959}} is called a "blockwise operation". A blockwise operation which is fragmenting the request body is called a "blockwise request operation".  A blockwise operation which is fragmenting the response body is called a "blockwise response operation".
 
-Two operations are said to be "matchable" if they occur between the same endpoint pair, have the same code and the same set of options except for elective NoCacheKey options and options involved in bock-wise transfer (Block1, Block2 and Request-Tag).
+Two request messages are said to be "matchable" if they occur between the same endpoint pair, have the same code and the same set of options except for elective NoCacheKey options and options involved in bock-wise transfer (Block1, Block2 and Request-Tag).
 <!-- We could also keep the Request-Tag inside the matchable criterion, but then we'd be saying "matchable except for the Request-Tag" all over the document. -->
+Two operations are said to be matchable if any of their messages are.
 
 Two matchable blockwise operations are said to be "concurrent" if a block of the second request is exchanged even though the client still intends to exchange further blocks in the first operation. (Concurrent blockwise request operations are impossible with the options of {{RFC7959}} because the second operation's block overwrites any state of the first exchange.).
 
@@ -223,7 +224,7 @@ it is not applicable to HTTP requests.
 
 The Request-Tag option does not require any particular processing on the server side:
 As it varies the set of options that distinguish blockwise operations (ie. is neither Block1 or Block2 nor elective NoCacheKey),
-the server can not treat them as belonging to the same operation.
+the server can not treat their messages as belonging to the same operation.
 <!-- not speaking of "matchable" here as that working definition explicitly excludes Request-Tag to make the rest of the document easier to read -->
 
 To keep utilizing the cache,
@@ -261,9 +262,8 @@ with 4.08 Request Entity Incompelte errors without forwarding them.
 ## Setting the Request-Tag
 
 For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
-Starting a request operation
-whose messages are matchable to a
-previous operation and even use the same Request-Tag value is called request tag recycling.
+Starting a request operation matchable to a
+previous operation and even using the same Request-Tag value is called request tag recycling.
 Clients MUST NOT recycle a request tag unless the first operation has concluded.
 What constitutes a concluded operation depends on the application, and is outlined individually in {{req-tag-applications}}.
 
