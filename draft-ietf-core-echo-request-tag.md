@@ -222,9 +222,9 @@ it is not applicable to HTTP requests.
 ## Request-Tag processing by servers ## {#request-tag-processing}
 
 The Request-Tag option does not require any particular processing on the server side:
-As it varies the set of options that are not Block1/Block2
-(and in particular the cache key),
+As it varies the set of options that distinguish blockwise operations (ie. is neither Block1 or Block2 nor elective NoCacheKey),
 the server can not treat them as belonging to the same operation.
+<!-- not speaking of "matchable" here as that working definition explicitly excludes Request-Tag to make the rest of the document easier to read -->
 
 To keep utilizing the cache,
 a server MAY discard the Request-Tag option
