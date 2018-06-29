@@ -2,7 +2,7 @@
 title: Echo and Request-Tag
 docname: draft-ietf-core-echo-request-tag-latest
 category: std
-updates: 7252, 7959
+updates: 7252
 
 ipr: trust200902
 area: General
@@ -43,7 +43,7 @@ informative:
 
 --- abstract
 
-This document specifies several security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Block options and the Token. The updated Token processing ensures secure binding of responses to requests.
+This document specifies several security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Token of {{RFC7252}}. The updated Token processing ensures secure binding of responses to requests.
 
 
 
@@ -55,7 +55,7 @@ The initial Constrained Application Protocol (CoAP) suite of specifications ({{R
 
 This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option, mainly addressing the security features request freshness and fragmented message body integrity, respectively. The Echo option enables a CoAP server to verify the freshness of a request, verify the aliveness of a client, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS ({{RFC6347}}), TLS ({{RFC5246}}), or OSCORE ({{I-D.ietf-core-object-security}}), provide the additional security features.
 
-The document also updates the processing requirements on the Block1 option, the Block2 option, and the Token. The updated blockwise processing secure blockwise operations with multiple representations of a particular resource. The updated Token processing ensures secure binding of responses to requests.
+The document also updates the processing requirements on the Token. The updated processing ensures secure binding of responses to requests.
 
 
 ## Request Freshness {#req-fresh}
