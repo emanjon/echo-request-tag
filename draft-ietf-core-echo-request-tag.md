@@ -303,7 +303,7 @@ Note that this mechanism is implicitly implemented when the security layer guara
 
 ### Multiple Concurrent Blockwise Operations
 
-CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, and which the new request should not cancel.
+CoAP clients, especially CoAP proxies, may initiate a blockwise request operation to a resource, to which a previous one is already in progress, which the new request should not cancel.
 A CoAP proxy would be in such a situation when it forwards operations with the same cache-key options but possibly different payloads.
 
 For those cases, Request-Tag is the proxy-safe elective option suggested in {{RFC7959}} Section 2.4 last paragraph.
