@@ -219,7 +219,7 @@ The Request-Tag option is not critical, is safe to forward, repeatable, and part
 
 [ Note to RFC editor: If this document is released before core-object-security, then the following paragraph and the "E"/"U" columns above need to move into core-object-security, as they are defined in that draft. ]
 
-Request-Tag, like the block options, is both a class E and a class U option in terms of OSCORE processing (see Section 4.1 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option, and the value of the inner and outer option are independent. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
+Request-Tag, like the block options, is both a class E and a class U option in terms of OSCORE processing (see Section 4.1 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. It influences the inner or outer block operation, respectively. The inner and outer values are therefore independent of each other. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
 
 The Request-Tag option is only used in the request messages of blockwise operations.
 
@@ -230,17 +230,19 @@ it is not applicable to HTTP requests.
 
 ## Request-Tag Processing by Servers ## {#request-tag-processing}
 
-The Request-Tag option does not require any particular processing on the server side:
-As it varies the set of options that distinguish blockwise operations (ie. is neither Block1 or Block2 nor elective NoCacheKey),
-the server can not treat their messages as belonging to the same operation.
+The Request-Tag option does not require any particular processing on the server side
+outside of the processing already necessary for any unknown elective proxy-safe cache-key option:
+The option varies the properties that distinguish blockwise operations
+(which includes all options except elective NoCacheKey and except Block1/2),
+and thus the server can not treat messages with a different list of Request-Tag options as belonging to the same operation.
 <!-- not speaking of "matchable" here as that working definition explicitly excludes Request-Tag to make the rest of the document easier to read -->
 
 To keep utilizing the cache,
 a server (including proxies) MAY discard the Request-Tag option
 from an assembled block-wise request when consulting its cache,
-as the option describes the individual blocks but not the operation as a whole.
-For example, a FETCH request with the same body can have a fresh response
-even if they were requested using different request tags.
+as the option relates to the operation-on-the-wire and not its semantics.
+For example, a FETCH request with the same body as an older one can be served from the cache if the older's Max-Age has not expired yet,
+even if the second operation uses a Request-Tag and the first did not.
 (This is similar to the situation about ETag in that it is formally part of the cache key,
 but implementations that are aware of its meaning can cache more efficiently,
 see {{RFC7252}} Section 5.4.2).
@@ -251,27 +253,21 @@ Two messages carrying the same Request-Tag is a necessary but not sufficient con
 They can still be treated as independent messages by the server (e.g. when it sends 2.01/2.04 responses for every block),
 or initiate a new operation (overwriting kept context) when the later message carries Block1 number 0.
 
-[ The following paragraph might be better placed in lwig-coap,
-but was left here until lwig-coap has decided on its fate there. ]
-
 As it has always been,
 a server that can only serve a limited number of block-wise operations at the same time
 can delay the start of the operation by replying with 5.03 (Service unavailable) and a Max-Age indicating how long it expects the existing operation to go on,
 or it can forget about the state established with the older operation and respond with 4.08 (Request Entity Incomplete) to later blocks on the first operation.
-
-Especially, that is the case for any correctly implemented proxy
-that does not know how to use Request-Tag in requests and has only one client endpoint.
-When it receives concurrent incoming requests on the same resource, it needs to make that very choice:
-either send a 5.03 with Max-Age (holding off the second operation),
-or to commence the second operation and reject any further requests on the first operation
-with 4.08 Request Entity Incomplete errors without forwarding them.
-(Alternatively, it could spool the second request, but the unpredictable nature of the timeouts involved often makes that an unsuitable choice.)
 
 ## Setting the Request-Tag
 
 For each separate blockwise request operation, the client can choose a Request-Tag value, or choose not to set a Request-Tag.
 Starting a request operation matchable to a
 previous operation and even using the same Request-Tag value is called request tag recycling.
+The absence of a Request-Tag option is viewed as a value distinct from all values with a single Request-Tag option set;
+starting a request operation matchable to a previous operation where neither has a Request-Tag option
+therefore constitutes request tag recycling just as well
+(also called "recycling the absent option").
+
 Clients MUST NOT recycle a request tag unless the first operation has concluded.
 What constitutes a concluded operation depends on the application, and is outlined individually in {{req-tag-applications}}.
 
@@ -295,7 +291,8 @@ In order to gain that protection, use the Request-Tag mechanism as follows:
 
 * The client MUST NOT recycle a request tag in a new operation unless the <!-- or "all", but by this rule there can only be one --> previous operation matchable to the new one has concluded.
 
-  When considering previous operations in protocols where the security association is not tightly bound to an end point (eg. OSCORE),
+  If any future security mechanisms allow a block-wise transfer to continue
+  after an endpoint's details (like the IP address) has changed, then
   the client MUST consider messages sent to *any* endpoint with the new operation's security context.
 
 * The client MUST NOT regard a blockwise request operation as concluded unless all of the messages the client previously sent in the operation have been confirmed by the message integrity protection mechanism, or are considered invalid by the server if replayed.
@@ -332,23 +329,21 @@ The Request-Tag option provides a very simple way for a proxy to keep them separ
 if it appends a Request-Tag that is particular to the requesting endpoint
 to all request carrying any Block option,
 it does not need to keep track of any further block state.
-{{?I-D.ietf-lwig-coap}} Section TBD provides further details.
 
-[ Note to reviewers and co-authors:
-That section was so far only syggested in input for lwig-coap.
-If it does not get into the document, we should drop it here
-(for I don't want to explain all this case's details and security considerations here),
-but if the reference works,
-this section shows why Request-Tag has become repeatable. ]
+This is particularly useful to proxies that strive for stateless operation
+as described in {{?I-D.hartke-core-stateless}} Section 3.1.
 
 
 ## Rationale for the Option Properties
 
-[ This section needs to be reworked after assuming our RFC7959 interpretation. ]
-
 The Request-Tag option can be elective, because to servers unaware of the Request-Tag option, operations with differing request tags will not be matchable.
 
 The Request-Tag option can be safe to forward but part of the cache key, because to proxies unaware of the Request-Tag option will consider operations with differing request tags unmatchable but can still forward them.
+
+The Request-Tag option is repeatable
+because this easily allows stateless proxies to "chain" their origin address.
+Were it a single option, they would need to employ some length/value scheme to avoid confusing
+requests without a Request-Tag option with requests that carry a zero-length request tag.
 
 In earlier versions of this draft, the Request-Tag option used to be critical and unsafe to forward.
 That design was based on an erroneous understanding of which blocks could be composed according to {{RFC7959}}.
