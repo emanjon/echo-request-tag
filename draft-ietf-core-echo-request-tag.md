@@ -52,7 +52,7 @@ This document specifies security enhancements to the Constrained Application Pro
 
 # Introduction {#intro}
 
-The initial Constrained Application Protocol (CoAP) suite of specifications ({{RFC7252}}, {{RFC7641}}, and {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations. This document specifies several security enhancements to the Constrained Application Protocol (CoAP).
+The initial Constrained Application Protocol (CoAP) suite of specifications ({{RFC7252}}, {{RFC7641}}, and {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations. This document specifies security enhancements to the Constrained Application Protocol (CoAP).
 
 This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option: The Echo option enables a CoAP server to verify the freshness of a request, verify the aliveness of a client, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS ({{RFC6347}}), TLS ({{RFC8446}}), or OSCORE ({{I-D.ietf-core-object-security}}), provide the additional security features.
 
@@ -74,15 +74,15 @@ The Block-Wise Transfer mechanism {{RFC7959}} extends CoAP by defining the trans
 
 A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.
 
-## Request-Response Binding
+## Request-Response Binding {#req-resp-bind}
 
-A fundamental requirement of secure REST operations is that the client can bind a response to a particular request. If this is not valid a client may otherwise erroneously associate the wrong response to a request, the wrong response may be an old response for the same resource or for a completely different resource (see e.g. Section 2.3 of {{I-D.mattsson-core-coap-actuators}}). For example a request for the alarm status "GET /status" may be associated to a prior response "on", instead of the correct response "off".  
+A fundamental requirement of secure REST operations is that the client can bind a response to a particular request. If this is not valid a client may erroneously associate the wrong response to a request. The wrong response may be an old response for the same resource or for a completely different resource (see e.g. Section 2.3 of {{I-D.mattsson-core-coap-actuators}}). For example a request for the alarm status "GET /status" may be associated to a prior response "on", instead of the correct response "off".  
 
 In HTTPS, binding is assured by the ordered and reliable delivery as well as mandating that the server sends responses in the same order that the requests were received. The same is not true for CoAP where the server (or an attacker) can return responses in any order. Concurrent requests are instead differentiated by their Token. Note that the CoAP Message ID cannot be used for this purpose since those are typically different for REST request and corresponding response in case of "separate response", see Section 2.2 of {{RFC7252}}.
 
 Unfortunately, CoAP {{RFC7252}} does not treat Token as a cryptographically important value and does not give stricter guidelines than that the tokens currently "in use" SHOULD (not SHALL) be unique. If used with security protocol not providing bindings between requests and responses (e.g. DTLS and TLS) token reuse may result in situations where a client matches a response to the wrong request. Note that mismatches can also happen for other reasons than a malicious attacker, e.g. delayed delivery or a server sending notifications to an uninterested client.
 
-A straightforward mitigation is to mandate clients to never reuse tokens until the traffic keys have been replaced. As there may be any number of responses to a request (see e.g. {{RFC7641}}), the easiest way to accomplish this is to implement the token as a counter and never reuse any tokens at all. This document updates the Token processing in {{RFC7252}} to always assure a cryptographically secure binding of responses to requests.
+A straightforward mitigation is to mandate clients to never reuse tokens until the AEAD keys have been replaced. As there may be any number of responses to a request (see e.g. {{RFC7641}}), the easiest way to accomplish this is to implement the token as a counter and never reuse any tokens at all. This document updates the Token processing in {{RFC7252}} to always assure a cryptographically secure binding of responses to requests.
 
 
 ## Terminology
@@ -105,7 +105,7 @@ The Echo and Request-Tag options are defined in this document.
 
 # The Echo Option {#echo}
 
-The Echo option is a server-driven challenge-response mechanism for CoAP. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed in one or more CoAP request.
+The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by the need for a server to verify freshness of a request as described in {{req-fresh}}. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed in one or more CoAP request.
 
 ## Option Format {#echo-format}
 
@@ -196,7 +196,7 @@ CoAP-to-CoAP proxies MUST relay the Echo option unmodified. The CoAP server side
 
 # The Request-Tag Option # {#request-tag}
 
-The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client. It enables the receiving server to reliably assemble request payloads (blocks) to their message bodies, and, if it chooses to support it, to reliably process simultaneous blockwise request operations on a single resource. The requests must be integrity protected in order to protect against interchange of blocks between different message bodies.
+The Request-Tag is intended for use as a short-lived identifier for keeping apart distinct blockwise request operations on one resource from one client, addressing the issue described in {{body-int}}. It enables the receiving server to reliably assemble request payloads (blocks) to their message bodies, and, if it chooses to support it, to reliably process simultaneous blockwise request operations on a single resource. The requests must be integrity protected in order to protect against interchange of blocks between different message bodies.
 
 In essence, it is an implementation of the "proxy-safe elective option" used just to "vary the cache key" as suggested in {{RFC7959}} Section 2.4.
 
@@ -373,9 +373,9 @@ and MUST NOT use the same ETag value for different representations of a resource
 
 # Token Processing {#token}
 
-This section updates the Token processing in Section 5.3.1 of {{RFC7252}} by adding the following text:
+As described in {{req-resp-bind}}, the client must be able to verify that a response corresponds to a particular request. This section updates the Token processing in Section 5.3.1 of {{RFC7252}} by adding the following text:
 
-When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.
+When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the AEAD keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.
 
 
 # IANA Considerations {#iana}
