@@ -416,11 +416,9 @@ Servers that use the List of Cached Random Values and Timestamps method describe
 
 # Privacy Considerations {#priv-cons}
 
-Implementations SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its wall clock time or location. 
+Implementations SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its wall clock time or location. The use of wall clock time is not allowed also for privacy reasons as it may reveal the server's location. 
 
-The use of wall clock time is not allowed also for privacy reasons as it may reveal the server's location. 
-
-
+In practice, if Echo is used with a security protocol, such as DTLS or OSCORE, the Echo option value will typically be encrypted, in which case the format of the value is less critical from a privacy point of view.
 
 --- back
 
