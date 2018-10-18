@@ -169,7 +169,7 @@ Client   Server
 ~~~~~~~~~~
 {: #echo-figure title="Example Echo Option Message Flow" artwork-align="center"}
 
-When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP requests containing the Echo option MUST be integrity protected, e.g. using DTLS, TLS, or OSCORE ({{I-D.ietf-core-object-security}}), in which case it will also be encrypted. When used to demonstrate reachability at their apparent network address, the Echo option MAY be used without protection.
+When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP requests containing the Echo option MUST be integrity protected, e.g. using DTLS, TLS, or OSCORE ({{I-D.ietf-core-object-security}}). When used to demonstrate reachability at their apparent network address, the Echo option MAY be used without protection.
 
 Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. However, if the server loses time continuity, e.g. due to reboot, it MUST reject all Echo values that was created before time continuity was lost.
 
@@ -396,15 +396,21 @@ This document adds the following option numbers to the "CoAP Option Numbers" reg
 
 # Security Considerations {#sec-cons}
 
-Implementations SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its wall clock time or location. Servers MUST use a monotonic clock to generate timestamps and compute round-trip times. Servers SHOULD NOT use wall clock time for timestamps, as wall clock time is not monotonic, may reveal that the server will accept expired certificates, or reveal the server's location. Use of non-monotonic clocks is not secure as the server will accept expired Echo option values if the clock is moved backward. The server will also reject fresh Echo option values if the clock is moved forward. An attacker may be able to affect the server's wall clock time in various ways such as setting up a fake NTP server or broadcasting false time signals to radio-controlled clocks. Servers MAY use the time since reboot measured in some unit of time. Servers MAY reset the timer periodically. When resetting the timer, the server MUST reject all Echo values that was created before the reset.
-
 The availability of a secure pseudorandom number generator and truly random seeds are essential for the security of the Echo option. If no true random number generator is available, a truly random seed must be provided from an external source.
 
 An Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).
 
-The security provided by the Echo and Request-Tag options depends on the security protocol used. CoAP and HTTP proxies require (D)TLS to be terminated at the proxies. The proxies are therefore able to manipulate, inject, delete, or reorder options or packets. The security claims in such architectures only hold under the assumption that all intermediaries are fully trusted and have not been compromised.
+The security provided by the Echo and Request-Tag options depends on the security protocol used. CoAP and HTTP proxies require (D)TLS to be terminated at the proxies. The proxies are therefore able to manipulate, inject, delete, or reorder options or packets. The security claims in such architectures only hold under the assumption that all intermediaries are fully trusted and have not been compromised. 
 
-Servers that use the List of Cached Random Values and Timestamps method described in {{echo-state}} may be vulnerable to resource exhaustion attacks. On way to minimizing state is to use the Integrity Protected Timestamp  method described in {{echo-state}}.
+Servers MAY use the time since reboot measured in some unit of time. Servers MAY reset the timer periodically. When resetting the timer, the server MUST reject all Echo values that was created before the reset.
+
+Servers that use the List of Cached Random Values and Timestamps method described in {{echo-state}} may be vulnerable to resource exhaustion attacks. One way to minimize state is to use the Integrity Protected Timestamp  method described in {{echo-state}}.
+
+# Privacy Considerations {#priv-cons}
+
+Implementations SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its wall clock time or location. Servers MUST use a monotonic clock to generate timestamps and compute round-trip times. Servers SHOULD NOT use wall clock time for timestamps, as wall clock time is not monotonic, may reveal that the server will accept expired certificates, or reveal the server's location. Use of non-monotonic clocks is not secure as the server will accept expired Echo option values if the clock is moved backward. The server will also reject fresh Echo option values if the clock is moved forward. An attacker may be able to affect the server's wall clock time in various ways such as setting up a fake NTP server or broadcasting false time signals to radio-controlled clocks. 
+
+
 
 
 --- back
