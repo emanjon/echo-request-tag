@@ -223,9 +223,9 @@ Request-Tag, like the block options, is both a class E and a class U option in t
 
 The Request-Tag option is only used in the request messages of blockwise operations.
 
-The Request-Tag mechanism can be applied independently on the server and client sides of CoAP-CoAP proxies as are the block options,
+The Request-Tag mechanism can be applied independently on the server and client sides of CoAP-to-CoAP proxies as are the block options,
 though given it is safe to forward, a proxy is free to just forward it when processing an operation.
-CoAP-HTTP proxies and HTTP-CoAP proxies can use Request-Tag on their CoAP sides;
+CoAP-to-HTTP proxies and HTTP-to-CoAP proxies can use Request-Tag on their CoAP sides;
 it is not applicable to HTTP requests.
 
 ## Request-Tag Processing by Servers ## {#request-tag-processing}
@@ -474,3 +474,4 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
     * Two messages being "Request-Tag matchable" was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.
 
 --- fluff
+mak
