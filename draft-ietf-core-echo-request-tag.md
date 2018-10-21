@@ -171,9 +171,10 @@ Client   Server
 ~~~~~~~~~~
 {: #echo-figure title="Example Echo Option Message Flow" artwork-align="center"}
 
-When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP messages containing the Echo option MUST be integrity protected between the intended endpoints, e.g. using DTLS, TLS, or an OSCORE Inner option ({{I-D.ietf-core-object-security}}). When used to demonstrate reachability at their apparent network address, the Echo option MAY be unprotected.
 
 Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. However, if the server loses time continuity, e.g. due to reboot, it MUST reject all Echo values that was created before time continuity was lost.
+
+When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP messages containing the Echo option MUST be integrity protected between the intended endpoints, e.g. using DTLS, TLS, or an OSCORE Inner option ({{I-D.ietf-core-object-security}}). When used to demonstrate reachability at their apparent network address, the Echo option MAY be unprotected.
 
 CoAP-to-CoAP proxies MUST relay the Echo option unmodified. The CoAP server side of CoAP-to-HTTP proxies MAY request freshness, especially if they have reason to assume that access may require it (e.g. because it is a PUT or POST); how this is determined is out of scope for this document. The CoAP client side of HTTP-to-CoAP proxies SHOULD respond to Echo challenges themselves if they know from the recent establishing of the connection that the HTTP request is fresh. Otherwise, they SHOULD respond with 503 Service Unavailable, Retry-After: 0 and terminate any underlying Keep-Alive connection. They MAY also use other mechanisms to establish freshness of the HTTP request that are not specified here.
 
