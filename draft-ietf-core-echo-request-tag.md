@@ -195,6 +195,8 @@ CoAP-to-CoAP proxies MUST relay the Echo option unmodified. The CoAP server side
 
 3. A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of {{RFC7252}} (where an attacker would put a victim's address in the source address of a CoAP request). For this purpose, the server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server. For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.
 
+    *  In the presence of a proxy, a server may not be able to distiguish different client endpoints, in which case the recommendation to mitigate option to use Echo extends to the proxy. In this case the proxy may be required to wait until the Echo exchange between the server and client endpoints has completed and the subsequent response from the server is cached in the proxy until it asks the client to Echo its source address.
+
 4. A server may want to verify the aliveness of a client by responding with an Echo option.
 
 
