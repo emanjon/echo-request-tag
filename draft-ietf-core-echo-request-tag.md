@@ -488,4 +488,11 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
     * The interaction between the new option and (cross) proxies is now covered.
     * Two messages being "Request-Tag matchable" was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.
 
+	
+# Acknowledgments
+{: numbered="no"}
+
+The authors want to thank Jim Schaad for providing valuable input to the draft.
+
+
 --- fluff
