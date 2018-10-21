@@ -383,23 +383,6 @@ As described in {{req-resp-bind}}, the client must be able to verify that a resp
 
 When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the AEAD keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.
 
-
-# IANA Considerations {#iana}
-
-This document adds the following option numbers to the "CoAP Option Numbers" registry defined by {{RFC7252}}:
-
-~~~~~~~~~~
-+--------+-------------+------------+
-| Number | Name        | Reference  |
-+--------+-------------+------------+
-| TBD1   | Echo        | [RFC XXXX] |
-|        |             |            |
-| TBD2   | Request-Tag | [RFC XXXX] |
-+--------+-------------+------------+
-~~~~~~~~~~
-{: #iana-table title="CoAP Option Numbers" artwork-align="center"}
-
-
 # Security Considerations {#sec-cons}
 
 The availability of a secure pseudorandom number generator and truly random seeds are essential for the security of the Echo option. If no true random number generator is available, a truly random seed must be provided from an external source.
@@ -421,6 +404,23 @@ Servers that use the List of Cached Random Values and Timestamps method describe
 Implementations SHOULD NOT put any privacy sensitive information in the Echo or Request-Tag option values. Unencrypted timestamps MAY reveal information about the server such as its wall clock time or location. The use of wall clock time is not allowed also for privacy reasons as it may reveal the server's location. 
 
 In practice, if Echo is used with a security protocol, such as DTLS or OSCORE, the Echo option value will typically be encrypted, in which case the format of the value is less critical from a privacy point of view.
+
+
+# IANA Considerations {#iana}
+
+This document adds the following option numbers to the "CoAP Option Numbers" registry defined by {{RFC7252}}:
+
+~~~~~~~~~~
++--------+-------------+------------+
+| Number | Name        | Reference  |
++--------+-------------+------------+
+| TBD1   | Echo        | [RFC XXXX] |
+|        |             |            |
+| TBD2   | Request-Tag | [RFC XXXX] |
++--------+-------------+------------+
+~~~~~~~~~~
+{: #iana-table title="CoAP Option Numbers" artwork-align="center"}
+
 
 --- back
 
