@@ -74,7 +74,7 @@ Table of Contents
      2.1.  Option Format . . . . . . . . . . . . . . . . . . . . . .   6
      2.2.  Echo Processing . . . . . . . . . . . . . . . . . . . . .   7
      2.3.  Applications  . . . . . . . . . . . . . . . . . . . . . .   9
-   3.  The Request-Tag Option  . . . . . . . . . . . . . . . . . . .  10
+   3.  The Request-Tag Option  . . . . . . . . . . . . . . . . . . .  11
      3.1.  Option Format . . . . . . . . . . . . . . . . . . . . . .  11
      3.2.  Request-Tag Processing by Servers . . . . . . . . . . . .  12
      3.3.  Setting the Request-Tag . . . . . . . . . . . . . . . . .  13
@@ -119,17 +119,17 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    This document specifies two server-oriented CoAP options, the Echo
    option and the Request-Tag option: The Echo option enables a CoAP
-   server to verify the freshness of a request, verify the aliveness of
-   a client, synchronize state, or force a client to demonstrate
-   reachability at its apparent network address.  The Request-Tag option
-   allows the CoAP server to match message fragments belonging to the
-   same request, fragmented using the CoAP Block-Wise Transfer
-   mechanism, which mitigates attacks and enables concurrent blockwise
-   operations.  These options in themselves do not replace the need for
-   a security protocol; they specify the format and processing of data
-   which, when integrity protected using e.g.  DTLS ([RFC6347]), TLS
-   ([RFC8446]), or OSCORE ([I-D.ietf-core-object-security]), provide the
-   additional security features.
+   server to verify the freshness of a request, synchronize state, or
+   force a client to demonstrate reachability at its apparent network
+   address.  The Request-Tag option allows the CoAP server to match
+   message fragments belonging to the same request, fragmented using the
+   CoAP Block-Wise Transfer mechanism, which mitigates attacks and
+   enables concurrent blockwise operations.  These options in themselves
+   do not replace the need for a security protocol; they specify the
+   format and processing of data which, when integrity protected using
+   e.g.  DTLS ([RFC6347]), TLS ([RFC8446]), or OSCORE
+   ([I-D.ietf-core-object-security]), provide the additional security
+   features.
 
    The document also updates the processing requirements on the Token.
    The updated processing ensures secure binding of responses to
@@ -298,9 +298,13 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    The Echo option is a lightweight server-driven challenge-response
    mechanism for CoAP, motivated by the need for a server to verify
-   freshness of a request as described in Section 1.1.  The Echo option
-   value is a challenge from the server to the client included in a CoAP
-   response and echoed back to the server in one or more CoAP requests.
+   freshness of a request as described in Section 1.1.  With request
+   freshness we mean that the server can determine that the client (or
+   in the case of hop-by-hop security the proxy) sent the request
+   recently.  The time threshold for being fresh is application
+   specific.  The Echo option value is a challenge from the server to
+   the client included in a CoAP response and echoed back to the server
+   in one or more CoAP requests.
 
 2.1.  Option Format
 
@@ -326,10 +330,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    The Echo option MAY be an Inner or Outer option
    [I-D.ietf-core-object-security], and the Inner and Outer values are
-   independent.  The Inner option is encrypted and integrity protected
-   between the endpoints, whereas the Outer option is not protected by
-   OSCORE and visible between the endpoints to the extent it is not
-   protected by some other security protocol.  E.g. in the case of DTLS
 
 
 
@@ -338,6 +338,10 @@ Amsuess, et al.          Expires April 25, 2019                 [Page 6]
 Internet-Draft            Echo and Request-Tag              October 2018
 
 
+   independent.  The Inner option is encrypted and integrity protected
+   between the endpoints, whereas the Outer option is not protected by
+   OSCORE and visible between the endpoints to the extent it is not
+   protected by some other security protocol.  E.g. in the case of DTLS
    hop-by-hop between the endpoints, the Outer option is visible to
    proxies along the path.
 
@@ -371,9 +375,10 @@ Internet-Draft            Echo and Request-Tag              October 2018
    in the request, and conditions in the environment such as the state
    of the server or the time of the day.
 
-   The server may also include the Echo option in a response to verify
-   the aliveness of a client, to synchronize state, or to force a client
-   to demonstrate reachability at their apparent network address.
+   The server may use request freshness provided by the Echo option to
+   verify the aliveness of a client or to synchronize state.  The server
+   may also include the Echo option in a response to force a client to
+   demonstrate reachability at their apparent network address.
 
    Upon receiving a 4.01 Unauthorized response with the Echo option, the
    client SHOULD resend the original request with the addition of an
@@ -381,11 +386,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
    a different request compared to the original request.  Upon receiving
    any other response with the Echo option, the client SHOULD echo the
    Echo option value in the next request to the server.  The client MAY
-   include the same Echo option value in several different requests to
-   the server.
-
-   Upon receiving a request with the Echo option, the server determines
-   if the request has freshness requirements.  If the request does not
 
 
 
@@ -394,6 +394,11 @@ Amsuess, et al.          Expires April 25, 2019                 [Page 7]
 Internet-Draft            Echo and Request-Tag              October 2018
 
 
+   include the same Echo option value in several different requests to
+   the server.
+
+   Upon receiving a request with the Echo option, the server determines
+   if the request has freshness requirements.  If the request does not
    have freshness requirements, the Echo option MAY be ignored.  If the
    request has freshness requirements and the server cannot verify the
    freshness of the request in some other way, the server MUST verify
@@ -438,11 +443,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
    loses time continuity, e.g. due to reboot, it MUST reject all Echo
    values that was created before time continuity was lost.
 
-   When used to serve freshness requirements (including client aliveness
-   and state synchronizing), CoAP messages containing the Echo option
-   MUST be integrity protected between the intended endpoints, e.g.
-   using DTLS, TLS, or an OSCORE Inner option
-
 
 
 Amsuess, et al.          Expires April 25, 2019                 [Page 8]
@@ -450,6 +450,10 @@ Amsuess, et al.          Expires April 25, 2019                 [Page 8]
 Internet-Draft            Echo and Request-Tag              October 2018
 
 
+   When used to serve freshness requirements (including client aliveness
+   and state synchronizing), CoAP messages containing the Echo option
+   MUST be integrity protected between the intended endpoints, e.g.
+   using DTLS, TLS, or an OSCORE Inner option
    ([I-D.ietf-core-object-security]).  When used to demonstrate
    reachability at their apparent network address, the Echo option MAY
    be unprotected.
@@ -494,10 +498,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    2.  A server may use the Echo option to synchronize state or time
        with a requesting client.  A server MUST NOT synchronize state or
-       time with clients which are not the authority of the property
-       being synchronized.  E.g. if access to a server resource is
-       dependent on time, then the client MUST NOT set the time of the
-       server.
 
 
 
@@ -505,6 +505,11 @@ Amsuess, et al.          Expires April 25, 2019                 [Page 9]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
+
+       time with clients which are not the authority of the property
+       being synchronized.  E.g. if access to a server resource is
+       dependent on time, then the client MUST NOT set the time of the
+       server.
 
        *  If a server reboots during operation it may need to
           synchronize state or time before continuing the interaction.
@@ -545,15 +550,10 @@ Internet-Draft            Echo and Request-Tag              October 2018
           requests immediately to have a cached result available when
           the client's Echoed request arrives.
 
-   4.  A server may want to verify the aliveness of a client by
-       responding with an Echo option.
-
-3.  The Request-Tag Option
-
-   The Request-Tag is intended for use as a short-lived identifier for
-   keeping apart distinct blockwise request operations on one resource
-   from one client, addressing the issue described in Section 1.2.  It
-   enables the receiving server to reliably assemble request payloads
+   4.  A server may want to use the request freshness provided by the
+       Echo to verify the aliveness of a client.  Note that in a
+       deployment with hop-by-hop security and proxies, the server can
+       only verify aliveness of the closest proxy.
 
 
 
@@ -562,6 +562,12 @@ Amsuess, et al.          Expires April 25, 2019                [Page 10]
 Internet-Draft            Echo and Request-Tag              October 2018
 
 
+3.  The Request-Tag Option
+
+   The Request-Tag is intended for use as a short-lived identifier for
+   keeping apart distinct blockwise request operations on one resource
+   from one client, addressing the issue described in Section 1.2.  It
+   enables the receiving server to reliably assemble request payloads
    (blocks) to their message bodies, and, if it chooses to support it,
    to reliably process simultaneous blockwise request operations on a
    single resource.  The requests must be integrity protected in order
@@ -605,12 +611,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
    visible to proxies and labels message bodies in case of hop-by-hop
    fragmentation of requests.
 
-   The Request-Tag option is only used in the request messages of
-   blockwise operations.
-
-   The Request-Tag mechanism can be applied independently on the server
-   and client sides of CoAP-to-CoAP proxies as are the block options,
-
 
 
 Amsuess, et al.          Expires April 25, 2019                [Page 11]
@@ -618,6 +618,11 @@ Amsuess, et al.          Expires April 25, 2019                [Page 11]
 Internet-Draft            Echo and Request-Tag              October 2018
 
 
+   The Request-Tag option is only used in the request messages of
+   blockwise operations.
+
+   The Request-Tag mechanism can be applied independently on the server
+   and client sides of CoAP-to-CoAP proxies as are the block options,
    though given it is safe to forward, a proxy is free to just forward
    it when processing an operation.  CoAP-to-HTTP proxies and HTTP-to-
    CoAP proxies can use Request-Tag on their CoAP sides; it is not
@@ -661,11 +666,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
    can forget about the state established with the older operation and
    respond with 4.08 (Request Entity Incomplete) to later blocks on the
    first operation.
-
-
-
-
-
 
 
 
