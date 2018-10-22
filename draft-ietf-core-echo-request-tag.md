@@ -56,15 +56,14 @@ This document specifies security enhancements to the Constrained Application Pro
 
 The initial Constrained Application Protocol (CoAP) suite of specifications ({{RFC7252}}, {{RFC7641}}, and {{RFC7959}}) was designed with the assumption that security could be provided on a separate layer, in particular by using DTLS ({{RFC6347}}). However, for some use cases, additional functionality or extra processing is needed to support secure CoAP operations. This document specifies security enhancements to the Constrained Application Protocol (CoAP).
 
-This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option: The Echo option enables a CoAP server to verify the freshness of a request, verify the aliveness of a client, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS ({{RFC6347}}), TLS ({{RFC8446}}), or OSCORE ({{I-D.ietf-core-object-security}}), provide the additional security features.
+This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option: The Echo option enables a CoAP server to verify the freshness of a request, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS ({{RFC6347}}), TLS ({{RFC8446}}), or OSCORE ({{I-D.ietf-core-object-security}}), provide the additional security features.
 
 The document also updates the processing requirements on the Token. The updated processing ensures secure binding of responses to requests.
 
 
 ## Request Freshness {#req-fresh}
 
-A CoAP server receiving a request is in general not able to verify when the request was sent by the CoAP client. This remains true even if the request was protected with a security protocol, such as DTLS. This makes CoAP requests vulnerable to certain delay attacks which are particularly incriminating in the case of actuators ({{I-D.mattsson-core-coap-actuators}}). Some attacks are possible to mitigate by establishing fresh session keys, e.g. performing a DTLS handshake for each actuation, but in general this is not a solution suitable for constrained environments, for example, due to increased message overhead and latency. Additionally, if there are proxies, fresh DTLS session keys between server and proxy does not say anything about when the client made the request.
-In a general hop-by-hop setting, freshness may need to be verified in each hop. 
+A CoAP server receiving a request is in general not able to verify when the request was sent by the CoAP client. This remains true even if the request was protected with a security protocol, such as DTLS. This makes CoAP requests vulnerable to certain delay attacks which are particularly incriminating in the case of actuators ({{I-D.mattsson-core-coap-actuators}}). Some attacks are possible to mitigate by establishing fresh session keys, e.g. performing a DTLS handshake for each actuation, but in general this is not a solution suitable for constrained environments, for example, due to increased message overhead and latency. Additionally, if there are proxies, fresh DTLS session keys between server and proxy does not say anything about when the client made the request. In a general hop-by-hop setting, freshness may need to be verified in each hop. 
 
 A straightforward mitigation of potential delayed requests is that the CoAP server rejects a request the first time it appears and asks the CoAP client to prove that it intended to make the request at this point in time. The Echo option, defined in this document, specifies such a mechanism which thereby enables a CoAP server to verify the freshness of a request. This mechanism is not only important in the case of actuators, or other use cases where the CoAP operations require freshness of requests, but also in general for synchronizing state between CoAP client and server and to verify aliveness of the client.
 
@@ -108,7 +107,8 @@ The Echo and Request-Tag options are defined in this document.
 
 # The Echo Option {#echo}
 
-The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by the need for a server to verify freshness of a request as described in {{req-fresh}}. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests.
+The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by the need for a server to verify freshness of a request as described in {{req-fresh}}. With request freshness we mean that the server can determine that the client (or in the case of hop-by-hop security the proxy) sent the request recently. The time threshold for being fresh is application specific. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests. 
+
 
 ## Option Format {#echo-format}
 
@@ -143,7 +143,7 @@ If a server receives a request which has freshness requirements, the request doe
 
 The application decides under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.
 
-The server may also include the Echo option in a response to verify the aliveness of a client, to synchronize state, or to force a client to demonstrate reachability at their apparent network address.
+The server may use request freshness provided by the Echo option to verify the aliveness of a client or to synchronize state. The server may also include the Echo option in a response to force a client to demonstrate reachability at their apparent network address.
 
 Upon receiving a 4.01 Unauthorized response with the Echo option, the client SHOULD resend the original request with the addition of an Echo option with the received Echo option value. The client MAY send a different request compared to the original request. Upon receiving any other response with the Echo option, the client SHOULD echo the Echo option value in the next request to the server. The client MAY include the same Echo option value in several different requests to the server.
 
@@ -203,7 +203,7 @@ The CoAP server side of CoAP-to-HTTP proxies MAY request freshness, especially i
     *  In the presence of a proxy, a server will not be able to distiguish
 different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticatied peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in {{echo-proc}}. The proxy MAY forward idempotent requests immediately to have a cached result available when the client's Echoed request arrives.
 
-4. A server may want to verify the aliveness of a client by responding with an Echo option.
+4. A server may want to use the request freshness provided by the Echo to verify the aliveness of a client. Not that in a deployment with hop-by-hop security and proxies, the server can only verify aliveness of the closest proxy.
 
 
 # The Request-Tag Option # {#request-tag}
