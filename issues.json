@@ -1,18 +1,20 @@
 [
 
   {
-    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22",
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/35",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
-    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/labels{/name}",
-    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/comments",
-    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/events",
-    "html_url": "https://github.com/core-wg/echo-request-tag/pull/22",
-    "id": 301998932,
-    "number": 22,
-    "title": "Suggested updates for draft-ietf-core-echo-request-tag-01",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/35/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/35/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/35/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/35",
+    "id": 372555042,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjI0NzA3MTcz",
+    "number": 35,
+    "title": "Aliveness Freshness",
     "user": {
       "login": "emanjon",
       "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
       "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/emanjon",
@@ -40,31 +42,357 @@
     ],
     "milestone": null,
     "comments": 1,
-    "created_at": "2018-03-03T13:39:33Z",
-    "updated_at": "2018-03-05T08:56:57Z",
-    "closed_at": "2018-03-05T08:56:57Z",
+    "created_at": "2018-10-22T14:53:44Z",
+    "updated_at": "2018-10-22T16:39:07Z",
+    "closed_at": "2018-10-22T16:39:07Z",
     "author_association": "CONTRIBUTOR",
     "pull_request": {
-      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/22",
-      "html_url": "https://github.com/core-wg/echo-request-tag/pull/22",
-      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/22.diff",
-      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/22.patch"
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/35",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/35",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/35.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/35.patch"
     },
-    "body": "I did quite a lot of changes to the Echo parts as discussed earlier. The Echo parts are now clearer updated in requirements and general processing, and example implementations for Token Option Values. I wrote a reasonably long security consideration chapter and added the missing IANA section. I added updated Token handling which requires some changes to abstract and introduction. Removed some definitions that were not used. I have not touched the Request-Tag parts except for maybe some editorials."
+    "body": ""
   },
   {
-    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21",
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/34",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
-    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/labels{/name}",
-    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/comments",
-    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/events",
-    "html_url": "https://github.com/core-wg/echo-request-tag/issues/21",
-    "id": 301831853,
-    "number": 21,
-    "title": "Might need Request-Tag on Block2 follow-ups to keep streams apart",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/34/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/34/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/34/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/34",
+    "id": 372525714,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjI0Njg0Mzgw",
+    "number": 34,
+    "title": "Two minor changes",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-22T13:39:59Z",
+    "updated_at": "2018-10-22T13:39:59Z",
+    "closed_at": null,
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/34",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/34",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/34.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/34.patch"
+    },
+    "body": "\"AEAD keys\" -> \"traffic keys\"\r\nIn (D)TLS, the algorithms may be other types than AEAD.\r\n\r\n\"thus mitigating error cases and attacks where the client may erroneously associate the wrong response to a request.\"\r\n\r\nSome more text about this in the intro, the current text was very barebone."
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/33",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/33/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/33/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/33/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/33",
+    "id": 371401908,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjIzODU1Nzky",
+    "number": 33,
+    "title": "mention attacker in section  1.3",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-18T07:47:08Z",
+    "updated_at": "2018-10-18T08:50:39Z",
+    "closed_at": "2018-10-18T08:50:39Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/33",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/33",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/33.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/33.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/32",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/32/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/32/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/32/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/32",
+    "id": 371157526,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjIzNjY3MDU1",
+    "number": 32,
+    "title": "Some additons to 1.3",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-17T16:13:43Z",
+    "updated_at": "2018-10-18T08:38:08Z",
+    "closed_at": "2018-10-18T08:38:08Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/32",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/32",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/32.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/32.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/31",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/31/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/31/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/31/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/31",
+    "id": 371134316,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjIzNjQ4NzY2",
+    "number": 31,
+    "title": "Wide tables and continuity in appendix",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-17T15:24:24Z",
+    "updated_at": "2018-10-18T08:32:33Z",
+    "closed_at": "2018-10-18T08:32:33Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/31",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/31",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/31.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/31.patch"
+    },
+    "body": "- Tables were to wide.\r\n\r\n- \"If the server loses time synchronization, e.g. due to reboot\"  was still in appendix"
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/30",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/30/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/30/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/30/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/30",
+    "id": 370632230,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjIzMjY2MDY0",
+    "number": 30,
+    "title": "Time t0 and error rejection",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-16T14:10:21Z",
+    "updated_at": "2018-10-16T14:42:31Z",
+    "closed_at": "2018-10-16T14:42:31Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/30",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/30",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/30.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/30.patch"
+    },
+    "body": "Clarifications based on Jim's review.\r\n\r\n\"t0 is the time when the Echo option value was generated.\"\r\n\r\n\"If the server cannot verify that the Echo option value was generated by the server or the round-trip time is not below the threshold the request is not processed further, and an error message MAY be sent. The error message SHOULD include a new Echo option.\""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/29",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/29/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/29/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/29/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/29",
+    "id": 370628255,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjIzMjYyODY3",
+    "number": 29,
+    "title": "Same value different clients",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-10-16T14:01:54Z",
+    "updated_at": "2018-10-16T14:42:46Z",
+    "closed_at": "2018-10-16T14:42:46Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/29",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/29",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/29.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/29.patch"
+    },
+    "body": "\"The server MAY include the same Echo option value in several different responses and to different clients.\"\r\n\r\nClarification based on Jim's review."
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/28",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/28/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/28/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/28/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/issues/28",
+    "id": 344739761,
+    "node_id": "MDU6SXNzdWUzNDQ3Mzk3NjE=",
+    "number": 28,
+    "title": "Update reference to lwig-coap",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -89,6 +417,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -109,6 +438,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -128,10 +458,420 @@
     ],
     "milestone": null,
     "comments": 0,
-    "created_at": "2018-03-02T16:49:21Z",
-    "updated_at": "2018-03-02T16:49:21Z",
+    "created_at": "2018-07-26T08:13:12Z",
+    "updated_at": "2018-07-26T08:13:12Z",
     "closed_at": null,
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
+    "body": "The text proposed into lwig-coap on atomic blockwise operations is now in lwig-coap-06; some points of this document need to be updated to reflect that, possibly some text can be removed."
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/27",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/27/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/27/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/27/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/27",
+    "id": 303783770,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTczOTYyMjA3",
+    "number": 27,
+    "title": "Terminology text did not follow boilerplate",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-03-09T09:54:36Z",
+    "updated_at": "2018-03-18T09:33:55Z",
+    "closed_at": "2018-03-18T09:33:55Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/27",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/27",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/27.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/27.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/26",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/26/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/26/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/26/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/26",
+    "id": 303747092,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTczOTM1NTM3",
+    "number": 26,
+    "title": "Fix contradicting text on time",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-03-09T07:18:39Z",
+    "updated_at": "2018-03-18T09:33:55Z",
+    "closed_at": "2018-03-18T09:33:55Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/26",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/26",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/26.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/26.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/25",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/25/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/25/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/25/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/25",
+    "id": 303746603,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTczOTM1MjA2",
+    "number": 25,
+    "title": "Ref Table 4 of {{RFC7252}}).",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-03-09T07:16:01Z",
+    "updated_at": "2018-03-18T09:33:54Z",
+    "closed_at": "2018-03-18T09:33:54Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/25",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/25",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/25.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/25.patch"
+    },
+    "body": "This was an IESG comment on OSCORE. Also fix a nit"
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/24",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/24/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/24/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/24/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/24",
+    "id": 302421732,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTcyOTU2NzI5",
+    "number": 24,
+    "title": "time synchronization also for MAC",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-03-05T19:03:50Z",
+    "updated_at": "2018-03-05T22:03:35Z",
+    "closed_at": "2018-03-05T22:03:35Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/24",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/24",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/24.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/24.patch"
+    },
+    "body": "Moved text about time sync. Current placement may have given the idea that it only applied to ecrypted time stamps."
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/23",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/23/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/23/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/23/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/23",
+    "id": 302421082,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTcyOTU2Mjcy",
+    "number": 23,
+    "title": "System time -> wall clock time",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-03-05T19:01:52Z",
+    "updated_at": "2018-03-05T22:03:35Z",
+    "closed_at": "2018-03-05T22:03:35Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/23",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/23",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/23.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/23.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/22/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/22",
+    "id": 301998932,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTcyNjY3NzEx",
+    "number": 22,
+    "title": "Suggested updates for draft-ietf-core-echo-request-tag-01",
+    "user": {
+      "login": "emanjon",
+      "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/emanjon",
+      "html_url": "https://github.com/emanjon",
+      "followers_url": "https://api.github.com/users/emanjon/followers",
+      "following_url": "https://api.github.com/users/emanjon/following{/other_user}",
+      "gists_url": "https://api.github.com/users/emanjon/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/emanjon/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/emanjon/subscriptions",
+      "organizations_url": "https://api.github.com/users/emanjon/orgs",
+      "repos_url": "https://api.github.com/users/emanjon/repos",
+      "events_url": "https://api.github.com/users/emanjon/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/emanjon/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2018-03-03T13:39:33Z",
+    "updated_at": "2018-03-05T13:14:54Z",
+    "closed_at": "2018-03-05T08:56:57Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/22",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/22",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/22.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/22.patch"
+    },
+    "body": "I did quite a lot of changes to the Echo parts as discussed earlier. The Echo parts are now clearer updated in requirements and general processing, and example implementations for Token Option Values. I wrote a reasonably long security consideration chapter and added the missing IANA section. I added updated Token handling which requires some changes to abstract and introduction. Removed some definitions that were not used. I have not touched the Request-Tag parts except for maybe some editorials."
+  },
+  {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/21/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/issues/21",
+    "id": 301831853,
+    "node_id": "MDU6SXNzdWUzMDE4MzE4NTM=",
+    "number": 21,
+    "title": "Might need Request-Tag on Block2 follow-ups to keep streams apart",
+    "user": {
+      "login": "chrysn",
+      "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chrysn",
+      "html_url": "https://github.com/chrysn",
+      "followers_url": "https://api.github.com/users/chrysn/followers",
+      "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+      "organizations_url": "https://api.github.com/users/chrysn/orgs",
+      "repos_url": "https://api.github.com/users/chrysn/repos",
+      "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chrysn/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": {
+      "login": "chrysn",
+      "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chrysn",
+      "html_url": "https://github.com/chrysn",
+      "followers_url": "https://api.github.com/users/chrysn/followers",
+      "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+      "organizations_url": "https://api.github.com/users/chrysn/orgs",
+      "repos_url": "https://api.github.com/users/chrysn/repos",
+      "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chrysn/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "assignees": [
+      {
+        "login": "chrysn",
+        "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chrysn",
+        "html_url": "https://github.com/chrysn",
+        "followers_url": "https://api.github.com/users/chrysn/followers",
+        "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+        "organizations_url": "https://api.github.com/users/chrysn/orgs",
+        "repos_url": "https://api.github.com/users/chrysn/repos",
+        "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chrysn/received_events",
+        "type": "User",
+        "site_admin": false
+      }
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2018-03-02T16:49:21Z",
+    "updated_at": "2018-03-05T21:50:13Z",
+    "closed_at": "2018-03-05T21:50:13Z",
+    "author_association": "MEMBER",
     "body": "Going through RFC7959 Section 2.7 for implementation, I noticed that Block2 exchanges after a Block1 exchange do not carry a Block1 option any more.\r\n\r\nFor Request-Tag, this has no bearing on security (if two operations' results share an ETag, so be it), but it has one for simultaneous requests (\"what we suggest that OSCORE-unaware proxies should do to avoid large latencies\"): If a second operation leaves the Block1 phase while the first is still in Block2 phase, the requests arrive at the server indistinguishably (violating the \"MUST be performed sequentially\" part).\r\n\r\nThe most likely fix is that we simply set Request-Tag on Block1-follow-ups too, and extend the operation conclusion to the end of any Block2 phase. This entails some re-wording as to where it can be used, as we're borrowing much from Block1 now in the option description."
   },
   {
@@ -142,11 +882,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/20/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/pull/20",
     "id": 300159325,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTcxMzE3NzIy",
     "number": 20,
     "title": "CoAP over TCP is now RFC8323",
     "user": {
       "login": "emanjon",
       "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
       "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/emanjon",
@@ -194,11 +936,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/19/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/19",
     "id": 273447582,
+    "node_id": "MDU6SXNzdWUyNzM0NDc1ODI=",
     "number": 19,
     "title": "'sent from and to the same end points *or* security associations'?",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -218,7 +962,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -227,9 +971,9 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2017-11-13T14:26:47Z",
-    "updated_at": "2017-11-13T14:31:54Z",
-    "closed_at": null,
-    "author_association": "COLLABORATOR",
+    "updated_at": "2018-06-29T14:23:16Z",
+    "closed_at": "2018-06-29T14:23:16Z",
+    "author_association": "MEMBER",
     "body": "The current text on Request-Tag matchability requires being \"sent from and to the same end points (including security associations)\".\r\n\r\nOriginal block processing requires the endpoint (and implies same security context as per 7252 Endpoint definition) in \"the server collects further blocks from the same endpoint and plans to implement the request atomically\".\r\n\r\nThose documents did not foresee that a security context might span different transports (as OSCORE does). Can we do anything here to allow OSCORE inner-blockwise to utilize different transports for the first and following blocks? Like\r\n\r\n> sent from and to the same end points (including security context information), or from the same security context (in protocols where a security context can send messages over different underlying transports)\r\n\r\n– I just don't know if that's modifying 7959 more than we should. (Currently we do intend to update that RFC, but we might need to be more explicit then).\r\n\r\n(The application I'm having in mind right now is a large blob transfer that'd like to switch over to TCP after a few blocks because of long round-trip times)."
   },
   {
@@ -240,11 +984,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/18/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/18",
     "id": 269080768,
+    "node_id": "MDU6SXNzdWUyNjkwODA3Njg=",
     "number": 18,
     "title": "Echo value must be unpredictable",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -286,11 +1032,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/17/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/17",
     "id": 269079153,
+    "node_id": "MDU6SXNzdWUyNjkwNzkxNTM=",
     "number": 17,
     "title": "Not necessary to cache Echo value",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -310,17 +1058,17 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2017-10-27T11:45:19Z",
-    "updated_at": "2017-10-27T11:45:19Z",
-    "closed_at": null,
+    "updated_at": "2018-03-05T13:12:04Z",
+    "closed_at": "2018-03-05T13:12:04Z",
     "author_association": "COLLABORATOR",
     "body": "The Echo value sent in a response needs to be reproduced when the request arrives, but not cached. We should change the description to emphasize this. We note in the appendix that the nonce may be an encrypted value, but even in other cases it need not necessarily be cached."
   },
@@ -332,11 +1080,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/16/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/16",
     "id": 269078008,
+    "node_id": "MDU6SXNzdWUyNjkwNzgwMDg=",
     "number": 16,
     "title": "Multiple requests within RTT<T",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -356,17 +1106,17 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 2,
     "created_at": "2017-10-27T11:40:47Z",
-    "updated_at": "2017-10-27T11:40:47Z",
-    "closed_at": null,
+    "updated_at": "2018-03-05T13:09:28Z",
+    "closed_at": "2018-03-05T13:09:28Z",
     "author_association": "COLLABORATOR",
     "body": "Multiple requests withing the T-window may use the same Echo value."
   },
@@ -378,11 +1128,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/15/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/pull/15",
     "id": 266587996,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTQ3MzcxMDMw",
     "number": 15,
     "title": "Echo: Add paragraph about proxy (CC, HC, CH) handling",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -407,6 +1159,7 @@
     "assignee": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -427,6 +1180,7 @@
       {
         "login": "gselander",
         "id": 11752340,
+        "node_id": "MDQ6VXNlcjExNzUyMzQw",
         "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/gselander",
@@ -449,7 +1203,7 @@
     "created_at": "2017-10-18T18:04:19Z",
     "updated_at": "2017-10-25T07:24:15Z",
     "closed_at": "2017-10-25T07:13:40Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "pull_request": {
       "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/15",
       "html_url": "https://github.com/core-wg/echo-request-tag/pull/15",
@@ -466,11 +1220,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/14/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/pull/14",
     "id": 266576992,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTQ3MzYzNDYz",
     "number": 14,
     "title": "Use 4.01 Unauthorized rather than 4.03 Forbidden",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -495,6 +1251,7 @@
     "assignee": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -515,6 +1272,7 @@
       {
         "login": "gselander",
         "id": 11752340,
+        "node_id": "MDQ6VXNlcjExNzUyMzQw",
         "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/gselander",
@@ -537,7 +1295,7 @@
     "created_at": "2017-10-18T17:30:14Z",
     "updated_at": "2017-10-25T07:25:14Z",
     "closed_at": "2017-10-25T07:25:06Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "pull_request": {
       "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/14",
       "html_url": "https://github.com/core-wg/echo-request-tag/pull/14",
@@ -554,11 +1312,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/13/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/13",
     "id": 265870897,
+    "node_id": "MDU6SXNzdWUyNjU4NzA4OTc=",
     "number": 13,
     "title": "Better name for Repeat option",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -578,6 +1338,7 @@
     "labels": [
       {
         "id": 721715314,
+        "node_id": "MDU6TGFiZWw3MjE3MTUzMTQ=",
         "url": "https://api.github.com/repos/core-wg/echo-request-tag/labels/terminology",
         "name": "terminology",
         "color": "fbca04",
@@ -589,6 +1350,7 @@
     "assignee": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -609,6 +1371,7 @@
       {
         "login": "gselander",
         "id": 11752340,
+        "node_id": "MDQ6VXNlcjExNzUyMzQw",
         "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/gselander",
@@ -631,7 +1394,7 @@
     "created_at": "2017-10-16T18:35:13Z",
     "updated_at": "2017-10-25T04:50:42Z",
     "closed_at": "2017-10-25T04:50:42Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "The Repeat option obviously needs renaming from the feedback we've gathered, but nobody suggested any better name.\r\n\r\nCandidates I'm collecting:\r\n* Challenge (quite generic term)\r\n* Echo (sticking with the current mental image but using a less laden term)\r\n* Cookie (in analogy to the DTLS handshake's Cookie, but people might not like the taste of dough and chocolate)\r\n* Freshness (indicates its purpose but not its mechanism, could be confused with a time value)\r\n* maybe a compositum of those, like Freshness-Challenge?\r\n\r\nMy personal favorite right now is Freshness-Challenge; @gselander, should we ask back about this on-list again, or just take another shot?"
   },
   {
@@ -642,11 +1405,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/12/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/12",
     "id": 265802467,
+    "node_id": "MDU6SXNzdWUyNjU4MDI0Njc=",
     "number": 12,
     "title": "Clarify simultaneous use of Request-Tag as inner and outer option",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -671,6 +1436,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -691,6 +1457,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -713,7 +1480,7 @@
     "created_at": "2017-10-16T15:02:55Z",
     "updated_at": "2017-10-16T18:58:40Z",
     "closed_at": "2017-10-16T18:58:40Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "There exists doubt on whether the same option can be used both in OSCOAP inner and outer messages (like the block options), or whether distinct options are needed.\r\n\r\nThe Request-Discriminator to Request-Tag conversion of the draft itself is not complete yet, the text can't be used to back this, but jimsch, do you have comments on this already based on yesterday's call?\r\n\r\n(Carried over from old issue tracker at <https://github.com/chrysn/request-tag/issues/1>.)"
   },
   {
@@ -724,11 +1491,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/11/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/11",
     "id": 265802184,
+    "node_id": "MDU6SXNzdWUyNjU4MDIxODQ=",
     "number": 11,
     "title": "Cover DTLS use",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -753,6 +1522,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -773,6 +1543,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -795,7 +1566,7 @@
     "created_at": "2017-10-16T15:02:06Z",
     "updated_at": "2017-10-30T08:30:38Z",
     "closed_at": "2017-10-30T08:30:38Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "* Can this work for DTLS too? (Yes, but no reuse because seqence numbers inaccessible)\r\n* DTLS windows can be unilaterally increased (so sequence number access would be pointloess)\r\n\r\n(Carried over from old issue tracker at <https://github.com/chrysn/request-tag/issues/2>.)"
   },
   {
@@ -806,11 +1577,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/10/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/10",
     "id": 265802001,
+    "node_id": "MDU6SXNzdWUyNjU4MDIwMDE=",
     "number": 10,
     "title": "Make relation to Block1 more explicit",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -835,6 +1608,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -855,6 +1629,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -877,7 +1652,7 @@
     "created_at": "2017-10-16T15:01:33Z",
     "updated_at": "2017-10-18T16:39:48Z",
     "closed_at": "2017-10-18T16:39:48Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "Request-Tag can only be used with Block1 in descriptive use; this needs to be much clearer from the option description.\r\n\r\n(Carried over from old issue tracker at <https://github.com/chrysn/request-tag/issues/3>)"
   },
   {
@@ -888,11 +1663,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/9/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/9",
     "id": 247940628,
+    "node_id": "MDU6SXNzdWUyNDc5NDA2Mjg=",
     "number": 9,
     "title": "OSCOAP outer blockwise option, block1.",
     "user": {
       "login": "T0bbe",
       "id": 1225360,
+      "node_id": "MDQ6VXNlcjEyMjUzNjA=",
       "avatar_url": "https://avatars0.githubusercontent.com/u/1225360?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/T0bbe",
@@ -912,6 +1689,7 @@
     "labels": [
       {
         "id": 721715427,
+        "node_id": "MDU6TGFiZWw3MjE3MTU0Mjc=",
         "url": "https://api.github.com/repos/core-wg/echo-request-tag/labels/readability",
         "name": "readability",
         "color": "ccccdd",
@@ -923,6 +1701,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -943,6 +1722,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -976,11 +1756,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/8/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/pull/8",
     "id": 247351823,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTMzNjgwMjIy",
     "number": 8,
     "title": "Update draft-amsuess-core-repeat-request-tag.md",
     "user": {
       "login": "emanjon",
       "id": 24212834,
+      "node_id": "MDQ6VXNlcjI0MjEyODM0",
       "avatar_url": "https://avatars3.githubusercontent.com/u/24212834?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/emanjon",
@@ -1028,11 +1810,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/7/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/7",
     "id": 239942361,
+    "node_id": "MDU6SXNzdWUyMzk5NDIzNjE=",
     "number": 7,
     "title": "Add line on what HTTP proxy should do",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1052,6 +1836,7 @@
     "labels": [
       {
         "id": 721714700,
+        "node_id": "MDU6TGFiZWw3MjE3MTQ3MDA=",
         "url": "https://api.github.com/repos/core-wg/echo-request-tag/labels/patch%20available",
         "name": "patch available",
         "color": "1d76db",
@@ -1069,7 +1854,7 @@
     "created_at": "2017-07-01T10:51:13Z",
     "updated_at": "2017-10-25T07:13:40Z",
     "closed_at": "2017-10-25T07:13:40Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "Like OSCOAP asked that new options declare themselves E or U, the HTTP mapping document asked for clarification what a cross proxy should do.\r\n\r\nLooks like both Repeat and Request-Tag are never expressed in HTTP, and that a cross proxy needs to repeat the request or run an operation with a Request-Tag just as a CoAP client; a CH proxy (CoAP server) needs to use its own discretion on when to ask for a Repeat."
   },
   {
@@ -1080,11 +1865,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/6/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/6",
     "id": 239441473,
+    "node_id": "MDU6SXNzdWUyMzk0NDE0NzM=",
     "number": 6,
     "title": "Duplicate text on concurrent operations.",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -1117,7 +1904,10 @@
     "closed_at": "2017-06-30T18:18:09Z",
     "author_association": "COLLABORATOR",
     "body": "\"A CoAP client MUST set the Request-Tag option in the case of different concurrent blockwise request operations to the same resource. If the CoAP client is running a blockwise request operation without the Request-Tag, and wants to concurrently start another blockwise request operations to the same resource without cancelling the first, then the CoAP client MUST set the Request-Tag.\"\r\n\r\nThese sentences are quite similar. I think the second sentence is sufficient and the first can be removed."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/5",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
@@ -1126,11 +1916,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/5/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/5",
     "id": 239427888,
+    "node_id": "MDU6SXNzdWUyMzk0Mjc4ODg=",
     "number": 5,
     "title": "Characterization of Request-Tag",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -1172,11 +1964,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/4/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/4",
     "id": 238775439,
+    "node_id": "MDU6SXNzdWUyMzg3NzU0Mzk=",
     "number": 4,
     "title": "Integrity protection of Repeat application 5",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -1218,11 +2012,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/3/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/3",
     "id": 238042778,
+    "node_id": "MDU6SXNzdWUyMzgwNDI3Nzg=",
     "number": 3,
     "title": "Should we disallow Request-Tag without value?",
     "user": {
       "login": "gselander",
       "id": 11752340,
+      "node_id": "MDQ6VXNlcjExNzUyMzQw",
       "avatar_url": "https://avatars3.githubusercontent.com/u/11752340?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/gselander",
@@ -1242,17 +2038,19 @@
     "labels": [
       {
         "id": 721714944,
+        "node_id": "MDU6TGFiZWw3MjE3MTQ5NDQ=",
         "url": "https://api.github.com/repos/core-wg/echo-request-tag/labels/mechanism",
         "name": "mechanism",
         "color": "d93f0b",
         "default": false
       }
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1273,6 +2071,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -1291,10 +2090,10 @@
       }
     ],
     "milestone": null,
-    "comments": 3,
+    "comments": 4,
     "created_at": "2017-06-23T05:16:02Z",
-    "updated_at": "2017-10-18T19:02:12Z",
-    "closed_at": null,
+    "updated_at": "2018-03-05T13:10:57Z",
+    "closed_at": "2018-03-05T13:10:57Z",
     "author_association": "COLLABORATOR",
     "body": "Reading \"Every message in which the Block1 option is set is considered to carry a Request-Tag . . . \" I wonder about the potential confusion between a message with the Block1 option without Request-Tag and a message with the Block1 option with empty Request-Tag option, i.e. no value. As I read it we allow Request-Tag without value (length 0). Then we have two \"special classes\" of Block1 options, for which equality needs to be tested. Or should we require at least 1 byte of value? "
   },
@@ -1306,11 +2105,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/2/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/2",
     "id": 237509024,
+    "node_id": "MDU6SXNzdWUyMzc1MDkwMjQ=",
     "number": 2,
     "title": "Request-Tag: Check NoCacheKey",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1330,6 +2131,7 @@
     "labels": [
       {
         "id": 721714944,
+        "node_id": "MDU6TGFiZWw3MjE3MTQ5NDQ=",
         "url": "https://api.github.com/repos/core-wg/echo-request-tag/labels/mechanism",
         "name": "mechanism",
         "color": "d93f0b",
@@ -1341,6 +2143,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1361,6 +2164,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -1383,7 +2187,7 @@
     "created_at": "2017-06-21T11:57:42Z",
     "updated_at": "2017-10-18T18:25:22Z",
     "closed_at": "2017-10-18T18:25:22Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "As far as I understand, NoCacheKey becomes irrelevant if an option is both critical and unsafe (because it has to be *understood* by all parties anyway); nevertheless, it remains to decide whether the option should be part of the Cache Key, because that's part of the option number, and implementations will be glad if they can use the behavior implied by number."
   },
   {
@@ -1394,11 +2198,13 @@
     "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/1/events",
     "html_url": "https://github.com/core-wg/echo-request-tag/issues/1",
     "id": 237504707,
+    "node_id": "MDU6SXNzdWUyMzc1MDQ3MDc=",
     "number": 1,
     "title": "Repeat for non-protected applications",
     "user": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1423,6 +2229,7 @@
     "assignee": {
       "login": "chrysn",
       "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
       "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/chrysn",
@@ -1443,6 +2250,7 @@
       {
         "login": "chrysn",
         "id": 442326,
+        "node_id": "MDQ6VXNlcjQ0MjMyNg==",
         "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
         "gravatar_id": "",
         "url": "https://api.github.com/users/chrysn",
@@ -1465,7 +2273,7 @@
     "created_at": "2017-06-21T11:40:26Z",
     "updated_at": "2017-06-23T05:06:34Z",
     "closed_at": "2017-06-23T05:06:34Z",
-    "author_association": "COLLABORATOR",
+    "author_association": "MEMBER",
     "body": "I'd consider toning down the \"Repeat option MUST be integrity\r\nprotected\" part. Off my head, amplification mitigation against fake\r\nsource addresses comes to my mind. (Eg. a public RD might, when a new\r\nclient first ask for a 1024+ byte message with a ~20 byte one, send\r\nRepeat to make sure it does not participate in NTP-style DDOS)."
   }
 
