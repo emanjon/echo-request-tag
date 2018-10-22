@@ -6,6 +6,7 @@ This is the working area for the IETF [CORE Working Group](https://datatracker.i
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-echo-request-tag)
 * [Compare Editor's Copy to Working Group Draft](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.diff)
 
+
 ## Building the Draft
 
 Formatted text and HTML versions of the draft can be built using `make`.
