@@ -2,7 +2,7 @@
 
 This is the working area for the IETF [CORE Working Group](https://datatracker.ietf.org/wg/core/documents/) Internet-Draft, "Echo and Request-Tag".
 
-* [Editor's Copy](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.html)
+* [Editor's Copy](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.html) [![Build Status](https://travis-ci.org/core-wg/echo-request-tag.svg?branch=master)](https://travis-ci.org/core-wg/echo-request-tag)
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-echo-request-tag)
 * [Compare Editor's Copy to Working Group Draft](https://core-wg.github.io/echo-request-tag/#go.draft-ietf-core-echo-request-tag.diff)
 
