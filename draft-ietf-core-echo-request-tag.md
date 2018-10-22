@@ -58,7 +58,7 @@ The initial Constrained Application Protocol (CoAP) suite of specifications ({{R
 
 This document specifies two server-oriented CoAP options, the Echo option and the Request-Tag option: The Echo option enables a CoAP server to verify the freshness of a request, verify the aliveness of a client, synchronize state, or force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match message fragments belonging to the same request, fragmented using the CoAP Block-Wise Transfer mechanism, which mitigates attacks and enables concurrent blockwise operations. These options in themselves do not replace the need for a security protocol; they specify the format and processing of data which, when integrity protected using e.g. DTLS ({{RFC6347}}), TLS ({{RFC8446}}), or OSCORE ({{I-D.ietf-core-object-security}}), provide the additional security features.
 
-The document also updates the processing requirements on the Token. The updated processing ensures secure binding of responses to requests.
+The document also updates the processing requirements on the Token. The updated processing ensures secure binding of responses to requests, thus mitigating error cases and attacks where the client may erroneously associate the wrong response to a request.
 
 
 ## Request Freshness {#req-fresh}
@@ -387,7 +387,7 @@ and MUST NOT use the same ETag value for different representations of a resource
 
 As described in {{req-resp-bind}}, the client must be able to verify that a response corresponds to a particular request. This section updates the Token processing in Section 5.3.1 of {{RFC7252}} by adding the following text:
 
-When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the AEAD keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.
+When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.
 
 # Security Considerations {#sec-cons}
 
