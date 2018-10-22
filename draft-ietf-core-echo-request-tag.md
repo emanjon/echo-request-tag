@@ -203,7 +203,7 @@ The CoAP server side of CoAP-to-HTTP proxies MAY request freshness, especially i
     *  In the presence of a proxy, a server will not be able to distiguish
 different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticatied peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in {{echo-proc}}. The proxy MAY forward idempotent requests immediately to have a cached result available when the client's Echoed request arrives.
 
-4. A server may want to use the request freshness provided by the Echo to verify the aliveness of a client. Not that in a deployment with hop-by-hop security and proxies, the server can only verify aliveness of the closest proxy.
+4. A server may want to use the request freshness provided by the Echo to verify the aliveness of a client. Note that in a deployment with hop-by-hop security and proxies, the server can only verify aliveness of the closest proxy.
 
 
 # The Request-Tag Option # {#request-tag}
