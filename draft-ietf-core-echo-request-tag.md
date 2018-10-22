@@ -49,6 +49,7 @@ This document specifies security enhancements to the Constrained Application Pro
 
 
 
+
 --- middle
 
 # Introduction {#intro}
