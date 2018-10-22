@@ -133,7 +133,8 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    The document also updates the processing requirements on the Token.
    The updated processing ensures secure binding of responses to
-   requests.
+   requests, thus mitigating error cases and attacks where the client
+   may erroneously associate the wrong response to a request.
 
 1.1.  Request Freshness
 
@@ -161,7 +162,6 @@ Internet-Draft            Echo and Request-Tag              October 2018
    require freshness of requests, but also in general for synchronizing
    state between CoAP client and server and to verify aliveness of the
    client.
-
 
 
 
@@ -880,7 +880,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    When CoAP is used with a security protocol not providing bindings
    between requests and responses, the client MUST NOT reuse tokens
-   until the AEAD keys have been replaced.  The easiest way to
+   until the traffic keys have been replaced.  The easiest way to
    accomplish this is to implement the Token as a counter, this approach
    SHOULD be followed.
 
