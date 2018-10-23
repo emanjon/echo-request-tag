@@ -6,12 +6,12 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft
 Updates: 7252 (if approved)                                  J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: April 25, 2019                                      Ericsson AB
-                                                        October 22, 2018
+Expires: April 26, 2019                                      Ericsson AB
+                                                        October 23, 2018
 
 
                           Echo and Request-Tag
-                draft-ietf-core-echo-request-tag-latest
+                  draft-ietf-core-echo-request-tag-03
 
 Abstract
 
@@ -20,7 +20,7 @@ Abstract
    the Echo option and the Request-Tag option.  Each of these options
    provide additional features to CoAP and protects against certain
    attacks.  The document also updates the processing requirements on
-   the Token of [RFC7252].  The updated Token processing ensures secure
+   the Token of RFC 7252.  The updated Token processing ensures secure
    binding of responses to requests.
 
 Status of This Memo
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 25, 2019.
+   This Internet-Draft will expire on April 26, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 1]
+Amsuess, et al.          Expires April 26, 2019                 [Page 1]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 2]
+Amsuess, et al.          Expires April 26, 2019                 [Page 2]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 3]
+Amsuess, et al.          Expires April 26, 2019                 [Page 3]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -221,7 +221,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 4]
+Amsuess, et al.          Expires April 26, 2019                 [Page 4]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -277,7 +277,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 5]
+Amsuess, et al.          Expires April 26, 2019                 [Page 5]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -333,7 +333,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 6]
+Amsuess, et al.          Expires April 26, 2019                 [Page 6]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -389,7 +389,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 7]
+Amsuess, et al.          Expires April 26, 2019                 [Page 7]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -445,7 +445,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 8]
+Amsuess, et al.          Expires April 26, 2019                 [Page 8]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -501,7 +501,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                 [Page 9]
+Amsuess, et al.          Expires April 26, 2019                 [Page 9]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -557,7 +557,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 10]
+Amsuess, et al.          Expires April 26, 2019                [Page 10]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -613,7 +613,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 11]
+Amsuess, et al.          Expires April 26, 2019                [Page 11]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -669,7 +669,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 12]
+Amsuess, et al.          Expires April 26, 2019                [Page 12]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -725,7 +725,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 13]
+Amsuess, et al.          Expires April 26, 2019                [Page 13]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -781,7 +781,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 14]
+Amsuess, et al.          Expires April 26, 2019                [Page 14]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -837,7 +837,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 15]
+Amsuess, et al.          Expires April 26, 2019                [Page 15]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -893,7 +893,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 16]
+Amsuess, et al.          Expires April 26, 2019                [Page 16]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -949,7 +949,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 17]
+Amsuess, et al.          Expires April 26, 2019                [Page 17]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -964,13 +964,13 @@ Internet-Draft            Echo and Request-Tag              October 2018
    This document adds the following option numbers to the "CoAP Option
    Numbers" registry defined by [RFC7252]:
 
-                   +--------+-------------+------------+
-                   | Number | Name        | Reference  |
-                   +--------+-------------+------------+
-                   | TBD1   | Echo        | [RFC XXXX] |
-                   |        |             |            |
-                   | TBD2   | Request-Tag | [RFC XXXX] |
-                   +--------+-------------+------------+
+               +--------+-------------+-------------------+
+               | Number | Name        | Reference         |
+               +--------+-------------+-------------------+
+               | TBD1   | Echo        | [[this document]] |
+               |        |             |                   |
+               | TBD2   | Request-Tag | [[this document]] |
+               +--------+-------------+-------------------+
 
                        Figure 4: CoAP Option Numbers
 
@@ -1005,7 +1005,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 18]
+Amsuess, et al.          Expires April 26, 2019                [Page 18]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -1013,7 +1013,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
    [I-D.hartke-core-stateless]
               Hartke, K., "Extended Tokens and Stateless Clients in the
               Constrained Application Protocol (CoAP)", draft-hartke-
-              core-stateless-01 (work in progress), September 2018.
+              core-stateless-02 (work in progress), October 2018.
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
@@ -1061,7 +1061,7 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 19]
+Amsuess, et al.          Expires April 26, 2019                [Page 19]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -1117,7 +1117,7 @@ Appendix A.  Methods for Generating Echo Option Values
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 20]
+Amsuess, et al.          Expires April 26, 2019                [Page 20]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -1173,7 +1173,7 @@ Appendix C.  Change Log
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 21]
+Amsuess, et al.          Expires April 26, 2019                [Page 21]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -1229,7 +1229,7 @@ Authors' Addresses
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 22]
+Amsuess, et al.          Expires April 26, 2019                [Page 22]
 
 Internet-Draft            Echo and Request-Tag              October 2018
 
@@ -1285,4 +1285,4 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 25, 2019                [Page 23]
+Amsuess, et al.          Expires April 26, 2019                [Page 23]
