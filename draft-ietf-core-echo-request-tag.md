@@ -1,6 +1,6 @@
 ---
 title: Echo and Request-Tag
-docname: draft-ietf-core-echo-request-tag-latest
+docname: draft-ietf-core-echo-request-tag-03
 category: std
 updates: 7252
 
@@ -45,7 +45,7 @@ informative:
 
 --- abstract
 
-This document specifies security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Token of {{RFC7252}}. The updated Token processing ensures secure binding of responses to requests.
+This document specifies security enhancements to the Constrained Application Protocol (CoAP). Two optional extensions are defined: the Echo option and the Request-Tag option. Each of these options provide additional features to CoAP and protects against certain attacks. The document also updates the processing requirements on the Token of RFC 7252. The updated Token processing ensures secure binding of responses to requests.
 
 
 
@@ -126,7 +126,7 @@ The Echo Option is elective, safe-to-forward, not part of the cache-key, and not
 ~~~~~~~~~~
 {: #echo-table title="Echo Option Summary" artwork-align="center"}
 
-[ Note to RFC editor: If this document is released before core-object-security, then the following paragraph and the "E"/"U" columns above need to move into core-object-security, as they are defined in that draft. ]
+\[ Note to RFC editor: If this document is released before core-object-security, then the following paragraph and the "E"/"U" columns above need to move into core-object-security, as they are defined in that draft. \]
 
 The Echo option MAY be an Inner or Outer option [I-D.ietf-core-object-security], and the Inner and Outer values are independent. The Inner option is encrypted and integrity protected between the endpoints, whereas the Outer option is not protected by OSCORE and visible between the endpoints to the extent it is not
 protected by some other security protocol.  E.g. in the case of DTLS hop-by-hop between the endpoints, the Outer option is visible to proxies along the path.
@@ -229,7 +229,7 @@ The Request-Tag option is not critical, is safe to forward, repeatable, and part
 ~~~~~~~~~~
 {: #req-tag-table title="Request-Tag Option Summary" artwork-align="center"}
 
-[ Note to RFC editor: If this document is released before core-object-security, then the following paragraph and the "E"/"U" columns above need to move into core-object-security, as they are defined in that draft. ]
+\[ Note to RFC editor: If this document is released before core-object-security, then the following paragraph and the "E"/"U" columns above need to move into core-object-security, as they are defined in that draft. \]
 
 Request-Tag, like the block options, is both a class E and a class U option in terms of OSCORE processing (see Section 4.1 of {{I-D.ietf-core-object-security}}): The Request-Tag MAY be an inner or outer option. It influences the inner or outer block operation, respectively. The inner and outer values are therefore independent of each other. The inner option is encrypted and integrity protected between client and server, and provides message body identification in case of end-to-end fragmentation of requests. The outer option is visible to proxies and labels message bodies in case of hop-by-hop fragmentation of requests.
 
@@ -416,13 +416,13 @@ Implementations SHOULD NOT put any privacy sensitive information in the Echo or 
 This document adds the following option numbers to the "CoAP Option Numbers" registry defined by {{RFC7252}}:
 
 ~~~~~~~~~~
-+--------+-------------+------------+
-| Number | Name        | Reference  |
-+--------+-------------+------------+
-| TBD1   | Echo        | [RFC XXXX] |
-|        |             |            |
-| TBD2   | Request-Tag | [RFC XXXX] |
-+--------+-------------+------------+
++--------+-------------+-------------------+
+| Number | Name        | Reference         |
++--------+-------------+-------------------+
+| TBD1   | Echo        | [[this document]] |
+|        |             |                   |
+| TBD2   | Request-Tag | [[this document]] |
++--------+-------------+-------------------+
 ~~~~~~~~~~
 {: #iana-table title="CoAP Option Numbers" artwork-align="center"}
 
