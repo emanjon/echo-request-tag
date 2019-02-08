@@ -1,6 +1,6 @@
 ---
 title: Echo and Request-Tag
-docname: draft-ietf-core-echo-request-tag-03
+docname: draft-ietf-core-echo-request-tag-latest
 category: std
 updates: 7252
 
