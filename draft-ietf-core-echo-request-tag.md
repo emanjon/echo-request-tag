@@ -379,7 +379,7 @@ but blocks in the client's cache.
 Rules stating that response body reassembly is conditional on matching ETag values are already in place from Section 2.4 of {{RFC7959}}.
 
 To gain equivalent protection to {{body-integrity}},
-a server MUST use the Block2 option in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6),
+a server MUST use the Block2 option in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6),
 and MUST NOT use the same ETag value for different representations of a resource.
 
 # Token Processing {#token}
@@ -492,7 +492,6 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
     * The interaction between the new option and (cross) proxies is now covered.
     * Two messages being "Request-Tag matchable" was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.
 
-	
 # Acknowledgments
 {: numbered="no"}
 
