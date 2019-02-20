@@ -6,22 +6,24 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft
 Updates: 7252 (if approved)                                  J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: April 26, 2019                                      Ericsson AB
-                                                        October 23, 2018
+Expires: August 24, 2019                                     Ericsson AB
+                                                       February 20, 2019
 
 
-                          Echo and Request-Tag
-                  draft-ietf-core-echo-request-tag-03
+             CoAP: Echo, Request-Tag, and Token Processing
+                draft-ietf-core-echo-request-tag-latest
 
 Abstract
 
    This document specifies security enhancements to the Constrained
-   Application Protocol (CoAP).  Two optional extensions are defined:
-   the Echo option and the Request-Tag option.  Each of these options
-   provide additional features to CoAP and protects against certain
-   attacks.  The document also updates the processing requirements on
-   the Token of RFC 7252.  The updated Token processing ensures secure
-   binding of responses to requests.
+   Application Protocol (CoAP).  The Echo option and the Request-Tag
+   option are useful for some use cases.  The Echo option enables a CoAP
+   server to verify the freshness of a request or to force a client to
+   demonstrate reachability at its apparent network address.  The
+   Request-Tag option allows the CoAP server to match Block-Wise message
+   fragments belonging to the same request.  The document also updates
+   the CoAP Token processing requirements to ensure secure binding of
+   responses to requests when CoAP is used with DTLS.
 
 Status of This Memo
 
@@ -38,26 +40,26 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 26, 2019.
+   This Internet-Draft will expire on August 24, 2019.
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2019 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
    (https://trustee.ietf.org/license-info) in effect on the date of
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 1]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 1]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
@@ -104,16 +106,16 @@ Table of Contents
    The initial Constrained Application Protocol (CoAP) suite of
    specifications ([RFC7252], [RFC7641], and [RFC7959]) was designed
    with the assumption that security could be provided on a separate
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 2]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    layer, in particular by using DTLS ([RFC6347]).  However, for some
    use cases, additional functionality or extra processing is needed to
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 2]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    support secure CoAP operations.  This document specifies security
    enhancements to the Constrained Application Protocol (CoAP).
 
@@ -160,15 +162,16 @@ Internet-Draft            Echo and Request-Tag              October 2018
    freshness of a request.  This mechanism is not only important in the
    case of actuators, or other use cases where the CoAP operations
    require freshness of requests, but also in general for synchronizing
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 3]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    state between CoAP client and server and to verify aliveness of the
    client.
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 3]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
 1.2.  Fragmented Message Body Integrity
 
@@ -215,17 +218,17 @@ Internet-Draft            Echo and Request-Tag              October 2018
    In HTTPS, binding is assured by the ordered and reliable delivery as
    well as mandating that the server sends responses in the same order
    that the requests were received.  The same is not true for CoAP where
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 4]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    the server (or an attacker) can return responses in any order.
    Concurrent requests are instead differentiated by their Token.  Note
    that the CoAP Message ID cannot be used for this purpose since those
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 4]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    are typically different for REST request and corresponding response
    in case of "separate response", see Section 2.2 of [RFC7252].
 
@@ -270,18 +273,18 @@ Internet-Draft            Echo and Request-Tag              October 2018
    operation".  A blockwise operation which is fragmenting the response
    body is called a "blockwise response operation".
 
+
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 5]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    Two request messages are said to be "matchable" if they occur between
    the same endpoint pair, have the same code and the same set of
    options except for elective NoCacheKey options and options involved
-
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 5]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    in block-wise transfer (Block1, Block2 and Request-Tag).  Two
    operations are said to be matchable if any of their messages are.
 
@@ -328,16 +331,15 @@ Internet-Draft            Echo and Request-Tag              October 2018
    above need to move into core-object-security, as they are defined in
    that draft. ]
 
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 6]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    The Echo option MAY be an Inner or Outer option
    [I-D.ietf-core-object-security], and the Inner and Outer values are
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 6]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    independent.  The Inner option is encrypted and integrity protected
    between the endpoints, whereas the Outer option is not protected by
    OSCORE and visible between the endpoints to the extent it is not
@@ -384,16 +386,16 @@ Internet-Draft            Echo and Request-Tag              October 2018
    client SHOULD resend the original request with the addition of an
    Echo option with the received Echo option value.  The client MAY send
    a different request compared to the original request.  Upon receiving
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 7]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    any other response with the Echo option, the client SHOULD echo the
    Echo option value in the next request to the server.  The client MAY
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 7]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
    include the same Echo option value in several different requests to
    the server.
 
@@ -440,15 +442,16 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    Note that the server does not have to synchronize the time used for
    the Echo timestamps with any other party.  However, if the server
+
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 8]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    loses time continuity, e.g. due to reboot, it MUST reject all Echo
    values that was created before time continuity was lost.
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 8]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
    When used to serve freshness requirements (including client aliveness
    and state synchronizing), CoAP messages containing the Echo option
@@ -496,16 +499,15 @@ Internet-Draft            Echo and Request-Tag              October 2018
           next actuation request, and the server compares the receive
           time accordingly.
 
+
+
+Amsuess, et al.          Expires August 24, 2019                [Page 9]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    2.  A server may use the Echo option to synchronize state or time
        with a requesting client.  A server MUST NOT synchronize state or
-
-
-
-Amsuess, et al.          Expires April 26, 2019                 [Page 9]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
-
        time with clients which are not the authority of the property
        being synchronized.  E.g. if access to a server resource is
        dependent on time, then the client MUST NOT set the time of the
@@ -552,15 +554,16 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
    4.  A server may want to use the request freshness provided by the
        Echo to verify the aliveness of a client.  Note that in a
+
+
+
+Amsuess, et al.          Expires August 24, 2019               [Page 10]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
        deployment with hop-by-hop security and proxies, the server can
        only verify aliveness of the closest proxy.
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 10]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
 3.  The Request-Tag Option
 
@@ -607,16 +610,17 @@ Internet-Draft            Echo and Request-Tag              October 2018
    respectively.  The inner and outer values are therefore independent
    of each other.  The inner option is encrypted and integrity protected
    between client and server, and provides message body identification
+
+
+
+Amsuess, et al.          Expires August 24, 2019               [Page 11]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    in case of end-to-end fragmentation of requests.  The outer option is
    visible to proxies and labels message bodies in case of hop-by-hop
    fragmentation of requests.
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 11]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
    The Request-Tag option is only used in the request messages of
    blockwise operations.
@@ -662,17 +666,18 @@ Internet-Draft            Echo and Request-Tag              October 2018
    As it has always been, a server that can only serve a limited number
    of block-wise operations at the same time can delay the start of the
    operation by replying with 5.03 (Service unavailable) and a Max-Age
+
+
+
+Amsuess, et al.          Expires August 24, 2019               [Page 12]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    indicating how long it expects the existing operation to go on, or it
    can forget about the state established with the older operation and
    respond with 4.08 (Request Entity Incomplete) to later blocks on the
    first operation.
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 12]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
 3.3.  Setting the Request-Tag
 
@@ -717,18 +722,17 @@ Internet-Draft            Echo and Request-Tag              October 2018
    o  The individual exchanges MUST be integrity protected end-to-end
       between client and server.
 
+
+
+
+Amsuess, et al.          Expires August 24, 2019               [Page 13]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    o  The client MUST NOT recycle a request tag in a new operation
       unless the previous operation matchable to the new one has
       concluded.
-
-
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 13]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
       If any future security mechanisms allow a block-wise transfer to
       continue after an endpoint's details (like the IP address) have
@@ -774,17 +778,16 @@ Internet-Draft            Echo and Request-Tag              October 2018
    For those cases, Request-Tag is the proxy-safe elective option
    suggested in [RFC7959] Section 2.4 last paragraph.
 
+
+
+
+Amsuess, et al.          Expires August 24, 2019               [Page 14]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    When initializing a new blockwise operation, a client has to look at
    other active operations:
-
-
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 14]
-
-Internet-Draft            Echo and Request-Tag              October 2018
-
 
    o  If any of them is matchable to the new one, and the client neither
       wants to cancel the old one nor postpone the new one, it can pick
@@ -834,12 +837,9 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-
-
-
-Amsuess, et al.          Expires April 26, 2019                [Page 15]
+Amsuess, et al.          Expires August 24, 2019               [Page 15]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 3.6.  Rationale for Introducing the Option
@@ -893,9 +893,9 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 16]
+Amsuess, et al.          Expires August 24, 2019               [Page 16]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    An Echo value with 64 (pseudo-)random bits gives the same theoretical
@@ -949,9 +949,9 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 17]
+Amsuess, et al.          Expires August 24, 2019               [Page 17]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    and there also privacy reasons, e.g. it may reveal that the server
@@ -1005,9 +1005,9 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 18]
+Amsuess, et al.          Expires August 24, 2019               [Page 18]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    [I-D.hartke-core-stateless]
@@ -1061,9 +1061,9 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 19]
+Amsuess, et al.          Expires August 24, 2019               [Page 19]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 Appendix A.  Methods for Generating Echo Option Values
@@ -1117,9 +1117,9 @@ Appendix A.  Methods for Generating Echo Option Values
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 20]
+Amsuess, et al.          Expires August 24, 2019               [Page 20]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    option value, which adds overhead and makes the specification of such
@@ -1173,9 +1173,9 @@ Appendix C.  Change Log
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 21]
+Amsuess, et al.          Expires August 24, 2019               [Page 21]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
       *  Add rationale on not relying purely on sequence numbers.
@@ -1229,9 +1229,9 @@ Authors' Addresses
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 22]
+Amsuess, et al.          Expires August 24, 2019               [Page 22]
 
-Internet-Draft            Echo and Request-Tag              October 2018
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    John Mattsson
@@ -1285,4 +1285,4 @@ Internet-Draft            Echo and Request-Tag              October 2018
 
 
 
-Amsuess, et al.          Expires April 26, 2019                [Page 23]
+Amsuess, et al.          Expires August 24, 2019               [Page 23]
