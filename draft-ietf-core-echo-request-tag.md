@@ -331,7 +331,7 @@ it can pick a Request-Tag value that is not in use by the other matchable operat
 
 * Otherwise, it can start the new operation without setting the Request-Tag option on it.
 
-### Simplified Block-Wise Handling for Constrained Proxies
+### Simplified Block-Wise Handling for Constrained Proxies {#simpleproxy}
 
 The Block options were defined to be unsafe to forward
 because a proxy that would forward blocks as plain messages would risk mixing up clients' requests.
@@ -353,10 +353,11 @@ The Request-Tag option can be safe to forward but part of the cache key, because
 
 The Request-Tag option is repeatable
 because this easily allows stateless proxies to "chain" their origin address.
-Were it a single option, they would need to employ some length/value scheme to avoid confusing
-requests without a Request-Tag option with requests that carry a zero-length request tag.
+They can perform the steps of {{simpleproxy}} without the need to create an option value
+that is the concatenation of the received option and their own value,
+and can simply add a new Request-Tag option unconditionally.
 
-In earlier versions of this draft, the Request-Tag option used to be critical and unsafe to forward.
+In draft versions of this document, the Request-Tag option used to be critical and unsafe to forward.
 That design was based on an erroneous understanding of which blocks could be composed according to {{RFC7959}}.
 
 ## Rationale for Introducing the Option
