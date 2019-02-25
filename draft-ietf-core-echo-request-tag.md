@@ -174,7 +174,7 @@ Client   Server
 {: #echo-figure title="Example Echo Option Message Flow" artwork-align="center"}
 
 
-Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. However, if the server loses time continuity, e.g. due to reboot, it MUST reject all Echo values that was created before time continuity was lost.
+Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. However, if the server loses time continuity, e.g. due to reboot, it MUST reject all Echo values that were created before time continuity was lost.
 
 When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP messages containing the Echo option MUST be integrity protected between the intended endpoints, e.g. using DTLS, TLS, or an OSCORE Inner option ({{I-D.ietf-core-object-security}}). When used to demonstrate reachability at their apparent network address, the Echo option MAY be unprotected.
 
