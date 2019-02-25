@@ -6,8 +6,8 @@ CoRE Working Group                                            C. Amsuess
 Internet-Draft
 Updates: 7252 (if approved)                                  J. Mattsson
 Intended status: Standards Track                             G. Selander
-Expires: August 24, 2019                                     Ericsson AB
-                                                       February 20, 2019
+Expires: August 29, 2019                                     Ericsson AB
+                                                       February 25, 2019
 
 
              CoAP: Echo, Request-Tag, and Token Processing
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 24, 2019.
+   This Internet-Draft will expire on August 29, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 1]
+Amsuess, et al.          Expires August 29, 2019                [Page 1]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 2]
+Amsuess, et al.          Expires August 29, 2019                [Page 2]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -165,7 +165,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 3]
+Amsuess, et al.          Expires August 29, 2019                [Page 3]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -221,7 +221,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 4]
+Amsuess, et al.          Expires August 29, 2019                [Page 4]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -277,7 +277,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 5]
+Amsuess, et al.          Expires August 29, 2019                [Page 5]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -333,7 +333,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 6]
+Amsuess, et al.          Expires August 29, 2019                [Page 6]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -389,7 +389,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 7]
+Amsuess, et al.          Expires August 29, 2019                [Page 7]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -445,7 +445,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 8]
+Amsuess, et al.          Expires August 29, 2019                [Page 8]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -501,7 +501,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019                [Page 9]
+Amsuess, et al.          Expires August 29, 2019                [Page 9]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -557,7 +557,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 10]
+Amsuess, et al.          Expires August 29, 2019               [Page 10]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -613,7 +613,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 11]
+Amsuess, et al.          Expires August 29, 2019               [Page 11]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -669,7 +669,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 12]
+Amsuess, et al.          Expires August 29, 2019               [Page 12]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -725,7 +725,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 13]
+Amsuess, et al.          Expires August 29, 2019               [Page 13]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -781,7 +781,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 14]
+Amsuess, et al.          Expires August 29, 2019               [Page 14]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -837,7 +837,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 15]
+Amsuess, et al.          Expires August 29, 2019               [Page 15]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -893,7 +893,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 16]
+Amsuess, et al.          Expires August 29, 2019               [Page 16]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -949,7 +949,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 17]
+Amsuess, et al.          Expires August 29, 2019               [Page 17]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -1005,7 +1005,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 18]
+Amsuess, et al.          Expires August 29, 2019               [Page 18]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -1061,7 +1061,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 19]
+Amsuess, et al.          Expires August 29, 2019               [Page 19]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -1084,11 +1084,14 @@ Appendix A.  Methods for Generating Echo Option Values
    1.  List of Cached Random Values and Timestamps.  The Echo option
    value is a (pseudo-)random byte string.  The server caches a list
    containing the random byte strings and their transmission times.
-   Assuming 64-bit random values and 32-bit timestamps, the size of the
-   Echo option value is 8 bytes and the amount of server state is 12n
-   bytes, where n is the number of active Echo Option values.  If the
-   server loses time continuity, e.g. due to reboot, the entries in the
-   old list MUST be deleted.
+   Assuming 72-bit random values and 32-bit timestamps, the size of the
+   Echo option value is 9 bytes and the amount of server state is 13n
+   bytes, where n is the number of active Echo Option values.  The
+   security against forged echo values is given by s = bit length of r -
+   log2(n).  The length of r and the maximum allowed n should be set so
+   that the security level is harmonized with other parts of the
+   deployment, e.g. s >= 64.  If the server loses time continuity, e.g.
+   due to reboot, the entries in the old list MUST be deleted.
 
          Echo option value: random value r
          Server State: random value r, timestamp t0
@@ -1100,7 +1103,8 @@ Appendix A.  Methods for Generating Echo Option Values
    key is generated by the server and not shared with any other party.
    The use of truncated HMAC-SHA-256 is RECOMMENDED.  With a 32-bit
    timestamp and a 64-bit MAC, the size of the Echo option value is 12
-   bytes and the Server state is small and constant.  If the server
+   bytes and the Server state is small and constant.  The security
+   against forged echo values is given by the MAC length.  If the server
    loses time continuity, e.g. due to reboot, the old key MUST be
    deleted and replaced by a new random secret key.  Note that the
    privacy considerations in Section 7 may apply to the timestamp.  A
@@ -1111,17 +1115,16 @@ Appendix A.  Methods for Generating Echo Option Values
          Echo option value: timestamp t0, MAC(k, t0)
          Server State: secret key k
 
-   Other mechanisms complying with the security and privacy
-   considerations may be used.  The use of encrypted timestamps in the
-   Echo option typically requires an IV to be included in the Echo
 
 
-
-Amsuess, et al.          Expires August 24, 2019               [Page 20]
+Amsuess, et al.          Expires August 29, 2019               [Page 20]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
+   Other mechanisms complying with the security and privacy
+   considerations may be used.  The use of encrypted timestamps in the
+   Echo option typically requires an IV to be included in the Echo
    option value, which adds overhead and makes the specification of such
    a mechanims slightly more complicated than the two mechanisms
    specified here.
@@ -1168,15 +1171,14 @@ Appendix C.  Change Log
 
          +  Do not update RFC7959 any more
 
-      *  Make Request-Tag repeatable.
 
 
-
-
-Amsuess, et al.          Expires August 24, 2019               [Page 21]
+Amsuess, et al.          Expires August 29, 2019               [Page 21]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
+
+      *  Make Request-Tag repeatable.
 
       *  Add rationale on not relying purely on sequence numbers.
 
@@ -1227,9 +1229,7 @@ Authors' Addresses
 
 
 
-
-
-Amsuess, et al.          Expires August 24, 2019               [Page 22]
+Amsuess, et al.          Expires August 29, 2019               [Page 22]
 
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
@@ -1285,4 +1285,4 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
 
-Amsuess, et al.          Expires August 24, 2019               [Page 23]
+Amsuess, et al.          Expires August 29, 2019               [Page 23]
