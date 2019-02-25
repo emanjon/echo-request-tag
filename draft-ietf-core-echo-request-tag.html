@@ -478,7 +478,7 @@ ul.toc li {
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#echo" id="echo">The Echo Option</a>
 </h1>
-<p id="rfc.section.2.p.1">The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by the need for a server to verify freshness of a request as described in <a href="#req-fresh" class="xref">Section 1.1</a>. With request freshness we mean that the server can determine that the client (or in the case of hop-by-hop security the proxy) sent the request recently. The time threshold for being fresh is application specific. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests.</p>
+<p id="rfc.section.2.p.1">The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in <a href="#req-fresh" class="xref">Section 1.1</a>. With request freshness we mean that the server can determine that the client (or in the case of hop-by-hop security the proxy) sent the request recently. The time threshold for being fresh is application specific. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests.</p>
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#echo-format" id="echo-format">Option Format</a>
 </h1>
@@ -503,7 +503,7 @@ ul.toc li {
 <h1 id="rfc.section.2.2">
 <a href="#rfc.section.2.2">2.2.</a> <a href="#echo-proc" id="echo-proc">Echo Processing</a>
 </h1>
-<p id="rfc.section.2.2.p.1">The Echo option MAY be included in any request or response (see <a href="#echo-app" class="xref">Section 2.3</a> for different applications), but the Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).</p>
+<p id="rfc.section.2.2.p.1">The Echo option MAY be included in any request or response (see <a href="#echo-app" class="xref">Section 2.3</a> for different applications), but the Echo option MUST NOT be used with empty CoAP requests (i.e., Code=0.00).</p>
 <p id="rfc.section.2.2.p.2">If a server receives a request which has freshness requirements, the request does not contain a fresh Echo option value, and the server cannot verify the freshness of the request in some other way, the server MUST NOT process the request further and SHOULD send a 4.01 Unauthorized response with an Echo option. The server MAY include the same Echo option value in several different responses and to different clients.</p>
 <p id="rfc.section.2.2.p.3">The application decides under what conditions a CoAP request to a resource is required to be fresh. These conditions can for example include what resource is requested, the request method and other data in the request, and conditions in the environment such as the state of the server or the time of the day.</p>
 <p id="rfc.section.2.2.p.4">The server may use request freshness provided by the Echo option to verify the aliveness of a client or to synchronize state. The server may also include the Echo option in a response to force a client to demonstrate reachability at their apparent network address.</p>
@@ -655,8 +655,8 @@ Client   Server
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#token" id="token">Token Processing</a>
 </h1>
-<p id="rfc.section.5.p.1">As described in <a href="#req-resp-bind" class="xref">Section 1.3</a>, the client must be able to verify that a response corresponds to a particular request. This section updates the Token processing in Section 5.3.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> by adding the following text:</p>
-<p id="rfc.section.5.p.2">When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter, this approach SHOULD be followed.</p>
+<p id="rfc.section.5.p.1">As described in <a href="#req-resp-bind" class="xref">Section 1.3</a>, the client must be able to verify that a response corresponds to a particular request. This section updates the CoAP Token processing requirements for clients. The Token processing for servers is not updated. Token processing in Section 5.3.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> is updated by adding the following text:</p>
+<p id="rfc.section.5.p.2">When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens over a specific secure connection until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter starting at zero for each secure connection, this approach SHOULD be followed.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#sec-cons" id="sec-cons">Security Considerations</a>
 </h1>
