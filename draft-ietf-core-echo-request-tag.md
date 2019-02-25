@@ -107,7 +107,7 @@ The Echo and Request-Tag options are defined in this document.
 
 # The Echo Option {#echo}
 
-The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by the need for a server to verify freshness of a request as described in {{req-fresh}}. With request freshness we mean that the server can determine that the client (or in the case of hop-by-hop security the proxy) sent the request recently. The time threshold for being fresh is application specific. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests.
+The Echo option is a lightweight server-driven challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in {{req-fresh}}. With request freshness we mean that the server can determine that the client (or in the case of hop-by-hop security the proxy) sent the request recently. The time threshold for being fresh is application specific. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests.
 
 
 ## Option Format {#echo-format}
@@ -137,7 +137,7 @@ When receiving an Echo option in a request, the server MUST be able to verify th
 
 ## Echo Processing {#echo-proc}
 
-The Echo option MAY be included in any request or response (see {{echo-app}} for different applications), but the Echo option MUST NOT be used with empty CoAP requests (i.e. Code=0.00).
+The Echo option MAY be included in any request or response (see {{echo-app}} for different applications), but the Echo option MUST NOT be used with empty CoAP requests (i.e., Code=0.00).
 
 If a server receives a request which has freshness requirements, the request does not contain a fresh Echo option value, and the server cannot verify the freshness of the request in some other way, the server MUST NOT process the request further and SHOULD send a 4.01 Unauthorized response with an Echo option. The server MAY include the same Echo option value in several different responses and to different clients.
 
