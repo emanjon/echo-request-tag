@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/38",
+    "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
+    "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/38/labels{/name}",
+    "comments_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/38/comments",
+    "events_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/38/events",
+    "html_url": "https://github.com/core-wg/echo-request-tag/pull/38",
+    "id": 412506017,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjU0Njk4Njg2",
+    "number": 38,
+    "title": "Christian 20190220",
+    "user": {
+      "login": "chrysn",
+      "id": 442326,
+      "node_id": "MDQ6VXNlcjQ0MjMyNg==",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442326?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/chrysn",
+      "html_url": "https://github.com/chrysn",
+      "followers_url": "https://api.github.com/users/chrysn/followers",
+      "following_url": "https://api.github.com/users/chrysn/following{/other_user}",
+      "gists_url": "https://api.github.com/users/chrysn/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/chrysn/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/chrysn/subscriptions",
+      "organizations_url": "https://api.github.com/users/chrysn/orgs",
+      "repos_url": "https://api.github.com/users/chrysn/repos",
+      "events_url": "https://api.github.com/users/chrysn/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/chrysn/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2019-02-20T16:09:55Z",
+    "updated_at": "2019-02-20T16:09:55Z",
+    "closed_at": null,
+    "author_association": "MEMBER",
+    "pull_request": {
+      "url": "https://api.github.com/repos/core-wg/echo-request-tag/pulls/38",
+      "html_url": "https://github.com/core-wg/echo-request-tag/pull/38",
+      "diff_url": "https://github.com/core-wg/echo-request-tag/pull/38.diff",
+      "patch_url": "https://github.com/core-wg/echo-request-tag/pull/38.patch"
+    },
+    "body": "Changes in response to Carsten's comments\r\n\r\nDisposition: Will merge soon if nobody objects."
+  },
+  {
     "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/37",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
     "labels_url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/37/labels{/name}",
@@ -1855,7 +1909,10 @@
     "closed_at": "2017-10-18T19:01:08Z",
     "author_association": "NONE",
     "body": "Firstly, I am unsure if I should file this issue here or in the OSCOAP repo. \r\n\r\nWhat error message should the server send to the client if the client is missing the Request Tag when Block1 is set. (In the case of OSCOAP, with outer block options the Request Tag MUST be used. Thus  #3 cannot be applied to the OSCOAP case). \r\n\r\nSo which error message, to indicate to the client that it must use Request Tag?\r\n\r\nBest regards,\r\nTobias"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/8",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
@@ -1909,10 +1966,7 @@
       "patch_url": "https://github.com/core-wg/echo-request-tag/pull/8.patch"
     },
     "body": ""
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/core-wg/echo-request-tag/issues/7",
     "repository_url": "https://api.github.com/repos/core-wg/echo-request-tag",
