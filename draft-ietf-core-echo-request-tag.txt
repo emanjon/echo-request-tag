@@ -451,7 +451,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
    loses time continuity, e.g. due to reboot, it MUST reject all Echo
-   values that was created before time continuity was lost.
+   values that were created before time continuity was lost.
 
    When used to serve freshness requirements (including client aliveness
    and state synchronizing), CoAP messages containing the Echo option
