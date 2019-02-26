@@ -307,23 +307,23 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 2.  The Echo Option
 
-   The Echo option is a lightweight server-driven challenge-response
-   mechanism for CoAP, motivated by a need for a server to verify
-   freshness of a request as described in Section 1.1.  With request
-   freshness we mean that the server can determine that the client (or
-   in the case of hop-by-hop security the proxy) sent the request
-   recently.  The time threshold for being fresh is application
-   specific.  The Echo option value is a challenge from the server to
-   the client included in a CoAP response and echoed back to the server
-   in one or more CoAP requests.
+   A fresh request is one whose age has not yet exceeded the freshness
+   requirements set be the server.  The freshness requirements are
+   application specific and may vary based on resource, method, and
+   parameters outside of coap such as policies or the time of day.  The
+   Echo option is a lightweight challenge-response mechanism for CoAP,
+   motivated by a need for a server to verify freshness of a request as
+   described in Section 1.1.  The Echo option value is a challenge from
+   the server to the client included in a CoAP response and echoed back
+   to the server in one or more CoAP requests.  The Echo option provides
+   a convention to transfer freshness tokens that works for all CoAP
+   methods and response codes.
 
 2.1.  Option Format
 
    The Echo Option is elective, safe-to-forward, not part of the cache-
    key, and not repeatable, see Figure 1, which extends Table 4 of
    [RFC7252]).
-
-
 
 
 
