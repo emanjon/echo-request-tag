@@ -132,9 +132,10 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    TLS ([RFC8446]), or OSCORE ([I-D.ietf-core-object-security]), provide
    the additional security features.
 
-   The document also updates the processing requirements on the Token.
-   The updated processing ensures secure binding of responses to
-   requests, thus mitigating error cases and attacks where the client
+   The document also updates the Token processing requirements for
+   clients specified in [RFC7252].  The updated processing ensures
+   secure binding of responses to requests when CoAP is used with
+   security, thus mitigating error cases and attacks where the client
    may erroneously associate the wrong response to a request.
 
 1.1.  Request Freshness
@@ -161,7 +162,6 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    freshness of a request.  This mechanism is not only important in the
    case of actuators, or other use cases where the CoAP operations
    require freshness of requests, but also in general for synchronizing
-
 
 
 
