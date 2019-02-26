@@ -370,13 +370,13 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    no assumptions about its content or structure.
 
    When receiving an Echo option in a request, the server MUST be able
-   to verify when the Echo option value was generated.  Depending on the
-   freshness requirements the server may verify exactly when the Echo
-   option value was generated (time-based freshness) or verify that the
-   Echo option was generated after a specific event (event-based
-   freshness).  As the request is bound to the Echo option value, the
-   server can determine that the request is no older that the Echo
-   option value.
+   to verify that the Echo option value was sent by the server as when
+   the Echo option value was generated.  Depending on the freshness
+   requirements the server may verify exactly when the Echo option value
+   was generated (time-based freshness) or verify that the Echo option
+   was generated after a specific event (event-based freshness).  As the
+   request is bound to the Echo option value, the server can determine
+   that the request is no older that the Echo option value.
 
 2.2.  Echo Processing
 
