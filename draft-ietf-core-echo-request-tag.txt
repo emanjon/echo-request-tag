@@ -1090,7 +1090,7 @@ Appendix A.  Methods for Generating Echo Option Values
    security against forged echo values is given by s = bit length of r -
    log2(n).  The length of r and the maximum allowed n should be set so
    that the security level is harmonized with other parts of the
-   deployment, e.g. s >= 64.  If the server loses time continuity, e.g.
+   deployment, e.g., s >= 64.  If the server loses time continuity, e.g.
    due to reboot, the entries in the old list MUST be deleted.
 
          Echo option value: random value r
