@@ -429,11 +429,11 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    MAY be sent.  The error message SHOULD include a new Echo option.
 
    One way for the server to verify freshness is that to bind the Echo
-   value to a specific point in time (t0) and to verify that the time TR
-   = (t2 - t1) since the request was created is below a certain
-   threshold T, i.e., TR < T.  As TR < (t2 - t0), the server can verify
-   this by checking that (t2 - t0) < T.  An example message flow is
-   illustrated in Figure 2.
+   value to a specific point in time and verify that the request is not
+   older than a certain threshold T.  The server can verify this by
+   checking that (t1 - t0) < T), where t1 is the request receive time
+   and t0 is the time when the Echo option value was generated.  An
+   example message flow is illustrated in Figure 2.
 
 
 
@@ -461,7 +461,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
                 |  4.01 |       Token: 0x41
                 |       |        Echo: 0x437468756c687521 (t0)
                 |       |
-             t1 +------>| t2     Code: 0.03 (PUT)
+                +------>| t1     Code: 0.03 (PUT)
                 |  PUT  |       Token: 0x42
                 |       |    Uri-Path: lock
                 |       |        Echo: 0x437468756c687521 (t0)
@@ -478,8 +478,8 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    MUST be integrity protected between the intended endpoints, e.g.
    using DTLS, TLS, or an OSCORE Inner option
    ([I-D.ietf-core-object-security]).  When used to demonstrate
-   reachability at an claimed network address, the Echo option MAY be
-   unprotected.
+   reachability at a claimed network address, the Echo option SHOULD
+   contain the network address, but MAY be unprotected.
 
    A CoAP-to-CoAP proxy MAY respond to requests with 4.01 with an Echo
    option to ensure the client's reachability at its claimed address,
