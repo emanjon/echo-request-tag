@@ -85,8 +85,7 @@ In HTTPS, this type of binding is always assured by the ordered and reliable del
 
 CoAP {{RFC7252}} does not treat Token as a cryptographically important value and does not give stricter guidelines than that the tokens currently "in use" SHOULD (not SHALL) be unique. If used with a security protocol not providing bindings between requests and responses (e.g. DTLS and TLS) token reuse may result in situations where a client matches a response to the wrong request. Note that mismatches can also happen for other reasons than a malicious attacker, e.g. delayed delivery or a server sending notifications to an uninterested client.
 
-A straightforward mitigation is to mandate clients to not reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the token as a counter starting at zero for each secure connection. This document updates the Token processing in {{RFC7252}} to always assure a cryptographically secure binding of responses to requests for secure REST operations like "coaps".
-
+A straightforward mitigation is to mandate clients to not reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the token as a counter starting at zero for each new or rekeyed secure connection. This document updates the Token processing in {{RFC7252}} to always assure a cryptographically secure binding of responses to requests for secure REST operations like "coaps".
 
 ## Terminology
 
