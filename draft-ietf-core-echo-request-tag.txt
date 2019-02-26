@@ -913,8 +913,8 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    between requests and responses, the client MUST NOT reuse tokens over
    a specific secure connection until the traffic keys have been
    replaced.  The easiest way to accomplish this is to implement the
-   Token as a counter starting at zero for each secure connection, this
-   approach SHOULD be followed.
+   Token as a counter starting at zero for each new or rekeyed secure
+   connection, this approach SHOULD be followed.
 
 6.  Security Considerations
 
