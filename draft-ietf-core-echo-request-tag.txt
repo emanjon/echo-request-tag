@@ -119,19 +119,18 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    support secure CoAP operations.  This document specifies security
    enhancements to the Constrained Application Protocol (CoAP).
 
-   This document specifies two server-oriented CoAP options, the Echo
-   option and the Request-Tag option: The Echo option enables a CoAP
-   server to verify the freshness of a request, synchronize state, or
-   force a client to demonstrate reachability at its apparent network
-   address.  The Request-Tag option allows the CoAP server to match
-   message fragments belonging to the same request, fragmented using the
-   CoAP Block-Wise Transfer mechanism, which mitigates attacks and
-   enables concurrent blockwise operations.  These options in themselves
-   do not replace the need for a security protocol; they specify the
-   format and processing of data which, when integrity protected using
-   e.g.  DTLS ([RFC6347]), TLS ([RFC8446]), or OSCORE
-   ([I-D.ietf-core-object-security]), provide the additional security
-   features.
+   This document specifies two CoAP options, the Echo option and the
+   Request-Tag option: The Echo option enables a CoAP server to verify
+   the freshness of a request, synchronize state, or force a client to
+   demonstrate reachability at its claimed network address.  The
+   Request-Tag option allows the CoAP server to match message fragments
+   belonging to the same request, fragmented using the CoAP Block-Wise
+   Transfer mechanism, which mitigates attacks and enables concurrent
+   blockwise operations.  These options in themselves do not replace the
+   need for a security protocol; they specify the format and processing
+   of data which, when integrity protected using e.g.  DTLS ([RFC6347]),
+   TLS ([RFC8446]), or OSCORE ([I-D.ietf-core-object-security]), provide
+   the additional security features.
 
    The document also updates the processing requirements on the Token.
    The updated processing ensures secure binding of responses to
@@ -162,6 +161,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    freshness of a request.  This mechanism is not only important in the
    case of actuators, or other use cases where the CoAP operations
    require freshness of requests, but also in general for synchronizing
+
 
 
 
