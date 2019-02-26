@@ -386,7 +386,8 @@ and MUST NOT use the same ETag value for different representations of a resource
 
 As described in {{req-resp-bind}}, the client must be able to verify that a response corresponds to a particular request. This section updates the CoAP Token processing requirements for clients. The Token processing for servers is not updated. Token processing in Section 5.3.1 of {{RFC7252}} is updated by adding the following text:
 
-When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens over a specific secure connection until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter starting at zero for each secure connection, this approach SHOULD be followed.
+When CoAP is used with a security protocol not providing bindings between requests and responses, the client MUST NOT reuse tokens over a specific secure connection until the traffic keys have been replaced. The easiest way to accomplish this is to implement the Token as a counter starting at zero for each new or rekeyed secure connection, this approach SHOULD be followed.
+
 
 # Security Considerations {#sec-cons}
 
