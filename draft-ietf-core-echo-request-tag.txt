@@ -251,7 +251,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    an uninterested client.
 
    A straightforward mitigation is to mandate clients to not reuse
-   tokens until the traffic keys have been replaced.The easiest way to
+   tokens until the traffic keys have been replaced.  The easiest way to
    accomplish this is to implement the token as a counter starting at
    zero for each secure connection.  This document updates the Token
    processing in [RFC7252] to always assure a cryptographically secure
