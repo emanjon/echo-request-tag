@@ -146,7 +146,9 @@ The server may use request freshness provided by the Echo option to verify the a
 
 Upon receiving a 4.01 Unauthorized response with the Echo option, the client SHOULD resend the original request with the addition of an Echo option with the received Echo option value. The client MAY send a different request compared to the original request. Upon receiving any other response with the Echo option, the client SHOULD echo the Echo option value in the next request to the server. The client MAY include the same Echo option value in several different requests to the server.
 
-Upon receiving a request with the Echo option, the server determines if the request is required to be fresh. If not, the Echo option MAY be ignored. If the request is required to be fresh and the server cannot verify the freshness of the request in some other way, the server MUST use the Echo option to verify that the request is fresh enough. If the server cannot verify that the request is fresh enough, the request is not processed further, and an error message MAY be sent. The error message SHOULD include a new Echo option. An example message flow is illustrated in {{echo-figure}}.
+Upon receiving a request with the Echo option, the server determines if the request is required to be fresh. If not, the Echo option MAY be ignored. If the request is required to be fresh and the server cannot verify the freshness of the request in some other way, the server MUST use the Echo option to verify that the request is fresh enough. If the server cannot verify that the request is fresh enough, the request is not processed further, and an error message MAY be sent. The error message SHOULD include a new Echo option.
+
+One way for the server to verify freshness is that to bind the Echo value to a specific point in time (t0) and to verify that the time TR = (t2 – t1) since the request was created is below a certain threshold T, i.e., TR < T. As TR < (t2 – t0), the server can verify this by checking that (t2 – t0) < T. An example message flow is illustrated in {{echo-figure}}.
 
 ~~~~~~~~~~
 Client   Server
@@ -156,14 +158,14 @@ Client   Server
    |       |    Uri-Path: lock
    |       |     Payload: 0 (Unlock)
    |       |
-   |<------+ t0     Code: 4.01 (Unauthorized)
+   |<------+        Code: 4.01 (Unauthorized)
    |  4.01 |       Token: 0x41
-   |       |        Echo: 0x437468756c687521
+   |       |        Echo: 0x437468756c687521 (t0)
    |       |
-   +------>| t1     Code: 0.03 (PUT)
+t1 +------>| t2     Code: 0.03 (PUT)
    |  PUT  |       Token: 0x42
    |       |    Uri-Path: lock
-   |       |        Echo: 0x437468756c687521
+   |       |        Echo: 0x437468756c687521 (t0)
    |       |     Payload: 0 (Unlock)
    |       |
    |<------+        Code: 2.04 (Changed)
@@ -171,9 +173,6 @@ Client   Server
    |       |
 ~~~~~~~~~~
 {: #echo-figure title="Example Echo Option Message Flow" artwork-align="center"}
-
-
-Note that the server does not have to synchronize the time used for the Echo timestamps with any other party. However, if the server loses time continuity, e.g. due to reboot, it MUST reject all Echo values that were created before time continuity was lost.
 
 When used to serve freshness requirements (including client aliveness and state synchronizing), CoAP messages containing the Echo option MUST be integrity protected between the intended endpoints, e.g. using DTLS, TLS, or an OSCORE Inner option ({{I-D.ietf-core-object-security}}). When used to demonstrate reachability at an claimed network address, the Echo option MAY be unprotected.
 
