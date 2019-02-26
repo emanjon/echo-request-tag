@@ -45,7 +45,7 @@ informative:
 
 --- abstract
 
-This document specifies security enhancements to the Constrained Application Protocol (CoAP). The Echo option and the Request-Tag option are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The document also updates the CoAP Token processing requirements to ensure secure binding of responses to requests when CoAP is used with DTLS.
+This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its apparent network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security.
 
 
 
