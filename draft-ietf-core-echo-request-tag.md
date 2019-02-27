@@ -107,7 +107,7 @@ The Echo and Request-Tag options are defined in this document.
 
 # The Echo Option {#echo}
 
-A fresh request is one whose age has not yet exceeded the freshness requirements set be the server. The freshness requirements are application specific and may vary based on resource, method, and parameters outside of coap such as policies. The Echo option is a lightweight challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in {{req-fresh}}. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests. The Echo option provides a convention to transfer freshness tokens that works for all CoAP methods and response codes.
+A fresh request is one whose age has not yet exceeded the freshness requirements set by the server. The freshness requirements are application specific and may vary based on resource, method, and parameters outside of coap such as policies. The Echo option is a lightweight challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in {{req-fresh}}. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests. The Echo option provides a convention to transfer freshness tokens that works for all CoAP methods and response codes.
 
 
 ## Option Format {#echo-format}
@@ -199,8 +199,8 @@ The CoAP server side of CoAP-to-HTTP proxies MAY request freshness, especially i
 
 3. A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of {{RFC7252}} (where an attacker would put a victim's address in the source address of a CoAP request). For this purpose, a server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server. For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.
 
-    *  In the presence of a proxy, a server will not be able to distiguish
-different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticatied peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in {{echo-proc}}. The proxy MAY forward idempotent requests immediately to have a cached result available when the client's Echoed request arrives.
+    *  In the presence of a proxy, a server will not be able to distinguish
+different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in {{echo-proc}}. The proxy MAY forward idempotent requests immediately to have a cached result available when the client's Echoed request arrives.
 
 4. A server may want to use the request freshness provided by the Echo to verify the aliveness of a client. Note that in a deployment with hop-by-hop security and proxies, the server can only verify aliveness of the closest proxy.
 
@@ -393,7 +393,7 @@ When CoAP is used with a security protocol not providing bindings between reques
 
 The availability of a secure pseudorandom number generator and truly random seeds are essential for the security of the Echo option. If no true random number generator is available, a truly random seed must be provided from an external source.
 
-An single active Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).
+A single active Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).
 
 The security provided by the Echo and Request-Tag options depends on the security protocol used. CoAP and HTTP proxies require (D)TLS to be terminated at the proxies. The proxies are therefore able to manipulate, inject, delete, or reorder options or packets. The security claims in such architectures only hold under the assumption that all intermediaries are fully trusted and have not been compromised.
 
@@ -449,7 +449,7 @@ Different mechanisms have different tradeoffs between the size of the Echo optio
       Server State: secret key k
 ~~~~~~~~~~
 
-Other mechanisms complying with the security and privacy considerations may be used. The use of encrypted timestamps in the Echo option typically requires an IV to be included in the Echo option value, which adds overhead and makes the specification of such a mechanims slightly more complicated than the two mechanisms specified here.
+Other mechanisms complying with the security and privacy considerations may be used. The use of encrypted timestamps in the Echo option typically requires an IV to be included in the Echo option value, which adds overhead and makes the specification of such a mechanism slightly more complicated than the two mechanisms specified here.
 
 # Request-Tag Message Size Impact
 
