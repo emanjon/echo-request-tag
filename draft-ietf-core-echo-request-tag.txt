@@ -913,11 +913,11 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    between requests and responses, the tokens have cryptographic
    importance.  The client MUST make sure that tokens are not used in a
    way so that responses risk being associated with the wrong request.
-   The easiest way to accomplish this is implement the Token as a
-   sequence number starting at zero for each new or rekeyed secure
-   connection, this approach SHOULD be followed.  To avoid collisions
-   the sequence number can be encoded with a fixed length or with some
-   length-value encoding.
+   The easiest way to accomplish this implement the Token (or part of
+   the Token) as a sequence number starting at zero for each new or
+   rekeyed secure connection, this approach SHOULD be followed.  To
+   avoid collisions the sequence number can be encoded with a fixed
+   length or with some length-value encoding.
 
 6.  Security Considerations
 
