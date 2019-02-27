@@ -310,12 +310,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.19.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.20.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Amsuess, C., Mattsson, J., and G. Selander" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-echo-request-tag-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-02-26" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-02-27" />
   <meta name="dct.abstract" content="This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
   <meta name="description" content="This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
 
@@ -343,12 +343,12 @@ ul.toc li {
 <td class="right">G. Selander</td>
 </tr>
 <tr>
-<td class="left">Expires: August 30, 2019</td>
+<td class="left">Expires: August 31, 2019</td>
 <td class="right">Ericsson AB</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">February 26, 2019</td>
+<td class="right">February 27, 2019</td>
 </tr>
 
     	
@@ -364,7 +364,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 30, 2019.</p>
+<p>This Internet-Draft will expire on August 31, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -478,7 +478,7 @@ ul.toc li {
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#echo" id="echo">The Echo Option</a>
 </h1>
-<p id="rfc.section.2.p.1">A fresh request is one whose age has not yet exceeded the freshness requirements set be the server. The freshness requirements are application specific and may vary based on resource, method, and parameters outside of coap such as policies. The Echo option is a lightweight challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in <a href="#req-fresh" class="xref">Section 1.1</a>. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests. The Echo option provides a convention to transfer freshness tokens that works for all CoAP methods and response codes.</p>
+<p id="rfc.section.2.p.1">A fresh request is one whose age has not yet exceeded the freshness requirements set by the server. The freshness requirements are application specific and may vary based on resource, method, and parameters outside of coap such as policies. The Echo option is a lightweight challenge-response mechanism for CoAP, motivated by a need for a server to verify freshness of a request as described in <a href="#req-fresh" class="xref">Section 1.1</a>. The Echo option value is a challenge from the server to the client included in a CoAP response and echoed back to the server in one or more CoAP requests. The Echo option provides a convention to transfer freshness tokens that works for all CoAP methods and response codes.</p>
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#echo-format" id="echo-format">Option Format</a>
 </h1>
@@ -554,7 +554,7 @@ Client   Server
 <li>A device joining a CoAP group communication <a href="#RFC7390" class="xref">[RFC7390]</a> protected with OSCORE <a href="#I-D.ietf-core-oscore-groupcomm" class="xref">[I-D.ietf-core-oscore-groupcomm]</a> may be required to initially verify freshness and synchronize state or time with a client by using the Echo option in a unicast response to a multicast request. The client receiving the response with the Echo option includes the Echo option with the same value in a request, either in a unicast request to the responding server, or in a subsequent group request. In the latter case, the Echo option will be ignored expect by responding server.</li>
 </ul>
 </li>
-<li>A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of <a href="#RFC7252" class="xref">[RFC7252]</a> (where an attacker would put a victim&#8217;s address in the source address of a CoAP request). For this purpose, a server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server. For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.  <ul><li>In the presence of a proxy, a server will not be able to distiguish different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticatied peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in <a href="#echo-proc" class="xref">Section 2.2</a>. The proxy MAY forward idempotent requests immediately to have a cached result available when the client&#8217;s Echoed request arrives.</li></ul>
+<li>A server that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks such as described in Section 11.3 of <a href="#RFC7252" class="xref">[RFC7252]</a> (where an attacker would put a victim&#8217;s address in the source address of a CoAP request). For this purpose, a server MAY ask a client to Echo its request to verify its source address. This needs to be done only once per peer and limits the range of potential victims from the general Internet to endpoints that have been previously in contact with the server. For this application, the Echo option can be used in messages that are not integrity protected, for example during discovery.  <ul><li>In the presence of a proxy, a server will not be able to distinguish different origin client endpoints. Following from the recommendation above, a proxy that sends large responses to unauthenticated peers SHOULD mitigate amplification attacks. The proxy MAY use Echo to verify origin reachability as described in <a href="#echo-proc" class="xref">Section 2.2</a>. The proxy MAY forward idempotent requests immediately to have a cached result available when the client&#8217;s Echoed request arrives.</li></ul>
 </li>
 <li>A server may want to use the request freshness provided by the Echo to verify the aliveness of a client. Note that in a deployment with hop-by-hop security and proxies, the server can only verify aliveness of the closest proxy.</li>
 </ol>
@@ -661,7 +661,7 @@ Client   Server
 <a href="#rfc.section.6">6.</a> <a href="#sec-cons" id="sec-cons">Security Considerations</a>
 </h1>
 <p id="rfc.section.6.p.1">The availability of a secure pseudorandom number generator and truly random seeds are essential for the security of the Echo option. If no true random number generator is available, a truly random seed must be provided from an external source.</p>
-<p id="rfc.section.6.p.2">An single active Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).</p>
+<p id="rfc.section.6.p.2">A single active Echo value with 64 (pseudo-)random bits gives the same theoretical security level against forgeries as a 64-bit MAC (as used in e.g. AES_128_CCM_8). In practice, forgery of an Echo option value is much harder as an attacker must also forge the MAC in the security protocol. The Echo option value MUST contain 32 (pseudo-)random bits that are not predictable for any other party than the server, and SHOULD contain 64 (pseudo-)random bits. A server MAY use different security levels for different uses cases (client aliveness, request freshness, state synchronization, network address reachability, etc.).</p>
 <p id="rfc.section.6.p.3">The security provided by the Echo and Request-Tag options depends on the security protocol used. CoAP and HTTP proxies require (D)TLS to be terminated at the proxies. The proxies are therefore able to manipulate, inject, delete, or reorder options or packets. The security claims in such architectures only hold under the assumption that all intermediaries are fully trusted and have not been compromised.</p>
 <p id="rfc.section.6.p.4">Servers SHOULD use a monotonic clock to generate timestamps and compute round-trip times. Use of non-monotonic clocks is not secure as the server will accept expired Echo option values if the clock is moved backward. The server will also reject fresh Echo option values if the clock is moved forward. Non-monotonic clocks MAY be used as long as they have deviations that are acceptable given the freshness requirements. If the deviations from a monotonic clock are known, it may be possible to adjust the threshold accordingly.</p>
 <p id="rfc.section.6.p.5">Servers SHOULD NOT use wall clock time for timestamps, as wall clock time have large deviations from a monotonic clock. Furthermore, an attacker may be able to affect the server&#8217;s wall clock time in various ways such as setting up a fake NTP server or broadcasting false time signals to radio-controlled clocks.</p>
@@ -777,7 +777,7 @@ Client   Server
       Echo option value: timestamp t0, MAC(k, t0)
       Server State: secret key k
 </pre>
-<p id="rfc.section.A.p.5">Other mechanisms complying with the security and privacy considerations may be used. The use of encrypted timestamps in the Echo option typically requires an IV to be included in the Echo option value, which adds overhead and makes the specification of such a mechanims slightly more complicated than the two mechanisms specified here.</p>
+<p id="rfc.section.A.p.5">Other mechanisms complying with the security and privacy considerations may be used. The use of encrypted timestamps in the Echo option typically requires an IV to be included in the Echo option value, which adds overhead and makes the specification of such a mechanism slightly more complicated than the two mechanisms specified here.</p>
 <h1 id="rfc.appendix.B">
 <a href="#rfc.appendix.B">Appendix B.</a> <a href="#request-tag-message-size-impact" id="request-tag-message-size-impact">Request-Tag Message Size Impact</a>
 </h1>
