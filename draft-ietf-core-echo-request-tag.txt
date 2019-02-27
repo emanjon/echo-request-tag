@@ -96,7 +96,7 @@ Table of Contents
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  19
    Appendix A.  Methods for Generating Echo Option Values  . . . . .  20
-   Appendix B.  Request-Tag Message Size Impact  . . . . . . . . . .  21
+   Appendix B.  Request-Tag Message Size Impact  . . . . . . . . . .  22
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  22
    Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  23
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
@@ -910,11 +910,14 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    Section 5.3.1 of [RFC7252] is updated by adding the following text:
 
    When CoAP is used with a security protocol not providing bindings
-   between requests and responses, the client MUST NOT reuse tokens over
-   a specific secure connection until the traffic keys have been
-   replaced.  The easiest way to accomplish this is to implement the
-   Token as a counter starting at zero for each new or rekeyed secure
-   connection, this approach SHOULD be followed.
+   between requests and responses, the tokens have cryptographic
+   importance.  The client MUST make sure that tokens are not used in a
+   way so that responses risk being associated with the wrong request.
+   The easiest way to accomplish this is implement the Token as a
+   sequence number starting at zero for each new or rekeyed secure
+   connection, this approach SHOULD be followed.  To avoid collisions
+   the sequence number can be encoded with a fixed length or with some
+   length-value encoding.
 
 6.  Security Considerations
 
@@ -942,10 +945,7 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    that all intermediaries are fully trusted and have not been
    compromised.
 
-   Servers SHOULD use a monotonic clock to generate timestamps and
-   compute round-trip times.  Use of non-monotonic clocks is not secure
-   as the server will accept expired Echo option values if the clock is
-   moved backward.  The server will also reject fresh Echo option values
+
 
 
 
@@ -954,6 +954,10 @@ Amsuess, et al.          Expires August 31, 2019               [Page 17]
 Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
 
 
+   Servers SHOULD use a monotonic clock to generate timestamps and
+   compute round-trip times.  Use of non-monotonic clocks is not secure
+   as the server will accept expired Echo option values if the clock is
+   moved backward.  The server will also reject fresh Echo option values
    if the clock is moved forward.  Non-monotonic clocks MAY be used as
    long as they have deviations that are acceptable given the freshness
    requirements.  If the deviations from a monotonic clock are known, it
@@ -992,6 +996,20 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    This document adds the following option numbers to the "CoAP Option
    Numbers" registry defined by [RFC7252]:
 
+
+
+
+
+
+
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 18]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
                +--------+-------------+-------------------+
                | Number | Name        | Reference         |
                +--------+-------------+-------------------+
@@ -1001,14 +1019,6 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
                +--------+-------------+-------------------+
 
                        Figure 4: CoAP Option Numbers
-
-
-
-
-Amsuess, et al.          Expires August 31, 2019               [Page 18]
-
-Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
-
 
 9.  References
 
@@ -1046,6 +1056,16 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
               (OSCORE)", draft-ietf-core-object-security-15 (work in
               progress), August 2018.
 
+
+
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 19]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    [I-D.ietf-core-oscore-groupcomm]
               Tiloca, M., Selander, G., Palombini, F., and J. Park,
               "Group OSCORE - Secure Group Communication for CoAP",
@@ -1057,14 +1077,6 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
               and C. Amsuess, "Controlling Actuators with CoAP", draft-
               mattsson-core-coap-actuators-06 (work in progress),
               September 2018.
-
-
-
-
-Amsuess, et al.          Expires August 31, 2019               [Page 19]
-
-Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
-
 
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
@@ -1102,6 +1114,14 @@ Appendix A.  Methods for Generating Echo Option Values
    Echo option value, the amount of server state, the amount of
    computation, and the security properties offered.  A server MAY use
    different methods and security levels for different uses cases
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 20]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    (client aliveness, request freshness, state synchronization, network
    address reachability, etc.).
 
@@ -1114,14 +1134,6 @@ Appendix A.  Methods for Generating Echo Option Values
    security against forged echo values is given by s = bit length of r -
    log2(n).  The length of r and the maximum allowed n should be set so
    that the security level is harmonized with other parts of the
-
-
-
-Amsuess, et al.          Expires August 31, 2019               [Page 20]
-
-Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
-
-
    deployment, e.g., s >= 64.  If the server loses time continuity, e.g.
    due to reboot, the entries in the old list MUST be deleted.
 
@@ -1154,6 +1166,18 @@ Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
    a mechanism slightly more complicated than the two mechanisms
    specified here.
 
+
+
+
+
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 21]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
 Appendix B.  Request-Tag Message Size Impact
 
    In absence of concurrent operations, the Request-Tag mechanism for
@@ -1169,15 +1193,6 @@ Appendix B.  Request-Tag Message Size Impact
    When the absence of a Request-Tag option can not be recycled any more
    within a security context, the messages with a present but empty
    Request-Tag option can be used (1 Byte overhead), and when that is
-
-
-
-
-Amsuess, et al.          Expires August 31, 2019               [Page 21]
-
-Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
-
-
    used-up, 256 values from one byte long options (2 Bytes overhead) are
    available.
 
@@ -1211,6 +1226,14 @@ Appendix C.  Change Log
 
    o  Major changes since draft-ietf-core-echo-request-tag-00:
 
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 22]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
       *  Reworded the Echo section.
 
       *  Added rules for Token processing.
@@ -1225,14 +1248,6 @@ Appendix C.  Change Log
       *  Dropped use case about OSCORE outer-blockwise (the case went
          away when its Partial IV was moved into the Object-Security
          option)
-
-
-
-
-Amsuess, et al.          Expires August 31, 2019               [Page 22]
-
-Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
-
 
    o  Major changes since draft-amsuess-core-repeat-request-tag-00:
 
@@ -1268,6 +1283,13 @@ Authors' Addresses
    Email: john.mattsson@ericsson.com
 
 
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 23]
+
+Internet-DraftCoAP: Echo, Request-Tag, and Token ProcessingFebruary 2019
+
+
    Goeran Selander
    Ericsson AB
 
@@ -1285,4 +1307,38 @@ Authors' Addresses
 
 
 
-Amsuess, et al.          Expires August 31, 2019               [Page 23]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Amsuess, et al.          Expires August 31, 2019               [Page 24]
