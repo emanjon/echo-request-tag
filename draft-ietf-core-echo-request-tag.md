@@ -75,7 +75,7 @@ CoAP was designed to work over unreliable transports, such as UDP, and include a
 
 The Block-Wise Transfer mechanism {{RFC7959}} extends CoAP by defining the transfer of a large resource representation (CoAP message body) as a sequence of blocks (CoAP message payloads). The mechanism uses a pair of CoAP options, Block1 and Block2, pertaining to the request and response payload, respectively. The blockwise functionality does not support the detection of interchanged blocks between different message bodies to the same resource having the same block number. This remains true even when CoAP is used together with a security protocol such as DTLS or OSCORE, within the replay window ({{I-D.mattsson-core-coap-actuators}}), which is a vulnerability of CoAP when using RFC7959.
 
-A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying the request body fragmented using the Block1 option, similar to ETag, but ephemeral and set by the CoAP client.
+A straightforward mitigation of mixing up blocks from different messages is to use unique identifiers for different message bodies, which would provide equivalent protection to the case where the complete body fits into a single payload. The ETag option {{RFC7252}}, set by the CoAP server, identifies a response body fragmented using the Block2 option. This document defines the Request-Tag option for identifying request bodies, similar to ETag, but ephemeral and set by the CoAP client. The Request-Tag option is only used in requests that carry the Block1 option, and in Block2 requests following these.
 
 ## Request-Response Binding {#req-resp-bind}
 
@@ -289,6 +289,12 @@ and would not be recognized any more.
 
 Clients are encouraged to generate compact messages. This means sending messages without Request-Tag options whenever possible, and using short values when the absent option can not be recycled.
 
+The Request-Tag options MAY be present in request messages that carry a Block2 option
+even if those messages are not part of a blockwise request operation
+(this is to allow the operation described in {{simpleproxy}}).
+The Request-Tag option MUST NOT be present in response messages,
+and MUST NOT be present if neither the Block1 nor the Block2 option is present.
+
 ## Applications {#req-tag-applications}
 
 
@@ -331,7 +337,7 @@ it can pick a Request-Tag value that is not in use by the other matchable operat
 
 * Otherwise, it can start the new operation without setting the Request-Tag option on it.
 
-### Simplified Block-Wise Handling for Constrained Proxies
+### Simplified Block-Wise Handling for Constrained Proxies {#simpleproxy}
 
 The Block options were defined to be unsafe to forward
 because a proxy that would forward blocks as plain messages would risk mixing up clients' requests.
@@ -353,10 +359,11 @@ The Request-Tag option can be safe to forward but part of the cache key, because
 
 The Request-Tag option is repeatable
 because this easily allows stateless proxies to "chain" their origin address.
-Were it a single option, they would need to employ some length/value scheme to avoid confusing
-requests without a Request-Tag option with requests that carry a zero-length request tag.
+They can perform the steps of {{simpleproxy}} without the need to create an option value
+that is the concatenation of the received option and their own value,
+and can simply add a new Request-Tag option unconditionally.
 
-In earlier versions of this draft, the Request-Tag option used to be critical and unsafe to forward.
+In draft versions of this document, the Request-Tag option used to be critical and unsafe to forward.
 That design was based on an erroneous understanding of which blocks could be composed according to {{RFC7959}}.
 
 ## Rationale for Introducing the Option
@@ -379,7 +386,7 @@ but blocks in the client's cache.
 Rules stating that response body reassembly is conditional on matching ETag values are already in place from Section 2.4 of {{RFC7959}}.
 
 To gain equivalent protection to {{body-integrity}},
-a server MUST use the Block2 option in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6),
+a server MUST use the Block2 option in conjunction with the ETag option ({{RFC7252}}, Section 5.10.6),
 and MUST NOT use the same ETag value for different representations of a resource.
 
 # Token Processing {#token}
@@ -492,7 +499,6 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
     * The interaction between the new option and (cross) proxies is now covered.
     * Two messages being "Request-Tag matchable" was introduced to replace the older concept of having a request tag value with its slightly awkward equivalence definition.
 
-	
 # Acknowledgments
 {: numbered="no"}
 
