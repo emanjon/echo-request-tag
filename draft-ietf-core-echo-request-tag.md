@@ -472,6 +472,28 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
 
 \[ The editor is asked to remove this section before publication. \]
 
+* Changes since draft-ietf-core-echo-request-tag-03:
+
+    * Mention token processing changes in title
+    * Abstract reworded
+    * Clarify updates to token processing
+    * Describe security levels from Echo length
+    * Allow non-monotonic clocks under certain conditions for freshness
+    * Simplify freshness expressions
+    * Describe when a Request-Tag can be set
+    * Add note on application-level freshness mechanisms
+    * Minor editorial changes
+
+* Changes since draft-ietf-core-echo-request-tag-02:
+
+    * Define "freshness"
+    * Note limitations of "aliveness"
+    * Clarify proxy and OSCORE handling in presence of "echo"
+    * Clarify when Echo values may be reused
+    * Update security considerations
+    * Various minor clarifications
+    * Minor editorial changes
+
 * Major changes since draft-ietf-core-echo-request-tag-01:
 
     * Follow-up changes after the "relying on blockwise" change in -01:
