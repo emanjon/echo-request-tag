@@ -521,7 +521,7 @@ In situations where those overheads are unacceptable (e.g. because the payloads 
 # Acknowledgments
 {: numbered="no"}
 
-The authors want to thank Jim Schaad for providing valuable input to the draft.
+The authors want to thank Jim Schaad and Carsten Bormann for providing valuable input to the draft.
 
 
 --- fluff
