@@ -1,0 +1,46 @@
+\documentclass{beamer}
+
+% generic packages
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% about the presentation
+\title{Echo and Request Tag}
+\subtitle{\texttt{draft-ietf-core-echo-request-tag}}
+\author{\textit{Christian Amsüss}, John Mattson, Göran Selander}
+\date{2019-03-26}
+
+% attach self
+
+\usepackage{embedfile}
+\embedfile{\jobname.tex}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Recent changes, especially since chair review}\begin{center}
+	\huge Token processing
+
+	\bigskip
+
+	\Large
+
+	when used with a security protocol prone to request/response mismatch,
+	“client MUST make sure that tokens are not used in a way so that responses risk being associated with the wrong request”
+
+	\vspace{2cm}
+
+	\small and several of clarification and editorial changes
+\end{center}\end{frame}
+
+\begin{frame}{Document status}\begin{center}
+	\Huge Working Group Last Call
+
+	\bigskip
+
+	\Large until 2018-04-17
+\end{center}\end{frame}
+
+\end{document}
