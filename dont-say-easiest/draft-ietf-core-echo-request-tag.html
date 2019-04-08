@@ -310,14 +310,14 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.20.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Amsuess, C., Mattsson, J., and G. Selander" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-echo-request-tag-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-03-01" />
-  <meta name="dct.abstract" content="This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
-  <meta name="description" content="This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-04-08" />
+  <meta name="dct.abstract" content="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
+  <meta name="description" content="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security." />
 
 </head>
 
@@ -343,12 +343,12 @@ ul.toc li {
 <td class="right">G. Selander</td>
 </tr>
 <tr>
-<td class="left">Expires: September 2, 2019</td>
+<td class="left">Expires: October 10, 2019</td>
 <td class="right">Ericsson AB</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">March 01, 2019</td>
+<td class="right">April 08, 2019</td>
 </tr>
 
     	
@@ -359,12 +359,12 @@ ul.toc li {
   <span class="filename">draft-ietf-core-echo-request-tag-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document specifies security enhancements to the Constrained Application Protocol (CoAP) that are useful for some use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security.</p>
+<p>This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases. The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address. The Request-Tag option allows the CoAP server to match Block-Wise message fragments belonging to the same request. The updated Token processing requirements for clients ensure secure binding of responses to requests when CoAP is used with security.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 2, 2019.</p>
+<p>This Internet-Draft will expire on October 10, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -465,7 +465,7 @@ ul.toc li {
 <p id="rfc.section.1.3.p.1">A fundamental requirement of secure REST operations is that the client can bind a response to a particular request. If this is not ensured, a client may erroneously associate the wrong response to a request. The wrong response may be an old response for the same resource or for a completely different resource (see e.g. Section 2.3 of <a href="#I-D.mattsson-core-coap-actuators" class="xref">[I-D.mattsson-core-coap-actuators]</a>). For example, a request for the alarm status &#8220;GET /status&#8221; may be associated to a prior response &#8220;on&#8221;, instead of the correct response &#8220;off&#8221;.</p>
 <p id="rfc.section.1.3.p.2">In HTTPS, this type of binding is always assured by the ordered and reliable delivery as well as mandating that the server sends responses in the same order that the requests were received. The same is not true for CoAP where the server (or an attacker) can return responses in any order and where there can be any number of responses to a request (see e.g. <a href="#RFC7641" class="xref">[RFC7641]</a>). In CoAP, concurrent requests are differentiated by their Token. Note that the CoAP Message ID cannot be used for this purpose since those are typically different for REST request and corresponding response in case of &#8220;separate response&#8221;, see Section 2.2 of <a href="#RFC7252" class="xref">[RFC7252]</a>.</p>
 <p id="rfc.section.1.3.p.3">CoAP <a href="#RFC7252" class="xref">[RFC7252]</a> does not treat Token as a cryptographically important value and does not give stricter guidelines than that the tokens currently &#8220;in use&#8221; SHOULD (not SHALL) be unique. If used with a security protocol not providing bindings between requests and responses (e.g. DTLS and TLS) token reuse may result in situations where a client matches a response to the wrong request. Note that mismatches can also happen for other reasons than a malicious attacker, e.g. delayed delivery or a server sending notifications to an uninterested client.</p>
-<p id="rfc.section.1.3.p.4">A straightforward mitigation is to mandate clients to not reuse tokens until the traffic keys have been replaced. The easiest way to accomplish this is to implement the token as a counter starting at zero for each new or rekeyed secure connection. This document updates the Token processing in <a href="#RFC7252" class="xref">[RFC7252]</a> to always assure a cryptographically secure binding of responses to requests for secure REST operations like &#8220;coaps&#8221;.</p>
+<p id="rfc.section.1.3.p.4">A straightforward mitigation is to mandate clients to not reuse tokens until the traffic keys have been replaced. One easy way to accomplish this is to implement the token as a counter starting at zero for each new or rekeyed secure connection. This document updates the Token processing in <a href="#RFC7252" class="xref">[RFC7252]</a> to always assure a cryptographically secure binding of responses to requests for secure REST operations like &#8220;coaps&#8221;.</p>
 <h1 id="rfc.section.1.4">
 <a href="#rfc.section.1.4">1.4.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -657,7 +657,7 @@ Client   Server
 <a href="#rfc.section.5">5.</a> <a href="#token" id="token">Token Processing</a>
 </h1>
 <p id="rfc.section.5.p.1">As described in <a href="#req-resp-bind" class="xref">Section 1.3</a>, the client must be able to verify that a response corresponds to a particular request. This section updates the CoAP Token processing requirements for clients. The Token processing for servers is not updated. Token processing in Section 5.3.1 of <a href="#RFC7252" class="xref">[RFC7252]</a> is updated by adding the following text:</p>
-<p id="rfc.section.5.p.2">When CoAP is used with a security protocol not providing bindings between requests and responses, the tokens have cryptographic importance. The client MUST make sure that tokens are not used in a way so that responses risk being associated with the wrong request. The easiest way to accomplish this is to implement the Token (or part of the Token) as a sequence number starting at zero for each new or rekeyed secure connection, this approach SHOULD be followed. To avoid collisions the sequence number can be encoded with a fixed length or with some length-value encoding.</p>
+<p id="rfc.section.5.p.2">When CoAP is used with a security protocol not providing bindings between requests and responses, the tokens have cryptographic importance. The client MUST make sure that tokens are not used in a way so that responses risk being associated with the wrong request. One easy way to accomplish this is to implement the Token (or part of the Token) as a sequence number for each connection, starting at zero and reset to zero after rekeying, this approach SHOULD be followed. To avoid collisions the sequence number can be encoded with a fixed length or with some length-value encoding.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#sec-cons" id="sec-cons">Security Considerations</a>
 </h1>
@@ -725,12 +725,12 @@ Client   Server
 <tr>
 <td class="reference"><b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b></td>
 <td class="top">
-<a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-object-security-15">Object Security for Constrained RESTful Environments (OSCORE)</a>", Internet-Draft draft-ietf-core-object-security-15, August 2018.</td>
+<a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-object-security-16">Object Security for Constrained RESTful Environments (OSCORE)</a>", Internet-Draft draft-ietf-core-object-security-16, March 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-core-oscore-groupcomm">[I-D.ietf-core-oscore-groupcomm]</b></td>
 <td class="top">
-<a>Tiloca, M.</a>, <a>Selander, G.</a>, <a>Palombini, F.</a> and <a>J. Park</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-oscore-groupcomm-03">Group OSCORE - Secure Group Communication for CoAP</a>", Internet-Draft draft-ietf-core-oscore-groupcomm-03, October 2018.</td>
+<a>Tiloca, M.</a>, <a>Selander, G.</a>, <a>Palombini, F.</a> and <a>J. Park</a>, "<a href="https://tools.ietf.org/html/draft-ietf-core-oscore-groupcomm-04">Group OSCORE - Secure Group Communication for CoAP</a>", Internet-Draft draft-ietf-core-oscore-groupcomm-04, March 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.mattsson-core-coap-actuators">[I-D.mattsson-core-coap-actuators]</b></td>
@@ -799,6 +799,28 @@ Client   Server
 <p></p>
 
 <ul>
+<li>Changes since draft-ietf-core-echo-request-tag-03:  <ul>
+<li>Mention token processing changes in title</li>
+<li>Abstract reworded</li>
+<li>Clarify updates to token processing</li>
+<li>Describe security levels from Echo length</li>
+<li>Allow non-monotonic clocks under certain conditions for freshness</li>
+<li>Simplify freshness expressions</li>
+<li>Describe when a Request-Tag can be set</li>
+<li>Add note on application-level freshness mechanisms</li>
+<li>Minor editorial changes</li>
+</ul>
+</li>
+<li>Changes since draft-ietf-core-echo-request-tag-02:  <ul>
+<li>Define &#8220;freshness&#8221;</li>
+<li>Note limitations of &#8220;aliveness&#8221;</li>
+<li>Clarify proxy and OSCORE handling in presence of &#8220;echo&#8221;</li>
+<li>Clarify when Echo values may be reused</li>
+<li>Update security considerations</li>
+<li>Various minor clarifications</li>
+<li>Minor editorial changes</li>
+</ul>
+</li>
 <li>Major changes since draft-ietf-core-echo-request-tag-01:  <ul>
 <li>Follow-up changes after the &#8220;relying on blockwise&#8221; change in -01:      <ul>
 <li>Simplify the description of Request-Tag and matchability</li>
@@ -827,7 +849,7 @@ Client   Server
 </li>
 </ul>
 <h1 id="rfc.acknowledgments"><a href="#rfc.acknowledgments">Acknowledgments</a></h1>
-<p id="rfc.section.D.p.1">The authors want to thank Jim Schaad for providing valuable input to the draft.</p>
+<p id="rfc.section.D.p.1">The authors want to thank Jim Schaad and Carsten Bormann for providing valuable input to the draft.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
